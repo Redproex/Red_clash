@@ -1,125 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Буклет Tesla</title>
+
 <style>
-* {
-    box-sizing: border-box;
-}
-
 body {
-    margin: 0;
-    padding: 15px;
-    font-family: Arial, sans-serif;
-    background: #eeeeee;
-    color: #222;
-}
-
-h1 {
-    text-align: center;
-    font-size: 24px;
-}
-
-.subtitle {
-    text-align: center;
-    font-size: 14px;
-}
-
-.title {
-    text-align: center;
-    font-size: 18px;
-    margin: 18px 0 8px;
+  font-family: Arial;
+  margin: 10px;
+  background: #eee;
 }
 
 .sheet {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto 25px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    background: white;
-    border: 2px solid #222;
+  display: flex;
+  max-width: 900px;
+  margin: 20px auto;
+  background: white;
 }
 
-.panel {
-    min-height: 420px;
-    padding: 16px;
-    border-right: 1px dashed #777;
+.block {
+  width: 33.33%;
+  padding: 12px;
+  border-right: 1px dashed #888;
+  min-height: 350px;
 }
 
-.panel:last-child {
-    border-right: none;
+.block:last-child {
+  border: 0;
 }
 
-.panel h2 {
-    text-align: center;
-    font-size: 17px;
-    margin: 5px 0 14px;
+h2 {
+  font-size: 18px;
+  text-align: center;
 }
 
-.panel h3 {
-    font-size: 14px;
-}
-
-.panel p,
-.panel li {
-    font-size: 11px;
-    line-height: 1.45;
-}
-
-.panel ul {
-    padding-left: 18px;
+p, li {
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .cover {
-    text-align: center;
-    padding-top: 35px;
+  text-align: center;
 }
 
-.tesla {
-    font-size: 36px;
-    font-weight: bold;
-    margin: 12px 0;
+.cover h1 {
+  font-size: 32px;
 }
 
-.car {
-    font-size: 45px;
-    text-align: center;
-    margin: 12px;
+@media(max-width:600px) {
+  .sheet {
+    display: block;
+  }
+
+  .block {
+    width: auto;
+    border-right: 0;
+    border-bottom: 1px dashed #888;
+  }
 }
+</style>
+</head>
 
-.fold {
-    text-align: center;
-    color: #777;
-    font-size: 9px;
-    margin-top: 15px;
-}
+<body>
 
-.note {
-    max-width: 850px;
-    margin: auto;
-    background: white;
-    padding: 15px;
-    font-size: 12px;
-}
+<h2>ВНЕШНЯЯ СТОРОНА</h2>
 
-.note h2 {
-    font-size: 16px;
-}
+<div class="sheet">
 
-.note p {
-    margin: 6px 0;
-}
+<div class="block">
+<h2>Сложности</h2>
+<ul>
+<li>Высокая стоимость разработки.</li>
+<li>Сложность новых технологий.</li>
+<li>Требования к безопасности.</li>
+<li>Необходимость постоянного совершенствования.</li>
+<li>Большие затраты на оборудование.</li>
+<li>Обучение специалистов.</li>
+</ul>
+</div>
 
-@media (max-width: 800px) {
-    .sheet {
-        grid-template-columns: 1fr;
-    }
+<div class="block">
+<h2>Вывод</h2>
+<p>
+Tesla является инновационным предприятием,
+которое использует современные технологии
+для создания электромобилей и энергетических
+систем.
+</p>
 
-    .panel {
-        border-right: none;
-        border-bottom: 1px dashed #777;
-        min-height: 280px;
-    }
+<p>
+Развитие новых технологий позволяет компании
+совершенствовать продукцию и производство.
+</p>
+</div>
 
-    .panel:last-child {
-        border-bottom: none;
-    }
-}
-   </style>
+<div class="block cover">
+<h1>TESLA</h1>
+<p>Инновационное предприятие</p>
+<p>Электромобили</p>
+<p>Аккумуляторы</p>
+<p>Современные технологии</p>
+</div>
+
+</div>
+
+
+<h2>ВНУТРЕННЯЯ СТОРОНА</h2>
+
+<div class="sheet">
+
+<div class="block">
+<h2>1. Предприятие</h2>
+
+<p>
+Tesla — компания, работающая в автомобильной
+и энергетической отрасли.
+</p>
+
+<p>
+Компания известна разработкой электромобилей,
+аккумуляторных систем и технологий хранения
+энергии.
+</p>
+</div>
+
+<div class="block">
+<h2>2. Отрасль и продукция</h2>
+
+<p><b>Основные направления:</b></p>
+
+<ul>
+<li>производство электромобилей;</li>
+<li>аккумуляторные системы;</li>
+<li>хранение энергии;</li>
+<li>энергетическое оборудование.</li>
+</ul>
+
+<p>
+Продукция предприятия сочетает транспортные
+и цифровые технологии.
+</p>
+</div>
+
+<div class="block">
+<h2>3. Инновации</h2>
+
+<ul>
+<li>Электрические силовые установки.</li>
+<li>Современные аккумуляторы.</li>
+<li>Роботизация производства.</li>
+<li>Автоматизация процессов.</li>
+<li>Программное управление автомобилями.</li>
+<li>Удалённые обновления программного обеспечения.</li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>
