@@ -1,258 +1,125 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<title>Буклет Tesla — схема</title>
-
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        padding: 25px;
-        font-family: Arial, sans-serif;
-        background: #eeeeee;
-        color: #222;
-    }
+body {
+    margin: 0;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    background: #eeeeee;
+    color: #222;
+}
 
-    h1 {
-        text-align: center;
-    }
+h1 {
+    text-align: center;
+    font-size: 24px;
+}
 
-    .subtitle {
-        text-align: center;
-        margin-bottom: 25px;
-    }
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+}
 
-    .title {
-        text-align: center;
-        font-size: 24px;
-        margin: 25px 0 10px;
-    }
+.title {
+    text-align: center;
+    font-size: 18px;
+    margin: 18px 0 8px;
+}
 
+.sheet {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: white;
+    border: 2px solid #222;
+}
+
+.panel {
+    min-height: 420px;
+    padding: 16px;
+    border-right: 1px dashed #777;
+}
+
+.panel:last-child {
+    border-right: none;
+}
+
+.panel h2 {
+    text-align: center;
+    font-size: 17px;
+    margin: 5px 0 14px;
+}
+
+.panel h3 {
+    font-size: 14px;
+}
+
+.panel p,
+.panel li {
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.panel ul {
+    padding-left: 18px;
+}
+
+.cover {
+    text-align: center;
+    padding-top: 35px;
+}
+
+.tesla {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.car {
+    font-size: 45px;
+    text-align: center;
+    margin: 12px;
+}
+
+.fold {
+    text-align: center;
+    color: #777;
+    font-size: 9px;
+    margin-top: 15px;
+}
+
+.note {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    padding: 15px;
+    font-size: 12px;
+}
+
+.note h2 {
+    font-size: 16px;
+}
+
+.note p {
+    margin: 6px 0;
+}
+
+@media (max-width: 800px) {
     .sheet {
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto 30px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        background: white;
-        border: 3px solid #222;
+        grid-template-columns: 1fr;
     }
 
     .panel {
-        min-height: 430px;
-        padding: 25px;
-        border-right: 2px dashed #777;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        border-right: none;
+        border-bottom: 1px dashed #777;
+        min-height: 280px;
     }
 
     .panel:last-child {
-        border-right: none;
+        border-bottom: none;
     }
-
-    .panel h2 {
-        text-align: center;
-        margin-top: 0;
-    }
-
-    .panel p,
-    .panel li {
-        font-size: 18px;
-        line-height: 1.5;
-    }
-
-    .cover {
-        text-align: center;
-        justify-content: center;
-    }
-
-    .tesla {
-        font-size: 55px;
-        font-weight: bold;
-        margin: 20px 0;
-    }
-
-    .car {
-        font-size: 70px;
-        text-align: center;
-        margin: 15px;
-    }
-
-    .fold {
-        text-align: center;
-        color: #666;
-        font-size: 14px;
-        margin-top: 8px;
-    }
-
-    .note {
-        max-width: 900px;
-        margin: auto;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    @media (max-width: 800px) {
-        .sheet {
-            grid-template-columns: 1fr;
-        }
-
-        .panel {
-            border-right: none;
-            border-bottom: 2px dashed #777;
-            min-height: 300px;
-        }
-
-        .panel:last-child {
-            border-bottom: none;
-        }
-    }
-</style>
-</head>
-
-<body>
-
-<h1>📄 Буклет про Tesla</h1>
-<p class="subtitle">
-    Лист А4 складывается втрое
-</p>
-
-
-<!-- ВНЕШНЯЯ СТОРОНА -->
-
-<div class="title">ВНЕШНЯЯ СТОРОНА</div>
-
-<div class="sheet">
-
-    <div class="panel">
-        <h2>4. Сложности</h2>
-
-        <ul>
-            <li>Высокая стоимость разработки.</li>
-            <li>Сложность новых технологий.</li>
-            <li>Требования к безопасности.</li>
-            <li>Необходимость постоянного совершенствования.</li>
-        </ul>
-
-        <div class="fold">↕ Линия сгиба</div>
-    </div>
-
-
-    <div class="panel">
-        <h2>Задняя обложка</h2>
-
-        <h3>Вывод</h3>
-
-        <p>
-            Tesla использует современные технологии
-            для создания электромобилей, аккумуляторов
-            и автоматизированного производства.
-        </p>
-
-        <div class="fold">↕ Линия сгиба</div>
-    </div>
-
-
-    <div class="panel cover">
-        <div class="tesla">TESLA</div>
-
-        <div class="car">🚗</div>
-
-        <h2>Инновационное предприятие</h2>
-
-        <p>
-            Современные технологии<br>
-            Электромобили<br>
-            Энергетические системы
-        </p>
-
-        <div class="fold">↕ Линия сгиба</div>
-    </div>
-
-</div>
-
-
-<!-- ВНУТРЕННЯЯ СТОРОНА -->
-
-<div class="title">ВНУТРЕННЯЯ СТОРОНА</div>
-
-<div class="sheet">
-
-    <div class="panel">
-        <h2>1. Предприятие</h2>
-
-        <p>
-            Tesla — инновационное предприятие
-            автомобильной и энергетической отрасли.
-        </p>
-
-        <div class="car">🏭</div>
-    </div>
-
-
-    <div class="panel">
-        <h2>2. Отрасль и продукция</h2>
-
-        <p>
-            Tesla работает в автомобильной
-            и энергетической отрасли.
-        </p>
-
-        <p><b>Продукция:</b></p>
-
-        <ul>
-            <li>электромобили;</li>
-            <li>аккумуляторные системы;</li>
-            <li>оборудование для хранения энергии.</li>
-        </ul>
-    </div>
-
-
-    <div class="panel">
-        <h2>3. Инновации</h2>
-
-        <ul>
-            <li>Современные электромобили.</li>
-            <li>Новые аккумуляторы.</li>
-            <li>Роботизированное производство.</li>
-            <li>Автоматизация.</li>
-            <li>Программные обновления автомобилей.</li>
-        </ul>
-    </div>
-
-</div>
-
-
-<div class="note">
-    <h2>✂️ Как сделать на бумаге</h2>
-
-    <p>
-        1. Возьми лист А4 и расположи его горизонтально.
-    </p>
-
-    <p>
-        2. Раздели его на три примерно равные части.
-    </p>
-
-    <p>
-        3. Проведи две линии сгиба.
-    </p>
-
-    <p>
-        4. На одной стороне сделай внешнюю часть буклета,
-        на другой — внутреннюю.
-    </p>
-
-    <p>
-        5. Добавь рисунки, логотип и заголовки.
-    </p>
-</div>
-
-</body>
-</html>
+}
+   </style>
