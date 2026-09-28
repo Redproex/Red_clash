@@ -1,260 +1,968 @@
-<section class="red-clash-plan">
-  <h1>RED_CLASH — План разработки</h1>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <p>
-    Главная цель — постепенно создать собственную игру и полноценный мир RED_CLASH,
-    не мешая учёбе и не пытаясь сделать всё сразу.
-  </p>
+  <title>RED_CLASH — План</title>
 
-  <h2>🧠 ЭТАП 1 — ИДЕИ И ПОДГОТОВКА</h2>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  <h3>Во время учёбы</h3>
-  <ul>
-    <li>Придумывать новых персонажей.</li>
-    <li>Разрабатывать группировки и отношения между персонажами.</li>
-    <li>Писать истории персонажей.</li>
-    <li>Придумывать районы и события города.</li>
-    <li>Разрабатывать игровые механики.</li>
-    <li>Продумывать режимы игры.</li>
-    <li>Записывать все новые идеи в документацию RED_CLASH.</li>
-  </ul>
+    body {
+      margin: 0;
+      background: #08090d;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
 
-  <h3>📖 Библия RED_CLASH</h3>
-  <p>Создать единый документ проекта, где хранятся:</p>
-  <ul>
-    <li>Персонажи.</li>
-    <li>Группировки.</li>
-    <li>Карта города.</li>
-    <li>Районы.</li>
-    <li>Способности.</li>
-    <li>Редкости.</li>
-    <li>Экономика.</li>
-    <li>Сюжет.</li>
-    <li>События.</li>
-    <li>Будущие идеи.</li>
-  </ul>
+    .container {
+      width: min(900px, 92%);
+      margin: 40px auto;
+    }
 
-  <p>
-    Каждую идею разделять на три категории:
-    <strong>УТВЕРЖДЕНО</strong>,
-    <strong>В РАЗРАБОТКЕ</strong>,
-    <strong>ИДЕЯ</strong>.
-  </p>
+    /* Шапка */
 
+    .title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-  <h2>🎨 ЭТАП 2 — ВИЗУАЛЬНАЯ РАЗРАБОТКА</h2>
+    .title h1 {
+      margin: 0;
+      font-size: 42px;
+      letter-spacing: 2px;
+    }
 
-  <h3>🗓️ Выходные</h3>
-  <p>По возможности заниматься Blender.</p>
+    .title p {
+      color: #999;
+      margin-top: 10px;
+    }
 
-  <ul>
-    <li>Учиться 3D-моделированию.</li>
-    <li>Создавать небольшие объекты.</li>
-    <li>Делать элементы локаций.</li>
-    <li>Постепенно создавать RED Park и другие районы.</li>
-    <li>Создавать модели персонажей, когда появится необходимый навык.</li>
-  </ul>
+    /* Вкладки */
 
-  <p>
-    Не пытаться сразу сделать весь город.
-    Лучше постепенно собирать библиотеку готовых 3D-ассетов.
-  </p>
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
 
+    .tab {
+      flex: 1;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: #171922;
+      color: #aaa;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-  <h2>🎮 ЭТАП 3 — ОСНОВА ИГРЫ</h2>
+    .tab:hover {
+      background: #222530;
+    }
 
-  <p>Сначала определить главное игровое ядро:</p>
+    .tab.active {
+      background: #e52b38;
+      color: white;
+    }
 
-  <div class="game-loop">
-    Главное меню
-    →
-    Выбор персонажа
-    →
-    Поиск боя
-    →
-    Бой
-    →
-    Победа / поражение
-    →
-    Награды
-    →
-    Главное меню
+    /* Страницы */
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Карточки */
+
+    .card {
+      background: #12141b;
+      border: 1px solid #292c36;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 14px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .card p {
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    .card li {
+      margin: 8px 0;
+      color: #ccc;
+    }
+
+    .number {
+      display: inline-flex;
+      width: 35px;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+
+      background: #e52b38;
+      border-radius: 10px;
+
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    /* Заготовки */
+
+    .draft {
+      background: #12141b;
+      border: 1px solid #292c36;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .draft-button {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: white;
+
+      padding: 18px;
+      text-align: left;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .draft-button:hover {
+      background: #191c25;
+    }
+
+    .draft-content {
+      display: none;
+      padding: 0 18px 18px;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .draft-content.open {
+      display: block;
+    }
+
+    .arrow {
+      color: #e52b38;
+      font-size: 20px;
+    }
+
+    /* Мобильная версия */
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: 94%;
+        margin: 25px auto;
+      }
+
+      .title h1 {
+        font-size: 30px;
+      }
+
+      .tabs {
+        gap: 7px;
+      }
+
+      .tab {
+        padding: 13px 8px;
+        font-size: 14px;
+      }
+
+      .card {
+        padding: 17px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Заголовок -->
+
+  <div class="title">
+
+    <h1>RED_CLASH</h1>
+
+    <p>
+      Проект игры и её мира
+    </p>
+
   </div>
 
-  <p>
-    Это основной скелет RED_CLASH.
-    Дополнительные системы добавляются после того, как базовая игра работает.
-  </p>
 
+  <!-- Вкладки -->
 
-  <h2>⚔️ ЭТАП 4 — ПЕРВЫЙ ПРОТОТИП</h2>
+  <div class="tabs">
 
-  <p>Когда появится возможность нормально работать с игровым движком:</p>
+    <button
+      class="tab active"
+      onclick="openPage('plan', this)"
+    >
+      📋 План
+    </button>
 
-  <ol>
-    <li>Создать небольшую тестовую карту.</li>
-    <li>Добавить одного персонажа.</li>
-    <li>Сделать управление.</li>
-    <li>Добавить движение.</li>
-    <li>Добавить обычную атаку.</li>
-    <li>Добавить получение урона.</li>
-    <li>Добавить смерть персонажа.</li>
-    <li>Сделать простую победу и поражение.</li>
-  </ol>
+    <button
+      class="tab"
+      onclick="openPage('drafts', this)"
+    >
+      🗂️ Заготовки
+    </button>
 
-  <p>
-    Цель первого прототипа — не красота, а доказательство того,
-    что основной игровой процесс работает.
-  </p>
-
-
-  <h2>☀️ ЭТАП 5 — ЛЕТО И ДРУГИЕ КАНИКУЛЫ</h2>
-
-  <ul>
-    <li>Уделять больше времени разработке.</li>
-    <li>Проверять Unity.</li>
-    <li>Проверять другие подходящие инструменты для создания игр.</li>
-    <li>Тестировать возможности ПК.</li>
-    <li>Пробовать создавать игровые прототипы.</li>
-    <li>Определиться с основным игровым движком.</li>
-    <li>Проверять, какие технологии подходят RED_CLASH.</li>
-  </ul>
-
-  <p>
-    Если Unity окажется слишком тяжёлой для текущего ПК,
-    не бросать проект, а искать подходящий способ разработки
-    и вернуться к Unity после улучшения технических возможностей.
-  </p>
-
-
-  <h2>🌆 ЭТАП 6 — СОЗДАНИЕ МИРА</h2>
-
-  <p>
-    RED_CLASH должен быть не только игрой про бои,
-    но и полноценным миром, в котором происходит жизнь.
-  </p>
-
-  <ul>
-    <li>Разрабатывать весь город.</li>
-    <li>Добавлять районы.</li>
-    <li>Создавать группировки.</li>
-    <li>Связывать персонажей историями.</li>
-    <li>Придумывать события.</li>
-    <li>Создавать сюжетные арки.</li>
-    <li>Постепенно раскрывать тайны мира.</li>
-  </ul>
-
-  <p>
-    Отдельные идеи вроде Новоград-7 и других крупных сюжетных мест
-    пока хранить как будущие разработки, пока не принято решение об их добавлении.
-  </p>
-
-
-  <h2>👤 ЭТАП 7 — ПЕРСОНАЖИ</h2>
-
-  <p>Для каждого персонажа постепенно создавать:</p>
-
-  <ul>
-    <li>Имя.</li>
-    <li>Внешность.</li>
-    <li>Характер.</li>
-    <li>Группировку.</li>
-    <li>Историю.</li>
-    <li>Обычную атаку.</li>
-    <li>Ульту.</li>
-    <li>Гаджеты.</li>
-    <li>Пассивные способности.</li>
-    <li>Связи с другими персонажами.</li>
-  </ul>
-
-  <p>
-    Сначала персонаж может существовать только как идея.
-    Модель и игровая реализация создаются позже.
-  </p>
-
-
-  <h2>🎵 ЭТАП 8 — ЗВУК И МУЗЫКА</h2>
-
-  <ul>
-    <li>Создавать музыкальные идеи.</li>
-    <li>Продумывать музыку меню.</li>
-    <li>Создавать звуки атак.</li>
-    <li>Создавать звуки окружения.</li>
-    <li>Постепенно формировать звуковой стиль RED_CLASH.</li>
-  </ul>
-
-
-  <h2>🧪 ЭТАП 9 — ТЕСТИРОВАНИЕ</h2>
-
-  <ul>
-    <li>Проверять управление.</li>
-    <li>Проверять персонажей.</li>
-    <li>Проверять баланс.</li>
-    <li>Искать ошибки.</li>
-    <li>Проверять карты.</li>
-    <li>Давать игру тестировщику.</li>
-    <li>Исправлять найденные проблемы.</li>
-  </ul>
-
-
-  <h2>🚀 ЭТАП 10 — РАСШИРЕНИЕ</h2>
-
-  <p>После того как основа игры будет работать:</p>
-
-  <ul>
-    <li>Добавлять новых персонажей.</li>
-    <li>Добавлять новые карты.</li>
-    <li>Добавлять группировки.</li>
-    <li>Расширять город.</li>
-    <li>Добавлять события.</li>
-    <li>Развивать сюжет.</li>
-    <li>Добавлять дополнительные игровые системы.</li>
-  </ul>
-
-
-  <h2>🤝 БУДУЩЕЕ</h2>
-
-  <p>
-    После появления полноценной игры можно рассматривать более крупные планы:
-  </p>
-
-  <ul>
-    <li>Команда разработчиков.</li>
-    <li>Дополнительные художники и 3D-моделлеры.</li>
-    <li>Новые игровые режимы.</li>
-    <li>Крупные сюжетные события.</li>
-    <li>Возможные официальные коллаборации.</li>
-  </ul>
-
-  <p>
-    Идея RED_CLASH × My Hero Academia может оставаться долгосрочной мечтой
-    до тех пор, пока не появится возможность заключить официальное соглашение
-    с правообладателями.
-  </p>
-
-
-  <h2>🎯 ГЛАВНЫЙ ПРИНЦИП</h2>
-
-  <p>
-    Не пытаться сделать RED_CLASH целиком за один раз.
-    Каждый этап должен создавать основу для следующего.
-  </p>
-
-  <div class="roadmap">
-    <strong>ИДЕИ</strong>
-    →
-    <strong>ДИЗАЙН</strong>
-    →
-    <strong>BLENDER</strong>
-    →
-    <strong>ПРОТОТИП</strong>
-    →
-    <strong>ПЕРВАЯ ИГРА</strong>
-    →
-    <strong>ТЕСТИРОВАНИЕ</strong>
-    →
-    <strong>РАСШИРЕНИЕ</strong>
-    →
-    <strong>RED_CLASH</strong>
   </div>
-</section>
+
+
+  <!-- ========================= -->
+  <!-- ПЛАН -->
+  <!-- ========================= -->
+
+  <div id="plan" class="page active">
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">01</span>
+        Идеи и подготовка
+      </h2>
+
+      <p>
+        Во время учёбы основная работа над RED_CLASH —
+        развитие мира и игровых идей.
+      </p>
+
+      <ul>
+
+        <li>Придумывать персонажей.</li>
+
+        <li>Создавать группировки.</li>
+
+        <li>Писать истории персонажей.</li>
+
+        <li>Придумывать районы города.</li>
+
+        <li>Создавать игровые механики.</li>
+
+        <li>Придумывать события.</li>
+
+        <li>Записывать новые идеи.</li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">02</span>
+        Библия RED_CLASH
+      </h2>
+
+      <p>
+        Единая база всей информации о проекте.
+      </p>
+
+      <ul>
+
+        <li>Персонажи.</li>
+
+        <li>Группировки.</li>
+
+        <li>Карта города.</li>
+
+        <li>Районы.</li>
+
+        <li>Способности.</li>
+
+        <li>Редкости.</li>
+
+        <li>Экономика.</li>
+
+        <li>Сюжет.</li>
+
+        <li>События.</li>
+
+      </ul>
+
+      <p>
+        Каждая информация получает статус:
+        <b>утверждено</b>,
+        <b>в разработке</b> или
+        <b>идея</b>.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">03</span>
+        Выходные — Blender
+      </h2>
+
+      <p>
+        По возможности заниматься моделированием.
+      </p>
+
+      <ul>
+
+        <li>Учиться 3D-моделированию.</li>
+
+        <li>Создавать небольшие объекты.</li>
+
+        <li>Создавать элементы локаций.</li>
+
+        <li>Постепенно делать RED Park.</li>
+
+        <li>Создавать библиотеку 3D-ассетов.</li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">04</span>
+        Игровое ядро
+      </h2>
+
+      <p>
+        Сначала нужно определить основу игры.
+      </p>
+
+      <p>
+        <b>
+          Меню → Персонаж → Бой →
+          Победа/поражение → Награды
+        </b>
+      </p>
+
+      <p>
+        Дополнительные системы добавляются после
+        того, как основной цикл работает.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">05</span>
+        Первый прототип
+      </h2>
+
+      <ol>
+
+        <li>Небольшая тестовая карта.</li>
+
+        <li>Один персонаж.</li>
+
+        <li>Управление.</li>
+
+        <li>Движение.</li>
+
+        <li>Обычная атака.</li>
+
+        <li>Получение урона.</li>
+
+        <li>Смерть.</li>
+
+        <li>Победа и поражение.</li>
+
+      </ol>
+
+      <p>
+        Цель — проверить игровой процесс,
+        а не сделать сразу красивую готовую игру.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">06</span>
+        Лето и другие каникулы
+      </h2>
+
+      <ul>
+
+        <li>Проверять Unity.</li>
+
+        <li>Проверять другие игровые движки.</li>
+
+        <li>Тестировать возможности ПК.</li>
+
+        <li>Создавать первые прототипы.</li>
+
+        <li>Определиться с инструментами разработки.</li>
+
+      </ul>
+
+      <p>
+        Если Unity слишком тяжёлая для текущего ПК,
+        искать подходящий вариант и вернуться к Unity
+        после улучшения компьютера.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">07</span>
+        Мир RED_CLASH
+      </h2>
+
+      <p>
+        Главное место действия — весь город,
+        а не только RED Park.
+      </p>
+
+      <ul>
+
+        <li>Создавать районы.</li>
+
+        <li>Создавать группировки.</li>
+
+        <li>Связывать персонажей историями.</li>
+
+        <li>Создавать сюжетные арки.</li>
+
+        <li>Добавлять события.</li>
+
+        <li>Постепенно раскрывать тайны мира.</li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">08</span>
+        Персонажи
+      </h2>
+
+      <p>
+        Для каждого персонажа постепенно создавать:
+      </p>
+
+      <ul>
+
+        <li>Имя.</li>
+
+        <li>Внешность.</li>
+
+        <li>Характер.</li>
+
+        <li>Группировку.</li>
+
+        <li>Историю.</li>
+
+        <li>Атаку.</li>
+
+        <li>Ульту.</li>
+
+        <li>Гаджеты.</li>
+
+        <li>Пассивную способность.</li>
+
+        <li>Связи с другими персонажами.</li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">09</span>
+        Музыка и звук
+      </h2>
+
+      <ul>
+
+        <li>Музыка меню.</li>
+
+        <li>Музыка событий.</li>
+
+        <li>Звуки атак.</li>
+
+        <li>Звуки окружения.</li>
+
+        <li>Формирование собственного звукового стиля.</li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">10</span>
+        Тестирование
+      </h2>
+
+      <ul>
+
+        <li>Проверять управление.</li>
+
+        <li>Проверять баланс.</li>
+
+        <li>Проверять карты.</li>
+
+        <li>Искать баги.</li>
+
+        <li>Давать игру тестировщику.</li>
+
+        <li>Исправлять проблемы.</li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">11</span>
+        Расширение
+      </h2>
+
+      <ul>
+
+        <li>Новые персонажи.</li>
+
+        <li>Новые карты.</li>
+
+        <li>Новые группировки.</li>
+
+        <li>Расширение города.</li>
+
+        <li>Новые события.</li>
+
+        <li>Продолжение сюжета.</li>
+
+        <li>Дополнительные игровые системы.</li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        <span class="number">12</span>
+        Большое будущее
+      </h2>
+
+      <ul>
+
+        <li>Расширение команды.</li>
+
+        <li>Художники.</li>
+
+        <li>3D-моделлеры.</li>
+
+        <li>Новые режимы.</li>
+
+        <li>Крупные события.</li>
+
+        <li>Возможные официальные коллаборации.</li>
+
+      </ul>
+
+      <p>
+        Например, RED_CLASH × My Hero Academia —
+        долгосрочная идея. Для настоящей коллаборации
+        потребуются официальные права.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>🎯 Общий путь</h2>
+
+      <p>
+        <b>
+          Идеи
+          →
+          Дизайн
+          →
+          Blender
+          →
+          Прототип
+          →
+          Тестирование
+          →
+          Расширение
+          →
+          RED_CLASH
+        </b>
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- ЗАГОТОВКИ -->
+  <!-- ========================= -->
+
+  <div id="drafts" class="page">
+
+
+    <div class="card">
+
+      <h2>🗂️ Заготовки RED_CLASH</h2>
+
+      <p>
+        Здесь будет храниться вся информация
+        о проекте.
+      </p>
+
+    </div>
+
+
+    <!-- Персонажи -->
+
+    <div class="draft">
+
+      <button
+        class="draft-button"
+        onclick="toggleDraft('characters', this)"
+      >
+
+        👤 Персонажи
+
+        <span class="arrow">›</span>
+
+      </button>
+
+      <div
+        id="characters"
+        class="draft-content"
+      >
+
+        Здесь будут персонажи RED_CLASH,
+        их дизайн, характеристики,
+        способности, истории и связи.
+
+      </div>
+
+    </div>
+
+
+    <!-- Группировки -->
+
+    <div class="draft">
+
+      <button
+        class="draft-button"
+        onclick="toggleDraft('groups', this)"
+      >
+
+        👥 Группировки
+
+        <span class="arrow">›</span>
+
+      </button>
+
+      <div
+        id="groups"
+        class="draft-content"
+      >
+
+        Здесь будут все группировки,
+        их участники, территории,
+        отношения и история.
+
+      </div>
+
+    </div>
+
+
+    <!-- Город -->
+
+    <div class="draft">
+
+      <button
+        class="draft-button"
+        onclick="toggleDraft('city', this)"
+      >
+
+        🌆 Город
+
+        <span class="arrow">›</span>
+
+      </button>
+
+      <div
+        id="city"
+        class="draft-content"
+      >
+
+        Здесь будет карта города,
+        районы, важные места,
+        атмосфера и события.
+
+      </div>
+
+    </div>
+
+
+    <!-- Сюжет -->
+
+    <div class="draft">
+
+      <button
+        class="draft-button"
+        onclick="toggleDraft('story', this)"
+      >
+
+        📖 Сюжет и лор
+
+        <span class="arrow">›</span>
+
+      </button>
+
+      <div
+        id="story"
+        class="draft-content"
+      >
+
+        Здесь будут истории персонажей,
+        сюжетные арки, события,
+        тайны и легенды мира.
+
+      </div>
+
+    </div>
+
+
+    <!-- Механики -->
+
+    <div class="draft">
+
+      <button
+        class="draft-button"
+        onclick="toggleDraft('mechanics', this)"
+      >
+
+        ⚔️ Игровые механики
+
+        <span class="arrow">›</span>
+
+      </button>
+
+      <div
+        id="mechanics"
+        class="draft-content"
+      >
+
+        Режимы, управление, атаки,
+        ульты, гаджеты, карты,
+        баланс и правила боя.
+
+      </div>
+
+    </div>
+
+
+    <!-- Экономика -->
+
+    <div class="draft">
+
+      <button
+        class="draft-button"
+        onclick="toggleDraft('economy', this)"
+      >
+
+        💰 Экономика
+
+        <span class="arrow">›</span>
+
+      </button>
+
+      <div
+        id="economy"
+        class="draft-content"
+      >
+
+        Ресурсы, награды, ящики,
+        Battle Pass, Red Coins
+        и другие экономические системы.
+
+      </div>
+
+    </div>
+
+
+    <!-- События -->
+
+    <div class="draft">
+
+      <button
+        class="draft-button"
+        onclick="toggleDraft('events', this)"
+      >
+
+        🎪 События
+
+        <span class="arrow">›</span>
+
+      </button>
+
+      <div
+        id="events"
+        class="draft-content"
+      >
+
+        Временные карты, события,
+        сюжетные обновления
+        и особые награды.
+
+      </div>
+
+    </div>
+
+
+    <!-- Будущие идеи -->
+
+    <div class="draft">
+
+      <button
+        class="draft-button"
+        onclick="toggleDraft('ideas', this)"
+      >
+
+        💡 Будущие идеи
+
+        <span class="arrow">›</span>
+
+      </button>
+
+      <div
+        id="ideas"
+        class="draft-content"
+      >
+
+        Здесь находятся идеи,
+        которые ещё не утверждены
+        и могут измениться.
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* Переключение вкладок */
+
+  function openPage(pageId, button) {
+
+    const pages =
+      document.querySelectorAll(".page");
+
+    const tabs =
+      document.querySelectorAll(".tab");
+
+
+    pages.forEach(page => {
+
+      page.classList.remove("active");
+
+    });
+
+
+    tabs.forEach(tab => {
+
+      tab.classList.remove("active");
+
+    });
+
+
+    document
+      .getElementById(pageId)
+      .classList.add("active");
+
+
+    button.classList.add("active");
+
+  }
+
+
+  /* Открытие заготовок */
+
+  function toggleDraft(id, button) {
+
+    const content =
+      document.getElementById(id);
+
+    const arrow =
+      button.querySelector(".arrow");
+
+
+    content.classList.toggle("open");
+
+
+    if (content.classList.contains("open")) {
+
+      arrow.textContent = "⌄";
+
+    } else {
+
+      arrow.textContent = "›";
+
+    }
+
+  }
+
+</script>
+
+</body>
+                       </html>
