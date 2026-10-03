@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>RED_CLASH — План</title>
+  <title>RED_CLASH — Проект</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --bg: #08090d;
@@ -24,9 +22,7 @@
       --tab-hover: #222530;
     }
 
-    html {
-      font-size: 16px;
-    }
+    html { font-size: 16px; }
 
     body {
       margin: 0;
@@ -36,50 +32,24 @@
       transition: background 0.2s, color 0.2s;
     }
 
-    /* Инверсия света */
     body.inverted {
-      --bg: #f2f2f5;
-      --card: #ffffff;
-      --card-border: #d5d8e0;
-      --text: #0a0a0f;
-      --text-dim: #555;
-      --text-mid: #333;
-      --text-soft: #222;
-      --tab-bg: #e3e5ec;
-      --tab-hover: #d3d6e0;
+      --bg: #f2f2f5; --card: #ffffff; --card-border: #d5d8e0;
+      --text: #0a0a0f; --text-dim: #555; --text-mid: #333;
+      --text-soft: #222; --tab-bg: #e3e5ec; --tab-hover: #d3d6e0;
     }
 
-    /* Контраст */
     body.high-contrast {
-      --bg: #000000;
-      --card: #0a0a0a;
-      --card-border: #ffffff;
-      --text: #ffffff;
-      --text-dim: #dddddd;
-      --text-mid: #eeeeee;
-      --text-soft: #ffffff;
+      --bg: #000; --card: #0a0a0a; --card-border: #fff;
+      --text: #fff; --text-dim: #ddd; --text-mid: #eee; --text-soft: #fff;
     }
 
     body.high-contrast.inverted {
-      --bg: #ffffff;
-      --card: #ffffff;
-      --card-border: #000000;
-      --text: #000000;
-      --text-dim: #111;
-      --text-mid: #000;
-      --text-soft: #000;
+      --bg: #fff; --card: #fff; --card-border: #000;
+      --text: #000; --text-dim: #111; --text-mid: #000; --text-soft: #000;
     }
 
-    /* Отключение анимаций */
-    body.no-anim * {
-      transition: none !important;
-      animation: none !important;
-    }
-
-    /* Яркость */
-    body {
-      filter: brightness(var(--brightness, 1));
-    }
+    body.no-anim * { transition: none !important; animation: none !important; }
+    body { filter: brightness(var(--brightness, 1)); }
 
     .container {
       width: min(900px, 92%);
@@ -87,56 +57,26 @@
       font-size: var(--font-scale, 1rem);
     }
 
-    .title {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+    .title { text-align: center; margin-bottom: 30px; }
+    .title h1 { margin: 0; font-size: 42px; letter-spacing: 2px; }
+    .title p { color: var(--text-dim); margin-top: 10px; }
 
-    .title h1 {
-      margin: 0;
-      font-size: 42px;
-      letter-spacing: 2px;
-    }
-
-    .title p {
-      color: var(--text-dim);
-      margin-top: 10px;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
-    }
+    .tabs { display: flex; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
 
     .tab {
-      flex: 1;
-      padding: 16px;
-      border: none;
-      border-radius: 14px;
-      background: var(--tab-bg);
-      color: var(--text-dim);
-      font-size: 16px;
-      font-weight: bold;
+      flex: 1; min-width: 100px;
+      padding: 14px 10px;
+      border: none; border-radius: 14px;
+      background: var(--tab-bg); color: var(--text-dim);
+      font-size: 15px; font-weight: bold;
       cursor: pointer;
     }
 
-    .tab:hover {
-      background: var(--tab-hover);
-    }
+    .tab:hover { background: var(--tab-hover); }
+    .tab.active { background: var(--red); color: white; }
 
-    .tab.active {
-      background: var(--red);
-      color: white;
-    }
-
-    .page {
-      display: none;
-    }
-
-    .page.active {
-      display: block;
-    }
+    .page { display: none; }
+    .page.active { display: block; }
 
     .card {
       background: var(--card);
@@ -146,214 +86,247 @@
       margin-bottom: 14px;
     }
 
-    .card h2 {
-      margin-top: 0;
-    }
-
-    .card p {
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
-
-    .card li {
-      margin: 8px 0;
-      color: var(--text-soft);
-    }
+    .card h2 { margin-top: 0; }
+    .card p { color: var(--text-mid); line-height: 1.6; }
+    .card li { margin: 8px 0; color: var(--text-soft); }
 
     .number {
-      display: inline-flex;
-      width: 35px;
-      height: 35px;
-      align-items: center;
-      justify-content: center;
-      background: var(--red);
-      border-radius: 10px;
-      font-weight: bold;
-      margin-right: 10px;
+      display: inline-flex; width: 35px; height: 35px;
+      align-items: center; justify-content: center;
+      background: var(--red); border-radius: 10px;
+      font-weight: bold; margin-right: 10px;
     }
 
     .draft {
       background: var(--card);
       border: 1px solid var(--card-border);
       border-radius: 15px;
-      margin-bottom: 10px;
-      overflow: hidden;
+      margin-bottom: 10px; overflow: hidden;
     }
 
     .draft-button {
-      width: 100%;
-      border: none;
-      background: transparent;
-      color: var(--text);
-      padding: 18px;
-      text-align: left;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      width: 100%; border: none; background: transparent;
+      color: var(--text); padding: 18px; text-align: left;
+      font-size: 16px; font-weight: bold; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
     }
 
-    .draft-button:hover {
-      background: var(--tab-hover);
-    }
-
-    .draft-content {
-      display: none;
-      padding: 0 18px 18px;
-      color: var(--text-dim);
-      line-height: 1.6;
-    }
-
-    .draft-content.open {
-      display: block;
-    }
-
-    .arrow {
-      color: var(--red);
-      font-size: 20px;
-    }
+    .draft-button:hover { background: var(--tab-hover); }
+    .draft-content { display: none; padding: 0 18px 18px; color: var(--text-dim); line-height: 1.6; }
+    .draft-content.open { display: block; }
+    .arrow { color: var(--red); font-size: 20px; }
 
     .sub-block {
       background: rgba(0,0,0,0.25);
       border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin: 10px 0;
+      border-radius: 12px; padding: 14px 16px; margin: 10px 0;
     }
 
-    body.inverted .sub-block {
-      background: rgba(0,0,0,0.05);
-    }
+    body.inverted .sub-block { background: rgba(0,0,0,0.05); }
 
     .sub-block h4 {
-      margin: 0 0 8px;
-      color: var(--red);
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      margin: 0 0 8px; color: var(--red);
+      font-size: 15px; text-transform: uppercase; letter-spacing: 1px;
     }
 
-    .sub-block p,
-    .sub-block li {
-      color: var(--text-mid);
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 4px 0;
+    .sub-block p, .sub-block li {
+      color: var(--text-mid); font-size: 14px;
+      line-height: 1.6; margin: 4px 0;
     }
 
-    .sub-block ul {
-      margin: 6px 0 0;
-      padding-left: 18px;
-    }
+    .sub-block ul { margin: 6px 0 0; padding-left: 18px; }
 
     .tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: bold;
-      margin-right: 6px;
-      text-transform: uppercase;
+      display: inline-block; padding: 2px 8px;
+      border-radius: 6px; font-size: 11px; font-weight: bold;
+      margin-right: 6px; text-transform: uppercase;
     }
 
     .tag-ok { background: #1e5c2e; color: #7dff9e; }
     .tag-dev { background: #5c4b1e; color: #ffe17d; }
     .tag-idea { background: #3a1e5c; color: #c79dff; }
 
-    /* ---- НАСТРОЙКИ ---- */
-
+    /* НАСТРОЙКИ */
     .setting {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 16px 0; border-bottom: 1px solid var(--card-border);
+    }
+    .setting:last-child { border-bottom: none; }
+
+    .setting-row {
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 12px;
+    }
+
+    .setting-label { font-weight: bold; color: var(--text); font-size: 15px; }
+    .setting-value { color: var(--red); font-weight: bold; font-size: 14px; min-width: 60px; text-align: right; }
+    .setting-desc { color: var(--text-dim); font-size: 13px; line-height: 1.5; }
+
+    input[type="range"] { width: 100%; accent-color: var(--red); cursor: pointer; }
+
+    .toggle-btn {
+      background: var(--tab-bg); border: 1px solid var(--card-border);
+      color: var(--text); padding: 10px 18px; border-radius: 10px;
+      cursor: pointer; font-weight: bold; font-size: 14px;
+    }
+    .toggle-btn:hover { background: var(--tab-hover); }
+    .toggle-btn.on { background: var(--red); color: white; border-color: var(--red); }
+
+    .btn-reset {
+      width: 100%; background: var(--red); border: none; color: white;
+      padding: 16px; border-radius: 14px; font-size: 16px;
+      font-weight: bold; cursor: pointer; margin-top: 10px;
+    }
+    .btn-reset:hover { filter: brightness(1.1); }
+
+    /* КАРТА */
+    .map-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .map-layout { grid-template-columns: 1fr; }
+    }
+
+    .map-wrap {
+      position: relative;
+      background: radial-gradient(circle at center, #1a1d29 0%, #0a0b10 80%);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      padding: 8px;
+    }
+
+    /* Туман на фоне карты */
+    .map-wrap::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.04), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.03), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(100,120,180,0.05), transparent 60%);
+      pointer-events: none;
+      animation: fogMove 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0%   { opacity: 0.7; transform: scale(1); }
+      100% { opacity: 1;   transform: scale(1.05); }
+    }
+
+    .district {
+      position: absolute;
+      border-radius: 12px;
+      border: 1.5px solid rgba(255,255,255,0.15);
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 16px 0;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 11px;
+      font-weight: bold;
+      color: #fff;
+      padding: 4px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      line-height: 1.2;
+      overflow: hidden;
+    }
+
+    .district:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 0 2px var(--red), 0 0 20px rgba(229,43,56,0.5);
+      z-index: 10;
+      filter: brightness(1.2);
+    }
+
+    .district.active {
+      box-shadow: 0 0 0 3px #fff, 0 0 25px rgba(229,43,56,0.7);
+      z-index: 9;
+    }
+
+    .district small {
+      display: block;
+      font-size: 9px;
+      font-weight: normal;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    /* Инфо-панель */
+    .info-panel {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      min-height: 200px;
+    }
+
+    .info-panel .placeholder {
+      color: var(--text-dim);
+      text-align: center;
+      padding: 40px 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--card-border);
     }
 
-    .setting:last-child {
-      border-bottom: none;
+    .info-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
     }
 
-    .setting-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
+    .info-title { font-size: 18px; font-weight: bold; margin: 0; }
+    .info-sub { font-size: 12px; color: var(--text-dim); margin: 2px 0 0; }
+
+    .info-body p { font-size: 14px; line-height: 1.6; margin: 8px 0; color: var(--text-mid); }
+    .info-body strong { color: var(--text); }
+
+    .info-chars {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
     }
 
-    .setting-label {
-      font-weight: bold;
+    .char-chip {
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: var(--tab-bg);
+      font-size: 12px;
       color: var(--text);
-      font-size: 15px;
+      border: 1px solid var(--card-border);
     }
 
-    .setting-value {
+    .info-section { margin-top: 14px; }
+    .info-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       color: var(--red);
       font-weight: bold;
-      font-size: 14px;
-      min-width: 60px;
-      text-align: right;
-    }
-
-    .setting-desc {
-      color: var(--text-dim);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    input[type="range"] {
-      width: 100%;
-      accent-color: var(--red);
-      cursor: pointer;
-    }
-
-    .toggle-btn {
-      background: var(--tab-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text);
-      padding: 10px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 14px;
-      transition: background 0.15s;
-    }
-
-    .toggle-btn:hover {
-      background: var(--tab-hover);
-    }
-
-    .toggle-btn.on {
-      background: var(--red);
-      color: white;
-      border-color: var(--red);
-    }
-
-    .btn-reset {
-      width: 100%;
-      background: var(--red);
-      border: none;
-      color: white;
-      padding: 16px;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .btn-reset:hover {
-      filter: brightness(1.1);
+      margin-bottom: 6px;
     }
 
     @media (max-width: 600px) {
       .container { width: 94%; margin: 25px auto; }
       .title h1 { font-size: 30px; }
-      .tabs { gap: 7px; }
-      .tab { padding: 13px 8px; font-size: 13px; }
+      .tab { padding: 11px 6px; font-size: 12px; }
       .card { padding: 17px; }
+      .district { font-size: 9px; border-radius: 8px; }
+      .district small { font-size: 7px; }
     }
   </style>
 </head>
@@ -369,6 +342,7 @@
 
   <div class="tabs">
     <button class="tab active" onclick="openPage('plan', this)">📋 План</button>
+    <button class="tab" onclick="openPage('map', this)">🗺️ Карта</button>
     <button class="tab" onclick="openPage('drafts', this)">🗂️ Заготовки</button>
     <button class="tab" onclick="openPage('settings', this)">⚙️ Настройки</button>
   </div>
@@ -397,22 +371,15 @@
       <h2><span class="number">02</span>Библия RED_CLASH</h2>
       <p>Единая база всей информации о проекте.</p>
       <ul>
-        <li>Персонажи.</li>
-        <li>Группировки.</li>
-        <li>Карта города.</li>
-        <li>Районы.</li>
-        <li>Способности.</li>
-        <li>Редкости.</li>
-        <li>Экономика.</li>
-        <li>Сюжет.</li>
-        <li>События.</li>
+        <li>Персонажи.</li><li>Группировки.</li><li>Карта города.</li>
+        <li>Районы.</li><li>Способности.</li><li>Редкости.</li>
+        <li>Экономика.</li><li>Сюжет.</li><li>События.</li>
       </ul>
       <p>Каждая информация получает статус: <b>утверждено</b>, <b>в разработке</b> или <b>идея</b>.</p>
     </div>
 
     <div class="card">
       <h2><span class="number">03</span>Выходные — Blender</h2>
-      <p>По возможности заниматься моделированием.</p>
       <ul>
         <li>Учиться 3D-моделированию.</li>
         <li>Создавать небольшие объекты.</li>
@@ -424,7 +391,6 @@
 
     <div class="card">
       <h2><span class="number">04</span>Игровое ядро</h2>
-      <p>Сначала нужно определить основу игры.</p>
       <p><b>Меню → Персонаж → Бой → Победа/поражение → Награды</b></p>
       <p>Дополнительные системы добавляются после того, как основной цикл работает.</p>
     </div>
@@ -453,12 +419,10 @@
         <li>Создавать первые прототипы.</li>
         <li>Определиться с инструментами разработки.</li>
       </ul>
-      <p>Если Unity слишком тяжёлая для текущего ПК, искать подходящий вариант и вернуться к Unity после улучшения компьютера.</p>
     </div>
 
     <div class="card">
       <h2><span class="number">07</span>Мир RED_CLASH</h2>
-      <p>Главное место действия — весь город, а не только RED Park.</p>
       <ul>
         <li>Создавать районы.</li>
         <li>Создавать группировки.</li>
@@ -473,14 +437,9 @@
       <h2><span class="number">08</span>Персонажи</h2>
       <p>Для каждого персонажа постепенно создавать:</p>
       <ul>
-        <li>Имя.</li>
-        <li>Внешность.</li>
-        <li>Характер.</li>
-        <li>Группировку.</li>
-        <li>Историю.</li>
-        <li>Атаку.</li>
-        <li>Ульту.</li>
-        <li>Гаджеты.</li>
+        <li>Имя.</li><li>Внешность.</li><li>Характер.</li>
+        <li>Группировку.</li><li>Историю.</li>
+        <li>Атаку.</li><li>Ульту.</li><li>Гаджеты.</li>
         <li>Пассивную способность.</li>
         <li>Связи с другими персонажами.</li>
       </ul>
@@ -489,10 +448,8 @@
     <div class="card">
       <h2><span class="number">09</span>Музыка и звук</h2>
       <ul>
-        <li>Музыка меню.</li>
-        <li>Музыка событий.</li>
-        <li>Звуки атак.</li>
-        <li>Звуки окружения.</li>
+        <li>Музыка меню.</li><li>Музыка событий.</li>
+        <li>Звуки атак.</li><li>Звуки окружения.</li>
         <li>Формирование собственного звукового стиля.</li>
       </ul>
     </div>
@@ -518,7 +475,6 @@
         <li>Расширение города.</li>
         <li>Новые события.</li>
         <li>Продолжение сюжета.</li>
-        <li>Дополнительные игровые системы.</li>
       </ul>
     </div>
 
@@ -532,12 +488,133 @@
         <li>Крупные события.</li>
         <li>Возможные официальные коллаборации.</li>
       </ul>
-      <p>Например, RED_CLASH × My Hero Academia — долгосрочная идея. Для настоящей коллаборации потребуются официальные права.</p>
     </div>
 
     <div class="card">
       <h2>🎯 Общий путь</h2>
       <p><b>Идеи → Дизайн → Blender → Прототип → Тестирование → Расширение → RED_CLASH</b></p>
+    </div>
+
+  </div>
+
+  <!-- ========================= -->
+  <!-- КАРТА -->
+  <!-- ========================= -->
+
+  <div id="map" class="page">
+
+    <div class="card">
+      <h2>🗺️ Super_city</h2>
+      <p>Нажми на район, чтобы узнать подробности. Карта отражает текущее видение мира.</p>
+    </div>
+
+    <div class="map-layout">
+
+      <div class="map-wrap" id="mapWrap">
+
+        <!-- Северные пригороды -->
+        <div class="district"
+             data-id="north"
+             style="left:18%; top:1%; width:64%; height:9%; background:linear-gradient(135deg,#2a2f3a,#3a4050);">
+          Северные пригороды
+        </div>
+
+        <!-- Office District -->
+        <div class="district"
+             data-id="office"
+             style="left:30%; top:11%; width:40%; height:16%; background:linear-gradient(135deg,#3a4a6b,#4a6fa5);">
+          Офисный район
+          <small>Office District</small>
+        </div>
+
+        <!-- City of Bad Guys -->
+        <div class="district"
+             data-id="badguys"
+             style="left:2%; top:13%; width:26%; height:22%; background:linear-gradient(135deg,#5c1f8a,#8b2fc9);">
+          Город Плохишей
+          <small>City of Bad Guys</small>
+        </div>
+
+        <!-- Fan Zone -->
+        <div class="district"
+             data-id="fanzone"
+             style="left:72%; top:12%; width:26%; height:20%; background:linear-gradient(135deg,#3d7a2a,#7ed957);">
+          Fan Zone
+        </div>
+
+        <!-- Street of Broken Lanterns -->
+        <div class="district"
+             data-id="lanterns"
+             style="left:2%; top:37%; width:22%; height:16%; background:linear-gradient(135deg,#a85a1a,#ff8c1a);">
+          Улица Разбитых<br>Фонарей
+        </div>
+
+        <!-- RED Park -->
+        <div class="district"
+             data-id="redpark"
+             style="left:26%; top:29%; width:48%; height:36%; background:linear-gradient(135deg,#8a1620,#e52b38); border-radius:50%;">
+          RED PARK
+        </div>
+
+        <!-- Skate Park -->
+        <div class="district"
+             data-id="skate"
+             style="left:76%; top:34%; width:22%; height:20%; background:linear-gradient(135deg,#0a7a8a,#00c2d1);">
+          Скейт Парк
+          <small>Skate Park</small>
+        </div>
+
+        <!-- Заброшенный район -->
+        <div class="district"
+             data-id="abandoned"
+             style="left:3%; top:55%; width:23%; height:15%; background:linear-gradient(135deg,#3a3028,#6b5d4f);">
+          Заброшенный<br>район
+        </div>
+
+        <!-- Жилой район -->
+        <div class="district"
+             data-id="residential"
+             style="left:76%; top:56%; width:22%; height:15%; background:linear-gradient(135deg,#555,#8a8a8a);">
+          Жилой район
+        </div>
+
+        <!-- Порт -->
+        <div class="district"
+             data-id="port"
+             style="left:2%; top:72%; width:24%; height:20%; background:linear-gradient(135deg,#1a4a7a,#3b82c4);">
+          Порт
+        </div>
+
+        <!-- Вокзал -->
+        <div class="district"
+             data-id="station"
+             style="left:30%; top:67%; width:40%; height:16%; background:linear-gradient(135deg,#3a2f7a,#5b4db8);">
+          Вокзал
+        </div>
+
+        <!-- Восточные ворота -->
+        <div class="district"
+             data-id="eastgate"
+             style="left:74%; top:73%; width:24%; height:20%; background:linear-gradient(135deg,#7a1a1a,#c92a2a);">
+          Восточные<br>ворота
+        </div>
+
+        <!-- Южные пригороды -->
+        <div class="district"
+             data-id="south"
+             style="left:18%; top:86%; width:64%; height:12%; background:linear-gradient(135deg,#2a2f3a,#3a4050);">
+          Южные пригороды
+        </div>
+
+      </div>
+
+      <!-- Инфо-панель -->
+      <div class="info-panel" id="infoPanel">
+        <div class="placeholder">
+          👆 Нажми на район на карте,<br>чтобы увидеть информацию
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -553,415 +630,162 @@
       <p>Полная база данных проекта. Статусы: <span class="tag tag-ok">утверждено</span> <span class="tag tag-dev">в разработке</span> <span class="tag tag-idea">идея</span></p>
     </div>
 
-    <!-- ПЕРСОНАЖИ -->
-
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('characters', this)">
-        👤 Персонажи
-        <span class="arrow">›</span>
-      </button>
+      <button class="draft-button" onclick="toggleDraft('characters', this)">👤 Персонажи <span class="arrow">›</span></button>
       <div id="characters" class="draft-content">
-
         <div class="sub-block">
           <h4>City of Bad Guys</h4>
           <p><b>Волт</b> — стартовый стрелок. 7200 HP, 1600 ATK. Супер «Двойной выстрел». <span class="tag tag-ok">утверждено</span></p>
           <p><b>Рей</b> — редкий, 49 Red Coins. Открывается на 100 кубках в Пути славы. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Астра</b> — мифическая. Космическая девочка. Глава «Звёздного пути». Двойной выстрел, супер — робот-помощник. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Брук</b> — охранник. Дробовик, пёс Рекс (появляется во время ульты). <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Астра</b> — мифическая. Глава «Звёздного пути». Двойной выстрел, супер — робот-помощник. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Брук</b> — охранник. Дробовик, пёс Рекс. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Skate Park</h4>
-          <p><b>Ricoel</b> — легендарный, 199 RC. Брейкдансер и режиссёр. Контроль/урон. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Kiro</b> — в разработке. <span class="tag tag-dev">в разработке</span></p>
-          <p><b>Jake</b> — в разработке. <span class="tag tag-dev">в разработке</span></p>
+          <p><b>Ricoel</b> — легендарный, 199 RC. Контроль/урон. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Kiro</b>, <b>Jake</b> — в разработке. <span class="tag tag-dev">в разработке</span></p>
         </div>
-
         <div class="sub-block">
           <h4>RED Park</h4>
-          <p><b>Red Man</b> — антагонист. Владелец парка, производит Energy Drink. Бывший сотрудник NanoStarr. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Лира (Билетёрша)</b> — сверхредкая, 99 RC. Проверяет билеты. Прыгающий шар. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Маскот</b> — эпический, 149 RC. Универсал. Два режима атаки (ближний/дальний). <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Лео</b> — редкий, 49 RC. Ребёнок 7–8 лет. Кидает учебники. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Red Man</b> — антагонист, владелец парка, производит Energy Drink. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Лира</b> — сверхредкая, 99 RC. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Маскот</b> — эпический, 149 RC. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Лео</b> — редкий, 49 RC. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Office District</h4>
-          <p><b>Bait</b> — робот из Новгорода-7. «Golden Child». Говорит голосом на азбуке Морзе. Был в отпуске в Starr Park в 2028. Единственный свидетель битвы. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Игрис</b> — танк. Человек+туман. Коллега Байта. Знает Морзе «по приколу», переводит Байта. Не знает про 2028. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Стелла</b> — почтальон. Человек. Серьёзная, ответственная, элегантная. Влюблена в Авторское право. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Авторское право</b> — босс Байта. «Банхаммер». Борется с читерами. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Bait</b> — робот из Новгорода-7, «Golden Child», Морзе. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Игрис</b> — танк, человек+туман, переводчик Байта. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Стелла</b> — почтальон, влюблена в Авторское право. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Авторское право</b> — «банхаммер». <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Street of Broken Lanterns</h4>
           <p><b>Ji</b> — в разработке. <span class="tag tag-dev">в разработке</span></p>
-          <p><b>Kaiden</b> — танк. 9700 HP, 3500 ATK. Удар ногой. Ульта «Раскрутка». Думает, что брат Тошинори погиб. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Kaiden</b> — танк, 9700 HP, 3500 ATK. Удар ногой. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Fan Zone</h4>
-          <p><b>Lax</b> — нападающий/убийца. 17 лет, 182 см. Система «Нэн». Друг Марка, но не знает, что он Абсолют. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Марк (Абсолют)</b> — живёт как обычный человек. Не использует силы. Финансирует «Звёздный путь». <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Lax</b> — убийца, система «Нэн». <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Марк (Абсолют)</b> — скрывается, финансирует «Звёздный путь». <span class="tag tag-ok">утверждено</span></p>
         </div>
-
-        <div class="sub-block">
-          <h4>Anti-Star (тайная фракция)</h4>
-          <p><b>Абсолют</b> — бывший босс. Ушёл в 2028. Независимый. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Алхимик</b> — правая рука. Теперь лидер. 75-й боец. Godly, 1999 RC. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Авторское право</b> — законник группировки. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Инджениум</b> — воин-инженер. Существо с роботизированными частями тела. Создан Алхимиком из мальчика. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Тошинори Эго</b> — разведчик. Похищен из семьи. По слухам близнец Кайдена. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Звёздный путь</h4>
-          <p><b>Астра</b> — глава. Обсерватория, ракетная площадка. <span class="tag tag-ok">утверждено</span></p>
-          <p><b>Марк (Абсолют)</b> — присоединился для поддержки Астры. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ГРУППИРОВКИ -->
-
-    <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('groups', this)">
-        👥 Группировки
-        <span class="arrow">›</span>
-      </button>
-      <div id="groups" class="draft-content">
-
-        <div class="sub-block">
-          <h4>City of Bad Guys</h4>
-          <p>Волт, Рей, Астра, Брук. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Skate Park</h4>
-          <p>Ricoel, Kiro, Jake. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>RED Park</h4>
-          <p>Red Man, Лира, Маскот, Лео. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Office District</h4>
-          <p>Bait, Игрис, Стелла, Авторское право. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Street of Broken Lanterns</h4>
-          <p>Ji, Kaiden. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Fan Zone</h4>
-          <p>Lax, Марк. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
         <div class="sub-block">
           <h4>Anti-Star (тайная)</h4>
-          <p>Алхимик (лидер), Авторское право, Инджениум, Тошинори Эго. О существовании знают только Red Man и Абсолют. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Абсолют</b> — бывший босс. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Алхимик</b> — лидер, 75-й боец, Godly. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Авторское право</b> — законник. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Инджениум</b> — воин-инженер, киборг. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Тошинори Эго</b> — разведчик, близнец Кайдена. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Звёздный путь</h4>
-          <p>Астра (глава), Марк. Мирная фракция. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Астра</b> — глава. <b>Марк</b> — поддержка. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
       </div>
     </div>
 
-    <!-- ГОРОД -->
-
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('city', this)">
-        🌆 Город
-        <span class="arrow">›</span>
-      </button>
-      <div id="city" class="draft-content">
-
-        <div class="sub-block">
-          <h4>Super_city</h4>
-          <p>Главный город. Построен на месте уничтоженного острова Starr Park. Вокруг очень влажно, поэтому постоянный туман. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Туман</h4>
-          <p>Не влияет на геймплей, только на визуал. Цвет меняется: рассвет — тёмный, день — белый, закат — тёмный, ночь — тёмно-синий. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Районы</h4>
-          <ul>
-            <li>RED Park — центральный парк с шатром</li>
-            <li>City of Bad Guys — мрачный район</li>
-            <li>Skate Park — скейт-парк</li>
-            <li>Street of Broken Lanterns — узкие улицы с фонарями</li>
-            <li>Office District — офисный район</li>
-            <li>Fan Zone — район фанатов</li>
-            <li>Порт</li>
-            <li>Вокзал</li>
-            <li>Заброшенный район</li>
-            <li>Жилой район</li>
-            <li>Северные/Южные пригороды</li>
-            <li>Восточные ворота</li>
-          </ul>
-        </div>
-
-        <div class="sub-block">
-          <h4>Время суток</h4>
-          <p>06:00 рассвет, 12:00 день, 17:00 вечер, 22:00 ночь. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- СЮЖЕТ -->
-
-    <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('story', this)">
-        📖 Сюжет и лор
-        <span class="arrow">›</span>
-      </button>
+      <button class="draft-button" onclick="toggleDraft('story', this)">📖 Сюжет и лор <span class="arrow">›</span></button>
       <div id="story" class="draft-content">
-
         <div class="sub-block">
           <h4>Таймлайн</h4>
-          <p><b>2028</b> — уничтожение Starr Park («забытого парка звезды»).</p>
+          <p><b>2028</b> — уничтожение Starr Park.</p>
           <p><b>2034</b> — настоящее время игры.</p>
         </div>
-
-        <div class="sub-block">
-          <h4>Что произошло в 2028</h4>
-          <p>В Starr Park творились странности: аниматроник облил ведущего кислотой, нано-лапша NanoStarr меняла людей, девушки просили помощи азбукой Морзе, люди пропадали.</p>
-          <p>Абсолют, как босс Anti-Star, решил помочь жителям. Он использовал часть своей силы, но случайно уничтожил остров. Остров затонул. На его месте теперь Super_city.</p>
-          <p>После этого Абсолют ушёл из Anti-Star. Он не смог простить себя. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
         <div class="sub-block">
           <h4>Red Man</h4>
-          <p>Был обычным человеком, работал в NanoStarr. Во время побега Венди украл немного нано-лапши и записи. После уничтожения острова создал Energy Drink на основе этих записей. Антагонист. Знает, что напиток вызывает агрессию.</p>
-          <p>Связан с Anti-Star: Anti-Star получает часть прибыли с продажи энергетиков. Об этом союзе не знают: Абсолют, Байт, Венди. <span class="tag tag-ok">утверждено</span></p>
+          <p>Работал в NanoStarr. Во время побега Венди украл нано-лапшу и записи. Создал Energy Drink. Антагонист. Платит Anti-Star часть прибыли. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Абсолют / Марк</h4>
-          <p>Бывший босс Anti-Star. Независимый, никому не подчиняется. Сам решил стереть Лаксу память, чтобы избавить друга от боли. Скрывается под именем Марк. Перешёл в «Звёздный путь», чтобы поддержать Астру. Финансирует группировку. <span class="tag tag-ok">утверждено</span></p>
+          <p>Бывший босс Anti-Star. Независимый. Стёр Лаксу память. Финансирует «Звёздный путь». <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Лакс и Марк</h4>
-          <p>Лакс и Марк были лучшими друзьями. Лакс не знал, что Марк — Абсолют. Когда узнал правду, не вынес боли. Абсолют стёр ему память. Лакс потерял все воспоминания о Марке. <span class="tag tag-ok">утверждено</span></p>
+          <p>Лучшие друзья. Лакс узнал правду, не вынес, память стёрта. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Кайден и Тошинори</h4>
-          <p>Тошинори — близнец Кайдена. Тошинори похитили из семьи, он вырос в Anti-Star. Ненавидит Кайдена за то, что тот вырос в семье, а он нет. Кайден думает, что Тошинори погиб. <span class="tag tag-ok">утверждено</span></p>
+          <p>Близнецы. Тошинори похищен, ненавидит Кайдена. Кайден думает, что брат мёртв. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Байт</h4>
-          <p>Робот из Новгорода-7. Был в отпуске в Starr Park в 2028. Видел битву Абсолюта с тенью. Говорит голосом на азбуке Морзе. Его понимает только Игрис. Игрис не знает про 2028. Алхимик знает о Байте. Байт — свидетель, но не может рассказать. <span class="tag tag-ok">утверждено</span></p>
+          <p>Робот из Новгорода-7. Был в Starr Park в 2028. Говорит Морзе. Понимает только Игрис. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Anti-Star</h4>
-          <p>Тайная организация. О ней знают только Red Man и Абсолют. Остальные фракции не в курсе. Алхимик похищает людей, создаёт киборгов, ищет Абсолюта. <span class="tag tag-ok">утверждено</span></p>
+          <p>Тайная организация. О ней знают только Red Man и Абсолют. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
-        <div class="sub-block">
-          <h4>Выжившие после 2028 (из мира Brawl Stars)</h4>
-          <p>Венди, Фрэнк, Мортис, Брюс (медведь Ниты), Пэм, некоторые роботы, ещё 20 бравлеров. Сириус — 100% мёртв в каноне RED_CLASH. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
       </div>
     </div>
 
-    <!-- МЕХАНИКИ -->
-
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('mechanics', this)">
-        ⚔️ Игровые механики
-        <span class="arrow">›</span>
-      </button>
+      <button class="draft-button" onclick="toggleDraft('mechanics', this)">⚔️ Механики <span class="arrow">›</span></button>
       <div id="mechanics" class="draft-content">
-
-        <div class="sub-block">
-          <h4>Соло ШД</h4>
-          <p>5 игроков, каждый сам за себя. Через 30 секунд карта начинает обрушаться. Кто упал — вылетает из битвы. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Футбол 1v1</h4>
-          <p>Физический мяч. Можно бить, ультовать, использовать гаджеты. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Зона 1v1</h4>
-          <p>Два полукруга в одном круге. Стоишь в своей зоне — заполняешь полоску. Убийства мешают врагу. Союзников нельзя атаковать. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Босс v2</h4>
-          <p>2 игрока против босса. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Клановая система</h4>
-          <p>30 человек. Глава (1), Вице (2), Участники (27), Заявки (до 29). Создание: 2000 Gold + 10 Red Coins. Вице не может исключать никого. Глава и вице могут передавать награды тем, кто ниже по уровню. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Sabyey Run</h4>
-          <p>Мини-игра в Городе Плохишей на заброшенной железной дороге. Герои: Волт, Рей, Астра, Пека. Гонится Брук. Награды: Gold, билеты, Red Coins. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>RED Park Arcade</h4>
-          <p>5 игр в день. Билеты за задания. 4–10 билетов за выполнение. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Зал</h4>
-          <p>Чат, ивенты, коллаборации, комьюнити-ивенты, ежедневные развлечения. Там же ивент на 75-го бойца — Алхимика. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
+        <div class="sub-block"><h4>Соло ШД</h4><p>5 игроков. Через 30 сек карта обрушается. Кто упал — вылетает. <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>Футбол 1v1</h4><p>Физический мяч. <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>Зона 1v1</h4><p>Два полукруга. Убийства мешают врагу. <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>Босс v2</h4><p>2 игрока против босса. <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>Кланы</h4><p>30 человек. Глава (1), Вице (2), Участники (27). Создание: 2000 Gold + 10 RC. <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>Sabyey Run</h4><p>Мини-игра на заброшенной железной дороге. Гонится Брук. <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>RED Park Arcade</h4><p>5 игр в день, билеты за задания. <span class="tag tag-ok">утверждено</span></p></div>
       </div>
     </div>
 
-    <!-- ЭКОНОМИКА -->
-
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('economy', this)">
-        💰 Экономика
-        <span class="arrow">›</span>
-      </button>
+      <button class="draft-button" onclick="toggleDraft('economy', this)">💰 Экономика <span class="arrow">›</span></button>
       <div id="economy" class="draft-content">
-
         <div class="sub-block">
           <h4>Валюты</h4>
-          <p><b>Gold</b> — гаджеты, пассивки, косметика, ресурсы.</p>
+          <p><b>Gold</b> — гаджеты, пассивки, косметика.</p>
           <p><b>Red Coins</b> — бойцы, ящики, Battle Pass.</p>
           <p><b>Energy Drink</b> — прокачка бойцов.</p>
-          <p><b>Билеты</b> — аркада RED Park. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Билеты</b> — аркада. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
-          <h4>Бойцы (цены в Red Coins)</h4>
+          <h4>Бойцы</h4>
           <ul>
-            <li>Начальный: Волт — 0</li>
-            <li>Редкий: Рей, Лео — 49</li>
-            <li>Сверхредкий: Лира — 99</li>
-            <li>Эпический: Маскот, Кайден — 149</li>
-            <li>Легендарный: Ricoel — 199</li>
-            <li>Мифический: Red Man — 299</li>
-            <li>Godly: Алхимик — 1999 (всегда доступен)</li>
-            <li>Эксклюзив/коллаборации: 0, только за ивенты</li>
+            <li>Волт — 0</li>
+            <li>Рей, Лео — 49</li>
+            <li>Лира — 99</li>
+            <li>Маскот, Кайден — 149</li>
+            <li>Ricoel — 199</li>
+            <li>Red Man — 299</li>
+            <li>Алхимик — 1999</li>
           </ul>
         </div>
-
         <div class="sub-block">
-          <h4>Ящики (цены в Red Coins)</h4>
-          <ul>
-            <li>Обычный — 39</li>
-            <li>Редкий — 59</li>
-            <li>Сверхредкий — 89</li>
-            <li>Эпический — 149</li>
-            <li>Легендарный — 169</li>
-            <li>Мифический — 199</li>
-            <li>Эксклюзивный — только ивенты</li>
-          </ul>
-          <p>Red Coins начинают выпадать только с эпического ящика. Шансы: 1 RC — 10%, 5 RC — 6%, 10 RC — 4%, 25 RC — 1%. Gold и Energy Drink — по 25.5%. <span class="tag tag-ok">утверждено</span></p>
+          <h4>Ящики</h4>
+          <p>Обычный — 39, Редкий — 59, Сверхредкий — 89, Эпический — 149, Легендарный — 169, Мифический — 199. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
-          <h4>Прокачка бойцов</h4>
-          <p>1 → 2: 2 Energy Drink. 10 → 11: 699 Energy Drink. Ящики дают 10–100 Energy Drink. Гаджет: 1000 Gold. Пассивка: 2200 Gold. <span class="tag tag-ok">утверждено</span></p>
+          <h4>Прокачка</h4>
+          <p>1→2: 2 Energy. 10→11: 699 Energy. Гаджет: 1000 Gold. Пассивка: 2200 Gold. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
         <div class="sub-block">
           <h4>Battle Pass</h4>
-          <p>Стоит 289 Red Coins. Покупается только за Red Coins. <span class="tag tag-ok">утверждено</span></p>
+          <p>289 Red Coins. Только за RC. <span class="tag tag-ok">утверждено</span></p>
         </div>
-
-        <div class="sub-block">
-          <h4>Red Coins за бету</h4>
-          <p>Участие в бете: 570 Red Coins. Лучший баг-репорт: 1000 Red Coins. За сезон релиза без доната: ~350 Red Coins. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
       </div>
     </div>
 
-    <!-- СОБЫТИЯ -->
-
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('events', this)">
-        🎪 События
-        <span class="arrow">›</span>
-      </button>
+      <button class="draft-button" onclick="toggleDraft('events', this)">🎪 События <span class="arrow">›</span></button>
       <div id="events" class="draft-content">
-
-        <div class="sub-block">
-          <h4>Лакс всё узнал (50 бойцов)</h4>
-          <p>Лакс узнаёт правду о Марке. Абсолют стирает ему память. Награда: скин «Костюм от Марка». <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Путь звезды (Астра)</h4>
-          <p>Астра создаёт группировку «Звёздный путь». Раскрывается тайна Starr Park. Награда: скин «Звёздная Астра». <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Ивент на 75-го бойца</h4>
-          <p>Алхимик становится играбельным (Godly, 1999 RC). <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Зал</h4>
-          <p>Ивенты, коллаборации, комьюнити-ивенты, ежедневные развлечения. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Офисы</h4>
-          <p>Можно оставить пожелания и деньги поддержки. <span class="tag tag-ok">утверждено</span></p>
-        </div>
-
+        <div class="sub-block"><h4>Лакс всё узнал (50 бойцов)</h4><p>Скин «Костюм от Марка». <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>Путь звезды (Астра)</h4><p>Создание «Звёздного пути». Скин «Звёздная Астра». <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>Ивент на 75-го бойца</h4><p>Алхимик становится играбельным. <span class="tag tag-ok">утверждено</span></p></div>
+        <div class="sub-block"><h4>Зал</h4><p>Чат, ивенты, коллаборации, комьюнити-события. <span class="tag tag-ok">утверждено</span></p></div>
       </div>
     </div>
 
-    <!-- БУДУЩИЕ ИДЕИ -->
-
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('ideas', this)">
-        💡 Будущие идеи
-        <span class="arrow">›</span>
-      </button>
+      <button class="draft-button" onclick="toggleDraft('ideas', this)">💡 Будущие идеи <span class="arrow">›</span></button>
       <div id="ideas" class="draft-content">
-
-        <div class="sub-block">
-          <h4>Коллаборация с Brawl Stars</h4>
-          <p>Если игра станет популярной — возможна официальная коллаборация. Битва «Сириус с тенями против Абсолюта» как специальный босс-файт. <span class="tag tag-idea">идея</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Коллаборация с My Hero Academia</h4>
-          <p>Долгосрочная идея. Требует официальных прав. <span class="tag tag-idea">идея</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Мотивация игрока</h4>
-          <p>Пока открыта. Варианты: приключения, побег, слежка. Аватар игрока — фиксированный, нельзя менять. <span class="tag tag-dev">в разработке</span></p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Кто стал злее от энергетиков</h4>
-          <p>Многие, но конкретные персонажи пока не названы. У каждого эффект проявляется по-разному. <span class="tag tag-dev">в разработке</span></p>
-        </div>
-
+        <div class="sub-block"><h4>Коллаборация с Brawl Stars</h4><p>«Сириус с тенями против Абсолюта». <span class="tag tag-idea">идея</span></p></div>
+        <div class="sub-block"><h4>Коллаборация с MHA</h4><p>Долгосрочная идея. <span class="tag tag-idea">идея</span></p></div>
+        <div class="sub-block"><h4>Мотивация игрока</h4><p>Пока открыта. <span class="tag tag-dev">в разработке</span></p></div>
+        <div class="sub-block"><h4>Кто стал злее от энергетиков</h4><p>Многие, конкретные не названы. <span class="tag tag-dev">в разработке</span></p></div>
       </div>
     </div>
 
@@ -972,10 +796,9 @@
   <!-- ========================= -->
 
   <div id="settings" class="page">
-
     <div class="card">
       <h2>⚙️ Настройки сайта</h2>
-      <p>Все настройки сохраняются в браузере и применяются сразу.</p>
+      <p>Все настройки сохраняются в браузере.</p>
 
       <div class="setting">
         <div class="setting-row">
@@ -983,7 +806,6 @@
           <span class="setting-value" id="brightnessValue">100%</span>
         </div>
         <input type="range" id="brightness" min="30" max="150" value="100">
-        <div class="setting-desc">Регулирует яркость всей страницы.</div>
       </div>
 
       <div class="setting">
@@ -992,7 +814,6 @@
           <span class="setting-value" id="fontValue">100%</span>
         </div>
         <input type="range" id="fontSize" min="70" max="180" value="100">
-        <div class="setting-desc">Масштаб текста. Влияет на всё содержимое страницы.</div>
       </div>
 
       <div class="setting">
@@ -1000,7 +821,6 @@
           <span class="setting-label">🌗 Инверсия света</span>
           <button class="toggle-btn" id="invertBtn" onclick="toggleInvert()">Выкл</button>
         </div>
-        <div class="setting-desc">Светлая тема вместо тёмной. Удобно для чтения днём.</div>
       </div>
 
       <div class="setting">
@@ -1008,7 +828,6 @@
           <span class="setting-label">🌓 Высокий контраст</span>
           <button class="toggle-btn" id="contrastBtn" onclick="toggleContrast()">Выкл</button>
         </div>
-        <div class="setting-desc">Усиливает контраст между текстом и фоном. Для слабого зрения.</div>
       </div>
 
       <div class="setting">
@@ -1016,21 +835,10 @@
           <span class="setting-label">🎞️ Анимации</span>
           <button class="toggle-btn on" id="animBtn" onclick="toggleAnim()">Вкл</button>
         </div>
-        <div class="setting-desc">Плавные переходы и эффекты. Отключи, если нужно сэкономить батарею.</div>
-      </div>
-
-      <div class="setting">
-        <div class="setting-row">
-          <span class="setting-label">📐 Ширина контента</span>
-          <span class="setting-value" id="widthValue">900px</span>
-        </div>
-        <input type="range" id="widthSlider" min="600" max="1200" value="900" step="20">
-        <div class="setting-desc">Максимальная ширина страницы на больших экранах.</div>
       </div>
 
       <button class="btn-reset" onclick="resetSettings()">🔄 Сбросить все настройки</button>
     </div>
-
   </div>
 
 </div>
@@ -1038,14 +846,9 @@
 <script>
 
   /* ---------- Вкладки ---------- */
-
   function openPage(pageId, button) {
-    const pages = document.querySelectorAll(".page");
-    const tabs = document.querySelectorAll(".tab");
-
-    pages.forEach(page => page.classList.remove("active"));
-    tabs.forEach(tab => tab.classList.remove("active"));
-
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     document.getElementById(pageId).classList.add("active");
     button.classList.add("active");
   }
@@ -1053,24 +856,176 @@
   function toggleDraft(id, button) {
     const content = document.getElementById(id);
     const arrow = button.querySelector(".arrow");
-
     content.classList.toggle("open");
-
-    if (content.classList.contains("open")) {
-      arrow.textContent = "⌄";
-    } else {
-      arrow.textContent = "›";
-    }
+    arrow.textContent = content.classList.contains("open") ? "⌄" : "›";
   }
 
-  /* ---------- Настройки ---------- */
+  /* ---------- ДАННЫЕ РАЙОНОВ ---------- */
+  const districts = {
+    north: {
+      icon: "🏔️",
+      color: "#3a4050",
+      title: "Северные пригороды",
+      sub: "Спокойная окраина",
+      desc: "Тихий район на севере Super_city. Здесь почти нет фракций и конфликтов. Живут семьи, рабочие, пенсионеры. Туман здесь особенно густой утром.",
+      chars: [],
+      events: "Пока не задействован в сюжете."
+    },
+    office: {
+      icon: "🏢",
+      color: "#4a6fa5",
+      title: "Офисный район",
+      sub: "Office District",
+      desc: "Деловое сердце города. Здесь работает Авторское право, Байт, Игрис и Стелла. Все сотрудники устроены через Авторское право. Если обидеть кого-то из них — жди серьёзного наказания.",
+      chars: ["Авторское право", "Bait", "Игрис", "Стелла"],
+      events: "Новости города, доставка почты, офисные задания."
+    },
+    badguys: {
+      icon: "😈",
+      color: "#8b2fc9",
+      title: "Город Плохишей",
+      sub: "City of Bad Guys",
+      desc: "Мрачный район, где живут Волт, Рей, Астра и Брук. Именно сюда приезжает игрок в начале игры. Здесь же проходит мини-игра Sabyey Run на заброшенной железной дороге.",
+      chars: ["Волт", "Рей", "Астра", "Брук"],
+      events: "Туториал, Sabyey Run."
+    },
+    fanzone: {
+      icon: "🎉",
+      color: "#7ed957",
+      title: "Fan Zone",
+      sub: "Район фанатов",
+      desc: "Мирный район, где живёт Лакс. Сюда же переехал Марк (Абсолют), скрываясь под обычным именем. Лакс не знает, что его друг — бывший босс Anti-Star.",
+      chars: ["Lax", "Марк (Абсолют)"],
+      events: "Сюжетная линия Лакса и Марка."
+    },
+    lanterns: {
+      icon: "🏮",
+      color: "#ff8c1a",
+      title: "Улица Разбитых Фонарей",
+      sub: "Street of Broken Lanterns",
+      desc: "Узкие улочки с бумажными фонарями. Здесь живёт Кайден, который думает, что его брат Тошинори погиб. На самом деле Тошинори жив и ненавидит его.",
+      chars: ["Ji", "Kaiden"],
+      events: "Сюжетная линия Кайдена и Тошинори."
+    },
+    redpark: {
+      icon: "🔴",
+      color: "#e52b38",
+      title: "RED Park",
+      sub: "Сердце города",
+      desc: "Центральный парк с огромным красным шатром. Владелец — Red Man, антагонист и производитель Energy Drink. Здесь же находятся аркады, магазины и билетные кассы, где работает Лира.",
+      chars: ["Red Man", "Лира", "Маскот", "Лео"],
+      events: "Магазины, аркада, Battle Pass, ящики."
+    },
+    skate: {
+      icon: "🛹",
+      color: "#00c2d1",
+      title: "Скейт Парк",
+      sub: "Skate Park",
+      desc: "Молодёжный район с рампами и граффити. Здесь живёт Ricoel — легендарный брейкдансер и режиссёр. Атмосфера свободы и творчества.",
+      chars: ["Ricoel", "Kiro", "Jake"],
+      events: "Пока не задействован в сюжете."
+    },
+    abandoned: {
+      icon: "🏚️",
+      color: "#6b5d4f",
+      title: "Заброшенный район",
+      sub: "Руины",
+      desc: "Старые здания, пустые улицы. Здесь часто проводятся тренировки и нелегальные бои. Место, куда лучше не заходить ночью.",
+      chars: [],
+      events: "Потенциальное место для ивентов."
+    },
+    residential: {
+      icon: "🏠",
+      color: "#8a8a8a",
+      title: "Жилой район",
+      sub: "Спальный квартал",
+      desc: "Обычные дома, где живут мирные жители. Здесь нет фракций, но именно здесь начинаются слухи о странностях в городе.",
+      chars: [],
+      events: "Пока не задействован."
+    },
+    port: {
+      icon: "⚓",
+      color: "#3b82c4",
+      title: "Порт",
+      sub: "Морские ворота",
+      desc: "Крупный порт с кораблями и складами. Через него в город поступают товары, в том числе ингредиенты для Energy Drink. Возможно, здесь Red Man проворачивает свои тёмные дела.",
+      chars: [],
+      events: "Потенциальное место для сюжетных квестов."
+    },
+    station: {
+      icon: "🚉",
+      color: "#5b4db8",
+      title: "Вокзал",
+      sub: "Ворота в город",
+      desc: "Именно сюда приезжает игрок в начале игры. На перроне его встречают Волт, Рей и Астра. Рей быстро спрашивает: «Эй, ты знаешь о забытом парке звезды?»",
+      chars: ["Волт", "Рей", "Астра"],
+      events: "Туториал, прибытие игрока."
+    },
+    eastgate: {
+      icon: "🚪",
+      color: "#c92a2a",
+      title: "Восточные ворота",
+      sub: "Выход из города",
+      desc: "Массивные ворота, ведущие на восток. Через них когда-то пытались сбежать выжившие после уничтожения Starr Park. Сейчас закрыты и охраняются.",
+      chars: [],
+      events: "Потенциальное место для сюжетных событий."
+    },
+    south: {
+      icon: "🌲",
+      color: "#3a4050",
+      title: "Южные пригороды",
+      sub: "Лесная зона",
+      desc: "Южная окраина города. Здесь начинаются леса и горы. Место, где можно спрятаться от тумана и городской суеты.",
+      chars: [],
+      events: "Пока не задействован."
+    }
+  };
 
-  const root = document.documentElement;
+  /* ---------- КЛИК ПО РАЙОНУ ---------- */
+  function initMap() {
+    const districtsEls = document.querySelectorAll(".district");
+    districtsEls.forEach(el => {
+      el.addEventListener("click", () => {
+        const id = el.dataset.id;
+        const data = districts[id];
+        if (!data) return;
+
+        districtsEls.forEach(d => d.classList.remove("active"));
+        el.classList.add("active");
+
+        const panel = document.getElementById("infoPanel");
+        panel.innerHTML = `
+          <div class="info-header">
+            <div class="info-icon" style="background:${data.color}">${data.icon}</div>
+            <div>
+              <h3 class="info-title">${data.title}</h3>
+              <p class="info-sub">${data.sub}</p>
+            </div>
+          </div>
+          <div class="info-body">
+            <p>${data.desc}</p>
+            ${data.chars.length ? `
+              <div class="info-section">
+                <div class="info-section-title">Персонажи</div>
+                <div class="info-chars">
+                  ${data.chars.map(c => `<span class="char-chip">${c}</span>`).join("")}
+                </div>
+              </div>` : ""}
+            <div class="info-section">
+              <div class="info-section-title">Что здесь происходит</div>
+              <p>${data.events}</p>
+            </div>
+          </div>
+        `;
+      });
+    });
+  }
+
+  /* ---------- НАСТРОЙКИ ---------- */
   const body = document.body;
 
   function setBrightness(val) {
-    const v = val / 100;
-    document.documentElement.style.setProperty("--brightness", v);
+    document.documentElement.style.setProperty("--brightness", val / 100);
     document.getElementById("brightnessValue").textContent = val + "%";
     localStorage.setItem("rc_brightness", val);
   }
@@ -1079,13 +1034,6 @@
     document.documentElement.style.fontSize = (val / 100 * 16) + "px";
     document.getElementById("fontValue").textContent = val + "%";
     localStorage.setItem("rc_font", val);
-  }
-
-  function setWidth(val) {
-    const container = document.querySelector(".container");
-    container.style.width = "min(" + val + "px, 92%)";
-    document.getElementById("widthValue").textContent = val + "px";
-    localStorage.setItem("rc_width", val);
   }
 
   function toggleInvert() {
@@ -1116,87 +1064,41 @@
   }
 
   function resetSettings() {
-    localStorage.removeItem("rc_brightness");
-    localStorage.removeItem("rc_font");
-    localStorage.removeItem("rc_width");
-    localStorage.removeItem("rc_invert");
-    localStorage.removeItem("rc_contrast");
-    localStorage.removeItem("rc_anim");
-
-    // Сброс UI
+    ["rc_brightness","rc_font","rc_invert","rc_contrast","rc_anim"].forEach(k => localStorage.removeItem(k));
     document.getElementById("brightness").value = 100;
     document.getElementById("fontSize").value = 100;
-    document.getElementById("widthSlider").value = 900;
-
-    body.classList.remove("inverted", "high-contrast", "no-anim");
-
+    body.classList.remove("inverted","high-contrast","no-anim");
     document.getElementById("invertBtn").textContent = "Выкл";
     document.getElementById("invertBtn").classList.remove("on");
     document.getElementById("contrastBtn").textContent = "Выкл";
     document.getElementById("contrastBtn").classList.remove("on");
     document.getElementById("animBtn").textContent = "Вкл";
     document.getElementById("animBtn").classList.add("on");
-
     setBrightness(100);
     setFontSize(100);
-    setWidth(900);
   }
 
-  /* ---------- Загрузка настроек ---------- */
-
+  /* ---------- ЗАГРУЗКА ---------- */
   window.addEventListener("load", () => {
+    initMap();
 
-    const savedBrightness = localStorage.getItem("rc_brightness");
-    const savedFont = localStorage.getItem("rc_font");
-    const savedWidth = localStorage.getItem("rc_width");
-    const savedInvert = localStorage.getItem("rc_invert") === "true";
-    const savedContrast = localStorage.getItem("rc_contrast") === "true";
-    const savedAnim = localStorage.getItem("rc_anim") !== "false"; // по умолчанию вкл
+    const b = localStorage.getItem("rc_brightness");
+    const f = localStorage.getItem("rc_font");
+    const inv = localStorage.getItem("rc_invert") === "true";
+    const con = localStorage.getItem("rc_contrast") === "true";
+    const anim = localStorage.getItem("rc_anim") !== "false";
 
-    if (savedBrightness) {
-      document.getElementById("brightness").value = savedBrightness;
-      setBrightness(savedBrightness);
-    }
+    if (b) { document.getElementById("brightness").value = b; setBrightness(b); }
+    if (f) { document.getElementById("fontSize").value = f; setFontSize(f); }
+    if (inv) { body.classList.add("inverted"); const btn = document.getElementById("invertBtn"); btn.textContent = "Вкл"; btn.classList.add("on"); }
+    if (con) { body.classList.add("high-contrast"); const btn = document.getElementById("contrastBtn"); btn.textContent = "Вкл"; btn.classList.add("on"); }
+    if (!anim) { body.classList.add("no-anim"); const btn = document.getElementById("animBtn"); btn.textContent = "Выкл"; btn.classList.remove("on"); }
 
-    if (savedFont) {
-      document.getElementById("fontSize").value = savedFont;
-      setFontSize(savedFont);
-    }
-
-    if (savedWidth) {
-      document.getElementById("widthSlider").value = savedWidth;
-      setWidth(savedWidth);
-    }
-
-    if (savedInvert) {
-      body.classList.add("inverted");
-      const btn = document.getElementById("invertBtn");
-      btn.textContent = "Вкл";
-      btn.classList.add("on");
-    }
-
-    if (savedContrast) {
-      body.classList.add("high-contrast");
-      const btn = document.getElementById("contrastBtn");
-      btn.textContent = "Вкл";
-      btn.classList.add("on");
-    }
-
-    if (!savedAnim) {
-      body.classList.add("no-anim");
-      const btn = document.getElementById("animBtn");
-      btn.textContent = "Выкл";
-      btn.classList.remove("on");
-    }
-
-    // Слушатели
     document.getElementById("brightness").addEventListener("input", e => setBrightness(e.target.value));
     document.getElementById("fontSize").addEventListener("input", e => setFontSize(e.target.value));
-    document.getElementById("widthSlider").addEventListener("input", e => setWidth(e.target.value));
-
   });
 
 </script>
 
 </body>
-        </html>
+  </html>
