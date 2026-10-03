@@ -23,8 +23,6 @@
       margin: 40px auto;
     }
 
-    /* Шапка */
-
     .title {
       text-align: center;
       margin-bottom: 30px;
@@ -40,8 +38,6 @@
       color: #999;
       margin-top: 10px;
     }
-
-    /* Вкладки */
 
     .tabs {
       display: flex;
@@ -70,8 +66,6 @@
       color: white;
     }
 
-    /* Страницы */
-
     .page {
       display: none;
     }
@@ -79,8 +73,6 @@
     .page.active {
       display: block;
     }
-
-    /* Карточки */
 
     .card {
       background: #12141b;
@@ -110,15 +102,11 @@
       height: 35px;
       align-items: center;
       justify-content: center;
-
       background: #e52b38;
       border-radius: 10px;
-
       font-weight: bold;
       margin-right: 10px;
     }
-
-    /* Заготовки */
 
     .draft {
       background: #12141b;
@@ -133,15 +121,11 @@
       border: none;
       background: transparent;
       color: white;
-
       padding: 18px;
       text-align: left;
-
       font-size: 16px;
       font-weight: bold;
-
       cursor: pointer;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -167,32 +151,57 @@
       font-size: 20px;
     }
 
-    /* Мобильная версия */
+    /* Внутренние блоки внутри заготовок */
+
+    .sub-block {
+      background: #0e1016;
+      border: 1px solid #232630;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 10px 0;
+    }
+
+    .sub-block h4 {
+      margin: 0 0 8px;
+      color: #e52b38;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .sub-block p,
+    .sub-block li {
+      color: #bbb;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 4px 0;
+    }
+
+    .sub-block ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-right: 6px;
+      text-transform: uppercase;
+    }
+
+    .tag-ok { background: #1e5c2e; color: #7dff9e; }
+    .tag-dev { background: #5c4b1e; color: #ffe17d; }
+    .tag-idea { background: #3a1e5c; color: #c79dff; }
 
     @media (max-width: 600px) {
-
-      .container {
-        width: 94%;
-        margin: 25px auto;
-      }
-
-      .title h1 {
-        font-size: 30px;
-      }
-
-      .tabs {
-        gap: 7px;
-      }
-
-      .tab {
-        padding: 13px 8px;
-        font-size: 14px;
-      }
-
-      .card {
-        padding: 17px;
-      }
-
+      .container { width: 94%; margin: 25px auto; }
+      .title h1 { font-size: 30px; }
+      .tabs { gap: 7px; }
+      .tab { padding: 13px 8px; font-size: 14px; }
+      .card { padding: 17px; }
     }
   </style>
 </head>
@@ -201,768 +210,639 @@
 
 <div class="container">
 
-  <!-- Заголовок -->
-
   <div class="title">
-
     <h1>RED_CLASH</h1>
-
-    <p>
-      Проект игры и её мира
-    </p>
-
+    <p>Проект игры и её мира</p>
   </div>
-
-
-  <!-- Вкладки -->
 
   <div class="tabs">
-
-    <button
-      class="tab active"
-      onclick="openPage('plan', this)"
-    >
-      📋 План
-    </button>
-
-    <button
-      class="tab"
-      onclick="openPage('drafts', this)"
-    >
-      🗂️ Заготовки
-    </button>
-
+    <button class="tab active" onclick="openPage('plan', this)">📋 План</button>
+    <button class="tab" onclick="openPage('drafts', this)">🗂️ Заготовки</button>
   </div>
 
-
   <!-- ========================= -->
-  <!-- ПЛАН -->
+  <!-- ПЛАН (без изменений) -->
   <!-- ========================= -->
 
   <div id="plan" class="page active">
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">01</span>
-        Идеи и подготовка
-      </h2>
-
-      <p>
-        Во время учёбы основная работа над RED_CLASH —
-        развитие мира и игровых идей.
-      </p>
-
+      <h2><span class="number">01</span>Идеи и подготовка</h2>
+      <p>Во время учёбы основная работа над RED_CLASH — развитие мира и игровых идей.</p>
       <ul>
-
         <li>Придумывать персонажей.</li>
-
         <li>Создавать группировки.</li>
-
         <li>Писать истории персонажей.</li>
-
         <li>Придумывать районы города.</li>
-
         <li>Создавать игровые механики.</li>
-
         <li>Придумывать события.</li>
-
         <li>Записывать новые идеи.</li>
-
       </ul>
-
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">02</span>
-        Библия RED_CLASH
-      </h2>
-
-      <p>
-        Единая база всей информации о проекте.
-      </p>
-
+      <h2><span class="number">02</span>Библия RED_CLASH</h2>
+      <p>Единая база всей информации о проекте.</p>
       <ul>
-
         <li>Персонажи.</li>
-
         <li>Группировки.</li>
-
         <li>Карта города.</li>
-
         <li>Районы.</li>
-
         <li>Способности.</li>
-
         <li>Редкости.</li>
-
         <li>Экономика.</li>
-
         <li>Сюжет.</li>
-
         <li>События.</li>
-
       </ul>
-
-      <p>
-        Каждая информация получает статус:
-        <b>утверждено</b>,
-        <b>в разработке</b> или
-        <b>идея</b>.
-      </p>
-
+      <p>Каждая информация получает статус: <b>утверждено</b>, <b>в разработке</b> или <b>идея</b>.</p>
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">03</span>
-        Выходные — Blender
-      </h2>
-
-      <p>
-        По возможности заниматься моделированием.
-      </p>
-
+      <h2><span class="number">03</span>Выходные — Blender</h2>
+      <p>По возможности заниматься моделированием.</p>
       <ul>
-
         <li>Учиться 3D-моделированию.</li>
-
         <li>Создавать небольшие объекты.</li>
-
         <li>Создавать элементы локаций.</li>
-
         <li>Постепенно делать RED Park.</li>
-
         <li>Создавать библиотеку 3D-ассетов.</li>
-
       </ul>
-
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">04</span>
-        Игровое ядро
-      </h2>
-
-      <p>
-        Сначала нужно определить основу игры.
-      </p>
-
-      <p>
-        <b>
-          Меню → Персонаж → Бой →
-          Победа/поражение → Награды
-        </b>
-      </p>
-
-      <p>
-        Дополнительные системы добавляются после
-        того, как основной цикл работает.
-      </p>
-
+      <h2><span class="number">04</span>Игровое ядро</h2>
+      <p>Сначала нужно определить основу игры.</p>
+      <p><b>Меню → Персонаж → Бой → Победа/поражение → Награды</b></p>
+      <p>Дополнительные системы добавляются после того, как основной цикл работает.</p>
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">05</span>
-        Первый прототип
-      </h2>
-
+      <h2><span class="number">05</span>Первый прототип</h2>
       <ol>
-
         <li>Небольшая тестовая карта.</li>
-
         <li>Один персонаж.</li>
-
         <li>Управление.</li>
-
         <li>Движение.</li>
-
         <li>Обычная атака.</li>
-
         <li>Получение урона.</li>
-
         <li>Смерть.</li>
-
         <li>Победа и поражение.</li>
-
       </ol>
-
-      <p>
-        Цель — проверить игровой процесс,
-        а не сделать сразу красивую готовую игру.
-      </p>
-
+      <p>Цель — проверить игровой процесс, а не сделать сразу красивую готовую игру.</p>
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">06</span>
-        Лето и другие каникулы
-      </h2>
-
+      <h2><span class="number">06</span>Лето и другие каникулы</h2>
       <ul>
-
         <li>Проверять Unity.</li>
-
         <li>Проверять другие игровые движки.</li>
-
         <li>Тестировать возможности ПК.</li>
-
         <li>Создавать первые прототипы.</li>
-
         <li>Определиться с инструментами разработки.</li>
-
       </ul>
-
-      <p>
-        Если Unity слишком тяжёлая для текущего ПК,
-        искать подходящий вариант и вернуться к Unity
-        после улучшения компьютера.
-      </p>
-
+      <p>Если Unity слишком тяжёлая для текущего ПК, искать подходящий вариант и вернуться к Unity после улучшения компьютера.</p>
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">07</span>
-        Мир RED_CLASH
-      </h2>
-
-      <p>
-        Главное место действия — весь город,
-        а не только RED Park.
-      </p>
-
+      <h2><span class="number">07</span>Мир RED_CLASH</h2>
+      <p>Главное место действия — весь город, а не только RED Park.</p>
       <ul>
-
         <li>Создавать районы.</li>
-
         <li>Создавать группировки.</li>
-
         <li>Связывать персонажей историями.</li>
-
         <li>Создавать сюжетные арки.</li>
-
         <li>Добавлять события.</li>
-
         <li>Постепенно раскрывать тайны мира.</li>
-
       </ul>
-
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">08</span>
-        Персонажи
-      </h2>
-
-      <p>
-        Для каждого персонажа постепенно создавать:
-      </p>
-
+      <h2><span class="number">08</span>Персонажи</h2>
+      <p>Для каждого персонажа постепенно создавать:</p>
       <ul>
-
         <li>Имя.</li>
-
         <li>Внешность.</li>
-
         <li>Характер.</li>
-
         <li>Группировку.</li>
-
         <li>Историю.</li>
-
         <li>Атаку.</li>
-
         <li>Ульту.</li>
-
         <li>Гаджеты.</li>
-
         <li>Пассивную способность.</li>
-
         <li>Связи с другими персонажами.</li>
-
       </ul>
-
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">09</span>
-        Музыка и звук
-      </h2>
-
+      <h2><span class="number">09</span>Музыка и звук</h2>
       <ul>
-
         <li>Музыка меню.</li>
-
         <li>Музыка событий.</li>
-
         <li>Звуки атак.</li>
-
         <li>Звуки окружения.</li>
-
         <li>Формирование собственного звукового стиля.</li>
-
       </ul>
-
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">10</span>
-        Тестирование
-      </h2>
-
+      <h2><span class="number">10</span>Тестирование</h2>
       <ul>
-
         <li>Проверять управление.</li>
-
         <li>Проверять баланс.</li>
-
         <li>Проверять карты.</li>
-
         <li>Искать баги.</li>
-
         <li>Давать игру тестировщику.</li>
-
         <li>Исправлять проблемы.</li>
-
       </ul>
-
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">11</span>
-        Расширение
-      </h2>
-
+      <h2><span class="number">11</span>Расширение</h2>
       <ul>
-
         <li>Новые персонажи.</li>
-
         <li>Новые карты.</li>
-
         <li>Новые группировки.</li>
-
         <li>Расширение города.</li>
-
         <li>Новые события.</li>
-
         <li>Продолжение сюжета.</li>
-
         <li>Дополнительные игровые системы.</li>
-
       </ul>
-
     </div>
 
-
     <div class="card">
-
-      <h2>
-        <span class="number">12</span>
-        Большое будущее
-      </h2>
-
+      <h2><span class="number">12</span>Большое будущее</h2>
       <ul>
-
         <li>Расширение команды.</li>
-
         <li>Художники.</li>
-
         <li>3D-моделлеры.</li>
-
         <li>Новые режимы.</li>
-
         <li>Крупные события.</li>
-
         <li>Возможные официальные коллаборации.</li>
-
       </ul>
-
-      <p>
-        Например, RED_CLASH × My Hero Academia —
-        долгосрочная идея. Для настоящей коллаборации
-        потребуются официальные права.
-      </p>
-
+      <p>Например, RED_CLASH × My Hero Academia — долгосрочная идея. Для настоящей коллаборации потребуются официальные права.</p>
     </div>
 
-
     <div class="card">
-
       <h2>🎯 Общий путь</h2>
-
-      <p>
-        <b>
-          Идеи
-          →
-          Дизайн
-          →
-          Blender
-          →
-          Прототип
-          →
-          Тестирование
-          →
-          Расширение
-          →
-          RED_CLASH
-        </b>
-      </p>
-
+      <p><b>Идеи → Дизайн → Blender → Прототип → Тестирование → Расширение → RED_CLASH</b></p>
     </div>
 
   </div>
 
-
   <!-- ========================= -->
-  <!-- ЗАГОТОВКИ -->
+  <!-- ЗАГОТОВКИ (заполнено) -->
   <!-- ========================= -->
 
   <div id="drafts" class="page">
 
-
     <div class="card">
-
       <h2>🗂️ Заготовки RED_CLASH</h2>
-
-      <p>
-        Здесь будет храниться вся информация
-        о проекте.
-      </p>
-
+      <p>Полная база данных проекта. Статусы: <span class="tag tag-ok">утверждено</span> <span class="tag tag-dev">в разработке</span> <span class="tag tag-idea">идея</span></p>
     </div>
 
-
-    <!-- Персонажи -->
+    <!-- ПЕРСОНАЖИ -->
 
     <div class="draft">
-
-      <button
-        class="draft-button"
-        onclick="toggleDraft('characters', this)"
-      >
-
+      <button class="draft-button" onclick="toggleDraft('characters', this)">
         👤 Персонажи
-
         <span class="arrow">›</span>
-
       </button>
+      <div id="characters" class="draft-content">
 
-      <div
-        id="characters"
-        class="draft-content"
-      >
+        <div class="sub-block">
+          <h4>City of Bad Guys</h4>
+          <p><b>Волт</b> — стартовый стрелок. 7200 HP, 1600 ATK. Супер «Двойной выстрел». <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Рей</b> — редкий, 49 Red Coins. Открывается на 100 кубках в Пути славы. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Астра</b> — мифическая. Космическая девочка. Глава «Звёздного пути». Двойной выстрел, супер — робот-помощник. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Брук</b> — охранник. Дробовик, пёс Рекс (появляется во время ульты). <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
-        Здесь будут персонажи RED_CLASH,
-        их дизайн, характеристики,
-        способности, истории и связи.
+        <div class="sub-block">
+          <h4>Skate Park</h4>
+          <p><b>Ricoel</b> — легендарный, 199 RC. Брейкдансер и режиссёр. Контроль/урон. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Kiro</b> — в разработке. <span class="tag tag-dev">в разработке</span></p>
+          <p><b>Jake</b> — в разработке. <span class="tag tag-dev">в разработке</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>RED Park</h4>
+          <p><b>Red Man</b> — антагонист. Владелец парка, производит Energy Drink. Бывший сотрудник NanoStarr. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Лира (Билетёрша)</b> — сверхредкая, 99 RC. Проверяет билеты. Прыгающий шар. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Маскот</b> — эпический, 149 RC. Универсал. Два режима атаки (ближний/дальний). <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Лео</b> — редкий, 49 RC. Ребёнок 7–8 лет. Кидает учебники. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Office District</h4>
+          <p><b>Bait</b> — робот из Новгорода-7. «Golden Child». Говорит голосом на азбуке Морзе. Был в отпуске в Starr Park в 2028. Единственный свидетель битвы. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Игрис</b> — танк. Человек+туман. Коллега Байта. Знает Морзе «по приколу», переводит Байта. Не знает про 2028. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Стелла</b> — почтальон. Человек. Серьёзная, ответственная, элегантная. Влюблена в Авторское право. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Авторское право</b> — босс Байта. «Банхаммер». Борется с читерами. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Street of Broken Lanterns</h4>
+          <p><b>Ji</b> — в разработке. <span class="tag tag-dev">в разработке</span></p>
+          <p><b>Kaiden</b> — танк. 9700 HP, 3500 ATK. Удар ногой. Ульта «Раскрутка». Думает, что брат Тошинори погиб. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Fan Zone</h4>
+          <p><b>Lax</b> — нападающий/убийца. 17 лет, 182 см. Система «Нэн». Друг Марка, но не знает, что он Абсолют. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Марк (Абсолют)</b> — живёт как обычный человек. Не использует силы. Финансирует «Звёздный путь». <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Anti-Star (тайная фракция)</h4>
+          <p><b>Абсолют</b> — бывший босс. Ушёл в 2028. Независимый. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Алхимик</b> — правая рука. Теперь лидер. 75-й боец. Godly, 1999 RC. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Авторское право</b> — законник группировки. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Инджениум</b> — воин-инженер. Существо с роботизированными частями тела. Создан Алхимиком из мальчика. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Тошинори Эго</b> — разведчик. Похищен из семьи. По слухам близнец Кайдена. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Звёздный путь</h4>
+          <p><b>Астра</b> — глава. Обсерватория, ракетная площадка. <span class="tag tag-ok">утверждено</span></p>
+          <p><b>Марк (Абсолют)</b> — присоединился для поддержки Астры. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
       </div>
-
     </div>
 
-
-    <!-- Группировки -->
+    <!-- ГРУППИРОВКИ -->
 
     <div class="draft">
-
-      <button
-        class="draft-button"
-        onclick="toggleDraft('groups', this)"
-      >
-
+      <button class="draft-button" onclick="toggleDraft('groups', this)">
         👥 Группировки
-
         <span class="arrow">›</span>
-
       </button>
+      <div id="groups" class="draft-content">
 
-      <div
-        id="groups"
-        class="draft-content"
-      >
+        <div class="sub-block">
+          <h4>City of Bad Guys</h4>
+          <p>Волт, Рей, Астра, Брук. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
-        Здесь будут все группировки,
-        их участники, территории,
-        отношения и история.
+        <div class="sub-block">
+          <h4>Skate Park</h4>
+          <p>Ricoel, Kiro, Jake. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>RED Park</h4>
+          <p>Red Man, Лира, Маскот, Лео. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Office District</h4>
+          <p>Bait, Игрис, Стелла, Авторское право. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Street of Broken Lanterns</h4>
+          <p>Ji, Kaiden. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Fan Zone</h4>
+          <p>Lax, Марк. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Anti-Star (тайная)</h4>
+          <p>Алхимик (лидер), Авторское право, Инджениум, Тошинори Эго. О существовании знают только Red Man и Абсолют. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Звёздный путь</h4>
+          <p>Астра (глава), Марк. Мирная фракция. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
       </div>
-
     </div>
 
-
-    <!-- Город -->
+    <!-- ГОРОД -->
 
     <div class="draft">
-
-      <button
-        class="draft-button"
-        onclick="toggleDraft('city', this)"
-      >
-
+      <button class="draft-button" onclick="toggleDraft('city', this)">
         🌆 Город
-
         <span class="arrow">›</span>
-
       </button>
+      <div id="city" class="draft-content">
 
-      <div
-        id="city"
-        class="draft-content"
-      >
+        <div class="sub-block">
+          <h4>Super_city</h4>
+          <p>Главный город. Построен на месте уничтоженного острова Starr Park. Вокруг очень влажно, поэтому постоянный туман. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
-        Здесь будет карта города,
-        районы, важные места,
-        атмосфера и события.
+        <div class="sub-block">
+          <h4>Туман</h4>
+          <p>Не влияет на геймплей, только на визуал. Цвет меняется: рассвет — тёмный, день — белый, закат — тёмный, ночь — тёмно-синий. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Районы</h4>
+          <ul>
+            <li>RED Park — центральный парк с шатром</li>
+            <li>City of Bad Guys — мрачный район</li>
+            <li>Skate Park — скейт-парк</li>
+            <li>Street of Broken Lanterns — узкие улицы с фонарями</li>
+            <li>Office District — офисный район</li>
+            <li>Fan Zone — район фанатов</li>
+            <li>Порт</li>
+            <li>Вокзал</li>
+            <li>Заброшенный район</li>
+            <li>Жилой район</li>
+            <li>Северные/Южные пригороды</li>
+            <li>Восточные ворота</li>
+          </ul>
+        </div>
+
+        <div class="sub-block">
+          <h4>Время суток</h4>
+          <p>06:00 рассвет, 12:00 день, 17:00 вечер, 22:00 ночь. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
       </div>
-
     </div>
 
-
-    <!-- Сюжет -->
+    <!-- СЮЖЕТ И ЛОР -->
 
     <div class="draft">
-
-      <button
-        class="draft-button"
-        onclick="toggleDraft('story', this)"
-      >
-
+      <button class="draft-button" onclick="toggleDraft('story', this)">
         📖 Сюжет и лор
-
         <span class="arrow">›</span>
-
       </button>
+      <div id="story" class="draft-content">
 
-      <div
-        id="story"
-        class="draft-content"
-      >
+        <div class="sub-block">
+          <h4>Таймлайн</h4>
+          <p><b>2028</b> — уничтожение Starr Park («забытого парка звезды»).</p>
+          <p><b>2034</b> — настоящее время игры.</p>
+        </div>
 
-        Здесь будут истории персонажей,
-        сюжетные арки, события,
-        тайны и легенды мира.
+        <div class="sub-block">
+          <h4>Что произошло в 2028</h4>
+          <p>В Starr Park творились странности: аниматроник облил ведущего кислотой, нано-лапша NanoStarr меняла людей, девушки просили помощи азбукой Морзе, люди пропадали.</p>
+          <p>Абсолют, как босс Anti-Star, решил помочь жителям. Он использовал часть своей силы, но случайно уничтожил остров. Остров затонул. На его месте теперь Super_city.</p>
+          <p>После этого Абсолют ушёл из Anti-Star. Он не смог простить себя. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Red Man</h4>
+          <p>Был обычным человеком, работал в NanoStarr. Во время побега Венди украл немного нано-лапши и записи. После уничтожения острова создал Energy Drink на основе этих записей. Антагонист. Знает, что напиток вызывает агрессию.</p>
+          <p>Связан с Anti-Star: Anti-Star получает часть прибыли с продажи энергетиков. Об этом союзе не знают: Абсолют, Байт, Венди. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Абсолют / Марк</h4>
+          <p>Бывший босс Anti-Star. Независимый, никому не подчиняется. Сам решил стереть Лаксу память, чтобы избавить друга от боли. Скрывается под именем Марк. Перешёл в «Звёздный путь», чтобы поддержать Астру. Финансирует группировку. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Лакс и Марк</h4>
+          <p>Лакс и Марк были лучшими друзьями. Лакс не знал, что Марк — Абсолют. Когда узнал правду, не вынес боли. Абсолют стёр ему память. Лакс потерял все воспоминания о Марке. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Кайден и Тошинори</h4>
+          <p>Тошинори — близнец Кайдена. Тошинори похитили из семьи, он вырос в Anti-Star. Ненавидит Кайдена за то, что тот вырос в семье, а он нет. Кайден думает, что Тошинори погиб. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Байт</h4>
+          <p>Робот из Новгорода-7. Был в отпуске в Starr Park в 2028. Видел битву Абсолюта с тенью. Говорит голосом на азбуке Морзе. Его понимает только Игрис. Игрис не знает про 2028. Алхимик знает о Байте. Байт — свидетель, но не может рассказать. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Anti-Star</h4>
+          <p>Тайная организация. О ней знают только Red Man и Абсолют. Остальные фракции не в курсе. Алхимик похищает людей, создаёт киборгов, ищет Абсолюта. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Выжившие после 2028 (из мира Brawl Stars)</h4>
+          <p>Венди, Фрэнк, Мортис, Брюс (медведь Ниты), Пэм, некоторые роботы, ещё 20 бравлеров. Сириус — 100% мёртв в каноне RED_CLASH. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
       </div>
-
     </div>
 
-
-    <!-- Механики -->
+    <!-- МЕХАНИКИ -->
 
     <div class="draft">
-
-      <button
-        class="draft-button"
-        onclick="toggleDraft('mechanics', this)"
-      >
-
+      <button class="draft-button" onclick="toggleDraft('mechanics', this)">
         ⚔️ Игровые механики
-
         <span class="arrow">›</span>
-
       </button>
+      <div id="mechanics" class="draft-content">
 
-      <div
-        id="mechanics"
-        class="draft-content"
-      >
+        <div class="sub-block">
+          <h4>Соло ШД</h4>
+          <p>5 игроков, каждый сам за себя. Через 30 секунд карта начинает обрушаться. Кто упал — вылетает из битвы. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
-        Режимы, управление, атаки,
-        ульты, гаджеты, карты,
-        баланс и правила боя.
+        <div class="sub-block">
+          <h4>Футбол 1v1</h4>
+          <p>Физический мяч. Можно бить, ультовать, использовать гаджеты. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Зона 1v1</h4>
+          <p>Два полукруга в одном круге. Стоишь в своей зоне — заполняешь полоску. Убийства мешают врагу. Союзников нельзя атаковать. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Босс v2</h4>
+          <p>2 игрока против босса. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Клановая система</h4>
+          <p>30 человек. Глава (1), Вице (2), Участники (27), Заявки (до 29). Создание: 2000 Gold + 10 Red Coins. Вице не может исключать никого. Глава и вице могут передавать награды тем, кто ниже по уровню. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Sabyey Run</h4>
+          <p>Мини-игра в Городе Плохишей на заброшенной железной дороге. Герои: Волт, Рей, Астра, Пека. Гонится Брук. Награды: Gold, билеты, Red Coins. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>RED Park Arcade</h4>
+          <p>5 игр в день. Билеты за задания. 4–10 билетов за выполнение. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Зал</h4>
+          <p>Чат, ивенты, коллаборации, комьюнити-ивенты, ежедневные развлечения. Там же ивент на 75-го бойца — Алхимика. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
       </div>
-
     </div>
 
-
-    <!-- Экономика -->
+    <!-- ЭКОНОМИКА -->
 
     <div class="draft">
-
-      <button
-        class="draft-button"
-        onclick="toggleDraft('economy', this)"
-      >
-
+      <button class="draft-button" onclick="toggleDraft('economy', this)">
         💰 Экономика
-
         <span class="arrow">›</span>
-
       </button>
+      <div id="economy" class="draft-content">
 
-      <div
-        id="economy"
-        class="draft-content"
-      >
+        <div class="sub-block">
+          <h4>Валюты</h4>
+          <p><b>Gold</b> — гаджеты, пассивки, косметика, ресурсы.</p>
+          <p><b>Red Coins</b> — бойцы, ящики, Battle Pass.</p>
+          <p><b>Energy Drink</b> — прокачка бойцов.</p>
+          <p><b>Билеты</b> — аркада RED Park. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
-        Ресурсы, награды, ящики,
-        Battle Pass, Red Coins
-        и другие экономические системы.
+        <div class="sub-block">
+          <h4>Бойцы (цены в Red Coins)</h4>
+          <ul>
+            <li>Начальный: Волт — 0</li>
+            <li>Редкий: Рей, Лео — 49</li>
+            <li>Сверхредкий: Лира — 99</li>
+            <li>Эпический: Маскот, Кайден — 149</li>
+            <li>Легендарный: Ricoel — 199</li>
+            <li>Мифический: Red Man — 299</li>
+            <li>Godly: Алхимик — 1999 (всегда доступен)</li>
+            <li>Эксклюзив/коллаборации: 0, только за ивенты</li>
+          </ul>
+        </div>
+
+        <div class="sub-block">
+          <h4>Ящики (цены в Red Coins)</h4>
+          <ul>
+            <li>Обычный — 39</li>
+            <li>Редкий — 59</li>
+            <li>Сверхредкий — 89</li>
+            <li>Эпический — 149</li>
+            <li>Легендарный — 169</li>
+            <li>Мифический — 199</li>
+            <li>Эксклюзивный — только ивенты</li>
+          </ul>
+          <p>Red Coins начинают выпадать только с эпического ящика. Шансы: 1 RC — 10%, 5 RC — 6%, 10 RC — 4%, 25 RC — 1%. Gold и Energy Drink — по 25.5%. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Прокачка бойцов</h4>
+          <p>1 → 2: 2 Energy Drink. 10 → 11: 699 Energy Drink. Ящики дают 10–100 Energy Drink. Гаджет: 1000 Gold. Пассивка: 2200 Gold. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Battle Pass</h4>
+          <p>Стоит 289 Red Coins. Покупается только за Red Coins. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Red Coins за бету</h4>
+          <p>Участие в бете: 570 Red Coins. Лучший баг-репорт: 1000 Red Coins. За сезон релиза без доната: ~350 Red Coins. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
       </div>
-
     </div>
 
-
-    <!-- События -->
+    <!-- СОБЫТИЯ -->
 
     <div class="draft">
-
-      <button
-        class="draft-button"
-        onclick="toggleDraft('events', this)"
-      >
-
+      <button class="draft-button" onclick="toggleDraft('events', this)">
         🎪 События
-
         <span class="arrow">›</span>
-
       </button>
+      <div id="events" class="draft-content">
 
-      <div
-        id="events"
-        class="draft-content"
-      >
+        <div class="sub-block">
+          <h4>Лакс всё узнал (50 бойцов)</h4>
+          <p>Лакс узнаёт правду о Марке. Абсолют стирает ему память. Награда: скин «Костюм от Марка». <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
-        Временные карты, события,
-        сюжетные обновления
-        и особые награды.
+        <div class="sub-block">
+          <h4>Путь звезды (Астра)</h4>
+          <p>Астра создаёт группировку «Звёздный путь». Раскрывается тайна Starr Park. Награда: скин «Звёздная Астра». <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Ивент на 75-го бойца</h4>
+          <p>Алхимик становится играбельным (Godly, 1999 RC). <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Зал</h4>
+          <p>Ивенты, коллаборации, комьюнити-ивенты, ежедневные развлечения. <span class="tag tag-ok">утверждено</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Офисы</h4>
+          <p>Можно оставить пожелания и деньги поддержки. <span class="tag tag-ok">утверждено</span></p>
+        </div>
 
       </div>
-
     </div>
 
-
-    <!-- Будущие идеи -->
+    <!-- БУДУЩИЕ ИДЕИ -->
 
     <div class="draft">
-
-      <button
-        class="draft-button"
-        onclick="toggleDraft('ideas', this)"
-      >
-
+      <button class="draft-button" onclick="toggleDraft('ideas', this)">
         💡 Будущие идеи
-
         <span class="arrow">›</span>
-
       </button>
+      <div id="ideas" class="draft-content">
 
-      <div
-        id="ideas"
-        class="draft-content"
-      >
+        <div class="sub-block">
+          <h4>Коллаборация с Brawl Stars</h4>
+          <p>Если игра станет популярной — возможна официальная коллаборация. Битва «Сириус с тенями против Абсолюта» как специальный босс-файт. <span class="tag tag-idea">идея</span></p>
+        </div>
 
-        Здесь находятся идеи,
-        которые ещё не утверждены
-        и могут измениться.
+        <div class="sub-block">
+          <h4>Коллаборация с My Hero Academia</h4>
+          <p>Долгосрочная идея. Требует официальных прав. <span class="tag tag-idea">идея</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Мотивация игрока</h4>
+          <p>Пока открыта. Варианты: приключения, побег, слежка. Аватар игрока — фиксированный, нельзя менять. <span class="tag tag-dev">в разработке</span></p>
+        </div>
+
+        <div class="sub-block">
+          <h4>Кто стал злее от энергетиков</h4>
+          <p>Многие, но конкретные персонажи пока не названы. У каждого эффект проявляется по-разному. <span class="tag tag-dev">в разработке</span></p>
+        </div>
 
       </div>
-
     </div>
-
 
   </div>
 
 </div>
 
-
 <script>
 
-  /* Переключение вкладок */
-
   function openPage(pageId, button) {
+    const pages = document.querySelectorAll(".page");
+    const tabs = document.querySelectorAll(".tab");
 
-    const pages =
-      document.querySelectorAll(".page");
+    pages.forEach(page => page.classList.remove("active"));
+    tabs.forEach(tab => tab.classList.remove("active"));
 
-    const tabs =
-      document.querySelectorAll(".tab");
-
-
-    pages.forEach(page => {
-
-      page.classList.remove("active");
-
-    });
-
-
-    tabs.forEach(tab => {
-
-      tab.classList.remove("active");
-
-    });
-
-
-    document
-      .getElementById(pageId)
-      .classList.add("active");
-
-
+    document.getElementById(pageId).classList.add("active");
     button.classList.add("active");
-
   }
 
-
-  /* Открытие заготовок */
-
   function toggleDraft(id, button) {
-
-    const content =
-      document.getElementById(id);
-
-    const arrow =
-      button.querySelector(".arrow");
-
+    const content = document.getElementById(id);
+    const arrow = button.querySelector(".arrow");
 
     content.classList.toggle("open");
 
-
     if (content.classList.contains("open")) {
-
       arrow.textContent = "⌄";
-
     } else {
-
       arrow.textContent = "›";
-
     }
-
   }
 
 </script>
 
 </body>
-                       </html>
+                                                </html>
