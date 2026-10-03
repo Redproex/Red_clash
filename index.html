@@ -11,16 +11,80 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #08090d;
+      --card: #12141b;
+      --card-border: #292c36;
+      --text: #ffffff;
+      --text-dim: #999;
+      --text-mid: #bbb;
+      --text-soft: #ccc;
+      --red: #e52b38;
+      --tab-bg: #171922;
+      --tab-hover: #222530;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
     body {
       margin: 0;
-      background: #08090d;
-      color: #fff;
+      background: var(--bg);
+      color: var(--text);
       font-family: Arial, sans-serif;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* Инверсия света */
+    body.inverted {
+      --bg: #f2f2f5;
+      --card: #ffffff;
+      --card-border: #d5d8e0;
+      --text: #0a0a0f;
+      --text-dim: #555;
+      --text-mid: #333;
+      --text-soft: #222;
+      --tab-bg: #e3e5ec;
+      --tab-hover: #d3d6e0;
+    }
+
+    /* Контраст */
+    body.high-contrast {
+      --bg: #000000;
+      --card: #0a0a0a;
+      --card-border: #ffffff;
+      --text: #ffffff;
+      --text-dim: #dddddd;
+      --text-mid: #eeeeee;
+      --text-soft: #ffffff;
+    }
+
+    body.high-contrast.inverted {
+      --bg: #ffffff;
+      --card: #ffffff;
+      --card-border: #000000;
+      --text: #000000;
+      --text-dim: #111;
+      --text-mid: #000;
+      --text-soft: #000;
+    }
+
+    /* Отключение анимаций */
+    body.no-anim * {
+      transition: none !important;
+      animation: none !important;
+    }
+
+    /* Яркость */
+    body {
+      filter: brightness(var(--brightness, 1));
     }
 
     .container {
       width: min(900px, 92%);
       margin: 40px auto;
+      font-size: var(--font-scale, 1rem);
     }
 
     .title {
@@ -35,7 +99,7 @@
     }
 
     .title p {
-      color: #999;
+      color: var(--text-dim);
       margin-top: 10px;
     }
 
@@ -50,19 +114,19 @@
       padding: 16px;
       border: none;
       border-radius: 14px;
-      background: #171922;
-      color: #aaa;
+      background: var(--tab-bg);
+      color: var(--text-dim);
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .tab:hover {
-      background: #222530;
+      background: var(--tab-hover);
     }
 
     .tab.active {
-      background: #e52b38;
+      background: var(--red);
       color: white;
     }
 
@@ -75,8 +139,8 @@
     }
 
     .card {
-      background: #12141b;
-      border: 1px solid #292c36;
+      background: var(--card);
+      border: 1px solid var(--card-border);
       border-radius: 18px;
       padding: 22px;
       margin-bottom: 14px;
@@ -87,13 +151,13 @@
     }
 
     .card p {
-      color: #bbb;
+      color: var(--text-mid);
       line-height: 1.6;
     }
 
     .card li {
       margin: 8px 0;
-      color: #ccc;
+      color: var(--text-soft);
     }
 
     .number {
@@ -102,15 +166,15 @@
       height: 35px;
       align-items: center;
       justify-content: center;
-      background: #e52b38;
+      background: var(--red);
       border-radius: 10px;
       font-weight: bold;
       margin-right: 10px;
     }
 
     .draft {
-      background: #12141b;
-      border: 1px solid #292c36;
+      background: var(--card);
+      border: 1px solid var(--card-border);
       border-radius: 15px;
       margin-bottom: 10px;
       overflow: hidden;
@@ -120,7 +184,7 @@
       width: 100%;
       border: none;
       background: transparent;
-      color: white;
+      color: var(--text);
       padding: 18px;
       text-align: left;
       font-size: 16px;
@@ -132,13 +196,13 @@
     }
 
     .draft-button:hover {
-      background: #191c25;
+      background: var(--tab-hover);
     }
 
     .draft-content {
       display: none;
       padding: 0 18px 18px;
-      color: #aaa;
+      color: var(--text-dim);
       line-height: 1.6;
     }
 
@@ -147,23 +211,25 @@
     }
 
     .arrow {
-      color: #e52b38;
+      color: var(--red);
       font-size: 20px;
     }
 
-    /* Внутренние блоки внутри заготовок */
-
     .sub-block {
-      background: #0e1016;
-      border: 1px solid #232630;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 14px 16px;
       margin: 10px 0;
     }
 
+    body.inverted .sub-block {
+      background: rgba(0,0,0,0.05);
+    }
+
     .sub-block h4 {
       margin: 0 0 8px;
-      color: #e52b38;
+      color: var(--red);
       font-size: 15px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -171,7 +237,7 @@
 
     .sub-block p,
     .sub-block li {
-      color: #bbb;
+      color: var(--text-mid);
       font-size: 14px;
       line-height: 1.6;
       margin: 4px 0;
@@ -196,11 +262,97 @@
     .tag-dev { background: #5c4b1e; color: #ffe17d; }
     .tag-idea { background: #3a1e5c; color: #c79dff; }
 
+    /* ---- НАСТРОЙКИ ---- */
+
+    .setting {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .setting:last-child {
+      border-bottom: none;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .setting-label {
+      font-weight: bold;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .setting-value {
+      color: var(--red);
+      font-weight: bold;
+      font-size: 14px;
+      min-width: 60px;
+      text-align: right;
+    }
+
+    .setting-desc {
+      color: var(--text-dim);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--red);
+      cursor: pointer;
+    }
+
+    .toggle-btn {
+      background: var(--tab-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.15s;
+    }
+
+    .toggle-btn:hover {
+      background: var(--tab-hover);
+    }
+
+    .toggle-btn.on {
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+    }
+
+    .btn-reset {
+      width: 100%;
+      background: var(--red);
+      border: none;
+      color: white;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn-reset:hover {
+      filter: brightness(1.1);
+    }
+
     @media (max-width: 600px) {
       .container { width: 94%; margin: 25px auto; }
       .title h1 { font-size: 30px; }
       .tabs { gap: 7px; }
-      .tab { padding: 13px 8px; font-size: 14px; }
+      .tab { padding: 13px 8px; font-size: 13px; }
       .card { padding: 17px; }
     }
   </style>
@@ -218,10 +370,11 @@
   <div class="tabs">
     <button class="tab active" onclick="openPage('plan', this)">📋 План</button>
     <button class="tab" onclick="openPage('drafts', this)">🗂️ Заготовки</button>
+    <button class="tab" onclick="openPage('settings', this)">⚙️ Настройки</button>
   </div>
 
   <!-- ========================= -->
-  <!-- ПЛАН (без изменений) -->
+  <!-- ПЛАН -->
   <!-- ========================= -->
 
   <div id="plan" class="page active">
@@ -390,7 +543,7 @@
   </div>
 
   <!-- ========================= -->
-  <!-- ЗАГОТОВКИ (заполнено) -->
+  <!-- ЗАГОТОВКИ -->
   <!-- ========================= -->
 
   <div id="drafts" class="page">
@@ -567,7 +720,7 @@
       </div>
     </div>
 
-    <!-- СЮЖЕТ И ЛОР -->
+    <!-- СЮЖЕТ -->
 
     <div class="draft">
       <button class="draft-button" onclick="toggleDraft('story', this)">
@@ -814,9 +967,77 @@
 
   </div>
 
+  <!-- ========================= -->
+  <!-- НАСТРОЙКИ -->
+  <!-- ========================= -->
+
+  <div id="settings" class="page">
+
+    <div class="card">
+      <h2>⚙️ Настройки сайта</h2>
+      <p>Все настройки сохраняются в браузере и применяются сразу.</p>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">☀️ Яркость</span>
+          <span class="setting-value" id="brightnessValue">100%</span>
+        </div>
+        <input type="range" id="brightness" min="30" max="150" value="100">
+        <div class="setting-desc">Регулирует яркость всей страницы.</div>
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">🔤 Размер шрифта</span>
+          <span class="setting-value" id="fontValue">100%</span>
+        </div>
+        <input type="range" id="fontSize" min="70" max="180" value="100">
+        <div class="setting-desc">Масштаб текста. Влияет на всё содержимое страницы.</div>
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">🌗 Инверсия света</span>
+          <button class="toggle-btn" id="invertBtn" onclick="toggleInvert()">Выкл</button>
+        </div>
+        <div class="setting-desc">Светлая тема вместо тёмной. Удобно для чтения днём.</div>
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">🌓 Высокий контраст</span>
+          <button class="toggle-btn" id="contrastBtn" onclick="toggleContrast()">Выкл</button>
+        </div>
+        <div class="setting-desc">Усиливает контраст между текстом и фоном. Для слабого зрения.</div>
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">🎞️ Анимации</span>
+          <button class="toggle-btn on" id="animBtn" onclick="toggleAnim()">Вкл</button>
+        </div>
+        <div class="setting-desc">Плавные переходы и эффекты. Отключи, если нужно сэкономить батарею.</div>
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">📐 Ширина контента</span>
+          <span class="setting-value" id="widthValue">900px</span>
+        </div>
+        <input type="range" id="widthSlider" min="600" max="1200" value="900" step="20">
+        <div class="setting-desc">Максимальная ширина страницы на больших экранах.</div>
+      </div>
+
+      <button class="btn-reset" onclick="resetSettings()">🔄 Сбросить все настройки</button>
+    </div>
+
+  </div>
+
 </div>
 
 <script>
+
+  /* ---------- Вкладки ---------- */
 
   function openPage(pageId, button) {
     const pages = document.querySelectorAll(".page");
@@ -842,7 +1063,140 @@
     }
   }
 
+  /* ---------- Настройки ---------- */
+
+  const root = document.documentElement;
+  const body = document.body;
+
+  function setBrightness(val) {
+    const v = val / 100;
+    document.documentElement.style.setProperty("--brightness", v);
+    document.getElementById("brightnessValue").textContent = val + "%";
+    localStorage.setItem("rc_brightness", val);
+  }
+
+  function setFontSize(val) {
+    document.documentElement.style.fontSize = (val / 100 * 16) + "px";
+    document.getElementById("fontValue").textContent = val + "%";
+    localStorage.setItem("rc_font", val);
+  }
+
+  function setWidth(val) {
+    const container = document.querySelector(".container");
+    container.style.width = "min(" + val + "px, 92%)";
+    document.getElementById("widthValue").textContent = val + "px";
+    localStorage.setItem("rc_width", val);
+  }
+
+  function toggleInvert() {
+    body.classList.toggle("inverted");
+    const on = body.classList.contains("inverted");
+    const btn = document.getElementById("invertBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_invert", on);
+  }
+
+  function toggleContrast() {
+    body.classList.toggle("high-contrast");
+    const on = body.classList.contains("high-contrast");
+    const btn = document.getElementById("contrastBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_contrast", on);
+  }
+
+  function toggleAnim() {
+    body.classList.toggle("no-anim");
+    const on = !body.classList.contains("no-anim");
+    const btn = document.getElementById("animBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_anim", on);
+  }
+
+  function resetSettings() {
+    localStorage.removeItem("rc_brightness");
+    localStorage.removeItem("rc_font");
+    localStorage.removeItem("rc_width");
+    localStorage.removeItem("rc_invert");
+    localStorage.removeItem("rc_contrast");
+    localStorage.removeItem("rc_anim");
+
+    // Сброс UI
+    document.getElementById("brightness").value = 100;
+    document.getElementById("fontSize").value = 100;
+    document.getElementById("widthSlider").value = 900;
+
+    body.classList.remove("inverted", "high-contrast", "no-anim");
+
+    document.getElementById("invertBtn").textContent = "Выкл";
+    document.getElementById("invertBtn").classList.remove("on");
+    document.getElementById("contrastBtn").textContent = "Выкл";
+    document.getElementById("contrastBtn").classList.remove("on");
+    document.getElementById("animBtn").textContent = "Вкл";
+    document.getElementById("animBtn").classList.add("on");
+
+    setBrightness(100);
+    setFontSize(100);
+    setWidth(900);
+  }
+
+  /* ---------- Загрузка настроек ---------- */
+
+  window.addEventListener("load", () => {
+
+    const savedBrightness = localStorage.getItem("rc_brightness");
+    const savedFont = localStorage.getItem("rc_font");
+    const savedWidth = localStorage.getItem("rc_width");
+    const savedInvert = localStorage.getItem("rc_invert") === "true";
+    const savedContrast = localStorage.getItem("rc_contrast") === "true";
+    const savedAnim = localStorage.getItem("rc_anim") !== "false"; // по умолчанию вкл
+
+    if (savedBrightness) {
+      document.getElementById("brightness").value = savedBrightness;
+      setBrightness(savedBrightness);
+    }
+
+    if (savedFont) {
+      document.getElementById("fontSize").value = savedFont;
+      setFontSize(savedFont);
+    }
+
+    if (savedWidth) {
+      document.getElementById("widthSlider").value = savedWidth;
+      setWidth(savedWidth);
+    }
+
+    if (savedInvert) {
+      body.classList.add("inverted");
+      const btn = document.getElementById("invertBtn");
+      btn.textContent = "Вкл";
+      btn.classList.add("on");
+    }
+
+    if (savedContrast) {
+      body.classList.add("high-contrast");
+      const btn = document.getElementById("contrastBtn");
+      btn.textContent = "Вкл";
+      btn.classList.add("on");
+    }
+
+    if (!savedAnim) {
+      body.classList.add("no-anim");
+      const btn = document.getElementById("animBtn");
+      btn.textContent = "Выкл";
+      btn.classList.remove("on");
+    }
+
+    // Слушатели
+    document.getElementById("brightness").addEventListener("input", e => setBrightness(e.target.value));
+    document.getElementById("fontSize").addEventListener("input", e => setFontSize(e.target.value));
+    document.getElementById("widthSlider").addEventListener("input", e => setWidth(e.target.value));
+
+  });
+
 </script>
 
 </body>
-                                                </html>
+        </html>
