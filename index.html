@@ -66,7 +66,7 @@
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
     background: radial-gradient(circle at 50% 40%, #1a1d29 0%, #0a0b10 85%);
     border: 1px solid var(--card-border);
     border-radius: 20px;
@@ -74,7 +74,6 @@
     padding: 10px;
   }
 
-  /* Туман */
   .map-wrap::before {
     content: "";
     position: absolute; inset: 0;
@@ -91,10 +90,9 @@
     100% { opacity: 1;   transform: scale(1.06); }
   }
 
-  /* Районы */
   .district {
     position: absolute;
-    border-radius: 16px;
+    border-radius: 12px;
     border: 2px solid rgba(255,255,255,0.12);
     display: flex;
     flex-direction: column;
@@ -103,61 +101,55 @@
     text-align: center;
     font-weight: bold;
     color: #fff;
-    padding: 8px;
+    padding: 4px;
     cursor: pointer;
     transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
     text-shadow: 0 2px 4px rgba(0,0,0,0.9);
-    line-height: 1.2;
+    line-height: 1.1;
     user-select: none;
     overflow: hidden;
   }
 
-  .district .icon {
-    font-size: 26px;
-    margin-bottom: 4px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7));
-  }
+  .district .icon { font-size: 18px; margin-bottom: 2px; }
+  .district .name { font-size: 10px; }
+  .district .sub  { font-size: 8px; font-weight: normal; opacity: 0.85; margin-top: 1px; }
 
-  .district .name {
-    font-size: 13px;
-  }
-
-  .district .sub {
-    font-size: 10px;
-    font-weight: normal;
-    opacity: 0.85;
-    margin-top: 2px;
-  }
-
-  .district:active {
-    transform: scale(0.97);
-  }
-
+  .district:active { transform: scale(0.96); }
   .district:hover {
     filter: brightness(1.2);
     box-shadow: 0 0 0 2px var(--red), 0 0 25px rgba(229,43,56,0.55);
     z-index: 5;
   }
 
-  /* Цвета районов */
-  #office    { background: linear-gradient(145deg, #2a3550, #4a6fa5); }
-  #redpark   { background: linear-gradient(145deg, #6a1018, #e52b38); }
-  #station   { background: linear-gradient(145deg, #2e2470, #5b4db8); }
-  #badguys   { background: linear-gradient(145deg, #4a1270, #8b2fc9); }
+  /* Цвета */
+  .d-north     { background: linear-gradient(145deg, #2a2f3a, #3a4050); }
+  .d-office    { background: linear-gradient(145deg, #2a3550, #4a6fa5); }
+  .d-badguys   { background: linear-gradient(145deg, #4a1270, #8b2fc9); }
+  .d-fanzone   { background: linear-gradient(145deg, #2a5a1e, #7ed957); }
+  .d-lanterns  { background: linear-gradient(145deg, #7a3f10, #ff8c1a); }
+  .d-redpark   { background: linear-gradient(145deg, #6a1018, #e52b38); border-radius: 50%; }
+  .d-skate     { background: linear-gradient(145deg, #0a5a65, #00c2d1); }
+  .d-abandoned { background: linear-gradient(145deg, #2a221a, #6b5d4f); }
+  .d-resident  { background: linear-gradient(145deg, #3a3a3a, #8a8a8a); }
+  .d-port      { background: linear-gradient(145deg, #12345a, #3b82c4); }
+  .d-station   { background: linear-gradient(145deg, #2e2470, #5b4db8); }
+  .d-eastgate  { background: linear-gradient(145deg, #5a1010, #c92a2a); }
+  .d-south     { background: linear-gradient(145deg, #2a2f3a, #3a4050); }
 
   /* Позиции */
-  #office  { left: 20%; top: 4%;  width: 60%; height: 20%; }
-  #redpark { left: 20%; top: 28%; width: 60%; height: 26%; border-radius: 50%; }
-  #station { left: 20%; top: 58%; width: 60%; height: 16%; }
-  #badguys { left: 20%; top: 78%; width: 60%; height: 18%; }
-
-  /* Точки-декорации */
-  .dot {
-    position: absolute;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-  }
+  #d-north     { left: 20%; top: 1%;  width: 60%; height: 6%; }
+  #d-office    { left: 20%; top: 8%;  width: 60%; height: 12%; }
+  #d-badguys   { left: 2%;  top: 9%;  width: 16%; height: 20%; }
+  #d-fanzone   { left: 82%; top: 9%;  width: 16%; height: 18%; }
+  #d-lanterns  { left: 2%;  top: 31%; width: 16%; height: 14%; }
+  #d-redpark   { left: 24%; top: 22%; width: 52%; height: 30%; }
+  #d-skate     { left: 82%; top: 29%; width: 16%; height: 18%; }
+  #d-abandoned { left: 2%;  top: 47%; width: 18%; height: 12%; }
+  #d-resident  { left: 80%; top: 49%; width: 18%; height: 12%; }
+  #d-port      { left: 2%;  top: 61%; width: 20%; height: 16%; }
+  #d-station   { left: 26%; top: 54%; width: 48%; height: 14%; }
+  #d-eastgate  { left: 78%; top: 63%; width: 20%; height: 16%; }
+  #d-south     { left: 20%; top: 71%; width: 60%; height: 10%; }
 
   /* ---------- ЭКРАНЫ ---------- */
 
@@ -172,9 +164,7 @@
     animation: slideIn 0.25s ease-out;
   }
 
-  .screen.active {
-    display: block;
-  }
+  .screen.active { display: block; }
 
   @keyframes slideIn {
     from { transform: translateY(20px); opacity: 0; }
@@ -206,22 +196,9 @@
 
   .back-btn:hover { background: var(--tab-hover); }
 
-  .screen-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .screen-sub {
-    font-size: 12px;
-    color: var(--text-dim);
-    margin: 2px 0 0;
-  }
-
-  .screen-content {
-    max-width: 700px;
-    margin: 0 auto;
-  }
+  .screen-title { font-size: 22px; font-weight: bold; margin: 0; }
+  .screen-sub   { font-size: 12px; color: var(--text-dim); margin: 2px 0 0; }
+  .screen-content { max-width: 700px; margin: 0 auto; }
 
   .card {
     background: var(--card);
@@ -233,7 +210,7 @@
 
   .card h3 {
     margin: 0 0 10px;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--red);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -247,42 +224,35 @@
   }
 
   .card ul { padding-left: 18px; margin: 8px 0; }
+  .card strong { color: var(--text); }
 
-  /* Магазин */
   .shop-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 14px 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--card-border);
   }
-
   .shop-item:last-child { border-bottom: none; }
-
   .shop-info { flex: 1; }
-  .shop-info .title { font-weight: bold; font-size: 15px; color: var(--text); }
+  .shop-info .title { font-weight: bold; font-size: 14px; color: var(--text); }
   .shop-info .desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
 
   .buy-btn {
     background: var(--red);
-    border: none;
-    color: white;
-    padding: 10px 16px;
+    border: none; color: white;
+    padding: 9px 14px;
     border-radius: 10px;
-    font-weight: bold;
-    font-size: 13px;
-    cursor: pointer;
-    white-space: nowrap;
+    font-weight: bold; font-size: 12px;
+    cursor: pointer; white-space: nowrap;
   }
-
   .buy-btn.gold { background: var(--gold); color: #000; }
   .buy-btn.blue { background: var(--blue); }
 
-  /* Бойцы */
   .chars-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 10px;
     margin-top: 10px;
   }
@@ -296,37 +266,24 @@
     cursor: pointer;
     transition: transform 0.15s, border-color 0.15s;
   }
-
-  .char-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--red);
-  }
-
+  .char-card:hover { transform: translateY(-2px); border-color: var(--red); }
   .char-avatar {
-    width: 60px; height: 60px;
+    width: 55px; height: 55px;
     border-radius: 50%;
     background: linear-gradient(145deg, #2a2d3a, #3a3f52);
     margin: 0 auto 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
   }
-
-  .char-name { font-size: 13px; font-weight: bold; }
+  .char-name { font-size: 12px; font-weight: bold; }
   .char-rarity { font-size: 10px; color: var(--text-dim); margin-top: 2px; text-transform: uppercase; }
 
-  /* Новости */
-  .news-item {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--card-border);
-  }
+  .news-item { padding: 14px 0; border-bottom: 1px solid var(--card-border); }
   .news-item:last-child { border-bottom: none; }
   .news-date { font-size: 11px; color: var(--red); font-weight: bold; }
   .news-title { font-size: 15px; font-weight: bold; margin: 4px 0; }
   .news-text { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
 
-  /* Зал */
   .event-item {
     background: var(--tab-bg);
     border: 1px solid var(--card-border);
@@ -346,12 +303,10 @@
   .badge-active { background: #1e5c2e; color: #7dff9e; }
   .badge-soon   { background: #5c4b1e; color: #ffe17d; }
 
-  /* Кнопки */
   .btn-primary {
     width: 100%;
     background: var(--red);
-    border: none;
-    color: white;
+    border: none; color: white;
     padding: 14px;
     border-radius: 12px;
     font-size: 15px;
@@ -360,11 +315,24 @@
     margin-top: 10px;
   }
   .btn-primary:hover { filter: brightness(1.1); }
+  .btn-primary.blue { background: var(--blue); }
+
+  .info-chars {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
+  }
+  .chip {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--tab-bg);
+    font-size: 12px;
+    color: var(--text);
+    border: 1px solid var(--card-border);
+  }
 
   @media (max-width: 600px) {
-    .district .name { font-size: 11px; }
-    .district .sub  { font-size: 9px; }
-    .district .icon { font-size: 22px; }
+    .district .name { font-size: 8px; }
+    .district .sub  { font-size: 7px; }
+    .district .icon { font-size: 14px; }
     .screen-title { font-size: 18px; }
   }
 </style>
@@ -385,32 +353,70 @@
 
   <div class="map-wrap">
 
-    <!-- Офисный район -->
-    <div class="district" id="office" onclick="openScreen('officeScreen')">
+    <div class="district d-north"     id="d-north"     onclick="openScreen('s-north')">
+      <div class="name">Северные пригороды</div>
+    </div>
+
+    <div class="district d-office"    id="d-office"    onclick="openScreen('s-office')">
       <div class="icon">🏢</div>
       <div class="name">Офисный район</div>
       <div class="sub">Новости</div>
     </div>
 
-    <!-- RED Park -->
-    <div class="district" id="redpark" onclick="openScreen('redparkScreen')">
+    <div class="district d-badguys"   id="d-badguys"   onclick="openScreen('s-badguys')">
+      <div class="icon">😈</div>
+      <div class="name">Город Плохишей</div>
+    </div>
+
+    <div class="district d-fanzone"   id="d-fanzone"   onclick="openScreen('s-fanzone')">
+      <div class="icon">🎉</div>
+      <div class="name">Fan Zone</div>
+    </div>
+
+    <div class="district d-lanterns"  id="d-lanterns"  onclick="openScreen('s-lanterns')">
+      <div class="icon">🏮</div>
+      <div class="name">Улица Фонарей</div>
+    </div>
+
+    <div class="district d-redpark"   id="d-redpark"   onclick="openScreen('s-redpark')">
       <div class="icon">🎪</div>
       <div class="name">RED PARK</div>
       <div class="sub">Магазин</div>
     </div>
 
-    <!-- Вокзал -->
-    <div class="district" id="station" onclick="openScreen('stationScreen')">
-      <div class="icon">🚉</div>
-      <div class="name">Вокзал</div>
-      <div class="sub">Зал кланов и ивенты</div>
+    <div class="district d-skate"     id="d-skate"     onclick="openScreen('s-skate')">
+      <div class="icon">🛹</div>
+      <div class="name">Скейт Парк</div>
     </div>
 
-    <!-- Город Плохишей -->
-    <div class="district" id="badguys" onclick="openScreen('badguysScreen')">
-      <div class="icon">😈</div>
-      <div class="name">Город Плохишей</div>
-      <div class="sub">Бойцы и прокачка</div>
+    <div class="district d-abandoned" id="d-abandoned" onclick="openScreen('s-abandoned')">
+      <div class="icon">🏚️</div>
+      <div class="name">Заброшенный</div>
+    </div>
+
+    <div class="district d-resident"  id="d-resident"  onclick="openScreen('s-resident')">
+      <div class="icon">🏠</div>
+      <div class="name">Жилой</div>
+    </div>
+
+    <div class="district d-port"      id="d-port"      onclick="openScreen('s-port')">
+      <div class="icon">⚓</div>
+      <div class="name">Порт</div>
+    </div>
+
+    <div class="district d-station"   id="d-station"   onclick="openScreen('s-station')">
+      <div class="icon">🚉</div>
+      <div class="name">Вокзал</div>
+      <div class="sub">Зал кланов</div>
+    </div>
+
+    <div class="district d-eastgate"  id="d-eastgate"  onclick="openScreen('s-eastgate')">
+      <div class="icon">🚪</div>
+      <div class="name">Вост. ворота</div>
+    </div>
+
+    <div class="district d-south"     id="d-south"     onclick="openScreen('s-south')">
+      <div class="name">Южные пригороды</div>
     </div>
 
   </div>
@@ -421,17 +427,18 @@
 <!-- ОФИС — НОВОСТИ               -->
 <!-- ============================ -->
 
-<div id="officeScreen" class="screen">
+<div id="s-office" class="screen">
   <div class="screen-content">
     <div class="screen-header">
-      <button class="back-btn" onclick="closeScreen('officeScreen')">←</button>
+      <button class="back-btn" onclick="closeScreen('s-office')">←</button>
       <div>
-        <h2 class="screen-title">Новости города</h2>
-        <p class="screen-sub">Офисный район • Стелла</p>
+        <h2 class="screen-title">Офисный район</h2>
+        <p class="screen-sub">Новости • Стелла и Байт</p>
       </div>
     </div>
 
     <div class="card">
+      <h3>Новости</h3>
       <div class="news-item">
         <div class="news-date">3 октября 2034</div>
         <div class="news-title">Открытие беты RED_CLASH</div>
@@ -450,8 +457,17 @@
     </div>
 
     <div class="card">
-      <h3>Подсказка</h3>
-      <p>Новости обновляются каждую неделю. Следи за событиями города!</p>
+      <h3>Сотрудники</h3>
+      <p><strong>Стелла</strong> — почтальон, выдаёт новости.</p>
+      <p><strong>Байт</strong> — робот, общается на Морзе.</p>
+      <p><strong>Игрис</strong> — грузчик, переводит Байта.</p>
+      <p><strong>Авторское право</strong> — босс офиса.</p>
+      <div class="info-chars">
+        <span class="chip">Авторское право</span>
+        <span class="chip">Bait</span>
+        <span class="chip">Игрис</span>
+        <span class="chip">Стелла</span>
+      </div>
     </div>
   </div>
 </div>
@@ -460,44 +476,40 @@
 <!-- RED PARK — МАГАЗИН           -->
 <!-- ============================ -->
 
-<div id="redparkScreen" class="screen">
+<div id="s-redpark" class="screen">
   <div class="screen-content">
     <div class="screen-header">
-      <button class="back-btn" onclick="closeScreen('redparkScreen')">←</button>
+      <button class="back-btn" onclick="closeScreen('s-redpark')">←</button>
       <div>
-        <h2 class="screen-title">Магазин</h2>
-        <p class="screen-sub">RED Park • Лира проверяет билеты</p>
+        <h2 class="screen-title">RED Park</h2>
+        <p class="screen-sub">Магазин • Лира проверяет билеты</p>
       </div>
     </div>
 
     <div class="card">
       <h3>Ящики</h3>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">Обычный ящик</div>
-          <div class="desc">Gold, Energy Drink, пины</div>
-        </div>
+        <div class="shop-info"><div class="title">Обычный ящик</div><div class="desc">Gold, Energy, пины</div></div>
         <button class="buy-btn">39 RC</button>
       </div>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">Редкий ящик</div>
-          <div class="desc">+ шанс на редкого бойца</div>
-        </div>
+        <div class="shop-info"><div class="title">Редкий ящик</div><div class="desc">+ шанс на редкого бойца</div></div>
         <button class="buy-btn">59 RC</button>
       </div>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">Эпический ящик</div>
-          <div class="desc">Red Coins + шанс на эпика</div>
-        </div>
+        <div class="shop-info"><div class="title">Сверхредкий ящик</div><div class="desc">+ шанс на сверхредкого</div></div>
+        <button class="buy-btn">89 RC</button>
+      </div>
+      <div class="shop-item">
+        <div class="shop-info"><div class="title">Эпический ящик</div><div class="desc">Red Coins + эпик</div></div>
         <button class="buy-btn">149 RC</button>
       </div>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">Мифический ящик</div>
-          <div class="desc">Шанс на Godly и эксклюзив</div>
-        </div>
+        <div class="shop-info"><div class="title">Легендарный ящик</div><div class="desc">Легендарный/мифик</div></div>
+        <button class="buy-btn">169 RC</button>
+      </div>
+      <div class="shop-item">
+        <div class="shop-info"><div class="title">Мифический ящик</div><div class="desc">Шанс на Godly</div></div>
         <button class="buy-btn">199 RC</button>
       </div>
     </div>
@@ -505,10 +517,7 @@
     <div class="card">
       <h3>Battle Pass</h3>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">Сезон 1: Побег</div>
-          <div class="desc">Скины, RC, ящики, пины</div>
-        </div>
+        <div class="shop-info"><div class="title">Сезон 1: Побег</div><div class="desc">Скины, RC, ящики, пины</div></div>
         <button class="buy-btn gold">289 RC</button>
       </div>
     </div>
@@ -516,16 +525,28 @@
     <div class="card">
       <h3>Обмен</h3>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">1 Red Coin → 100 Gold</div>
-        </div>
+        <div class="shop-info"><div class="title">1 RC → 100 Gold</div></div>
         <button class="buy-btn blue">Обменять</button>
       </div>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">1 Red Coin → 5 Energy</div>
-        </div>
+        <div class="shop-info"><div class="title">1 RC → 5 Energy</div></div>
         <button class="buy-btn blue">Обменять</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Аркада</h3>
+      <p>5 игр в день. Задания дают 4–10 билетов.</p>
+      <button class="btn-primary">Играть в аркаду</button>
+    </div>
+
+    <div class="card">
+      <h3>Жители парка</h3>
+      <div class="info-chars">
+        <span class="chip">Red Man</span>
+        <span class="chip">Лира</span>
+        <span class="chip">Маскот</span>
+        <span class="chip">Лео</span>
       </div>
     </div>
   </div>
@@ -535,13 +556,13 @@
 <!-- ВОКЗАЛ — ЗАЛ КЛАНОВ           -->
 <!-- ============================ -->
 
-<div id="stationScreen" class="screen">
+<div id="s-station" class="screen">
   <div class="screen-content">
     <div class="screen-header">
-      <button class="back-btn" onclick="closeScreen('stationScreen')">←</button>
+      <button class="back-btn" onclick="closeScreen('s-station')">←</button>
       <div>
-        <h2 class="screen-title">Зал кланов</h2>
-        <p class="screen-sub">Вокзал • Ивенты и события</p>
+        <h2 class="screen-title">Вокзал</h2>
+        <p class="screen-sub">Зал кланов и ивенты</p>
       </div>
     </div>
 
@@ -549,18 +570,16 @@
       <h3>Активные ивенты</h3>
       <div class="event-item">
         <span class="event-badge badge-active">активен</span>
-        <div class="title" style="font-weight:bold; font-size:15px;">Путь звезды</div>
+        <div style="font-weight:bold; font-size:15px;">Путь звезды</div>
         <div style="font-size:13px; color:#bbb; margin-top:6px;">
-          Главный боец — Астра. Раскрывается тайна Starr Park.
-          Награда: скин «Звёздная Астра».
+          Главный боец — Астра. Награда: скин «Звёздная Астра».
         </div>
       </div>
       <div class="event-item">
         <span class="event-badge badge-soon">скоро</span>
-        <div class="title" style="font-weight:bold; font-size:15px;">Лакс всё узнал</div>
+        <div style="font-weight:bold; font-size:15px;">Лакс всё узнал</div>
         <div style="font-size:13px; color:#bbb; margin-top:6px;">
-          Откроется на 50 бойцов. Лакс узнаёт правду о Марке.
-          Награда: скин «Костюм от Марка».
+          Откроется на 50 бойцов. Награда: скин «Костюм от Марка».
         </div>
       </div>
     </div>
@@ -569,7 +588,7 @@
       <h3>Мой клан</h3>
       <p>Ты ещё не в клане.</p>
       <button class="btn-primary">Создать клан (2000 Gold + 10 RC)</button>
-      <button class="btn-primary" style="background: var(--blue);">Найти клан</button>
+      <button class="btn-primary blue">Найти клан</button>
     </div>
 
     <div class="card">
@@ -582,6 +601,12 @@
         <li>Остальные — обычный ящик + 50 RC</li>
       </ul>
     </div>
+
+    <div class="card">
+      <h3>Заброшенная железная дорога</h3>
+      <p>Мини-игра «Побег» (Sabyey Run).</p>
+      <button class="btn-primary">Играть в Побег</button>
+    </div>
   </div>
 </div>
 
@@ -589,86 +614,45 @@
 <!-- ГОРОД ПЛОХИШЕЙ — БОЙЦЫ        -->
 <!-- ============================ -->
 
-<div id="badguysScreen" class="screen">
+<div id="s-badguys" class="screen">
   <div class="screen-content">
     <div class="screen-header">
-      <button class="back-btn" onclick="closeScreen('badguysScreen')">←</button>
+      <button class="back-btn" onclick="closeScreen('s-badguys')">←</button>
       <div>
-        <h2 class="screen-title">Мои бойцы</h2>
-        <p class="screen-sub">Город Плохишей • Прокачка</p>
+        <h2 class="screen-title">Город Плохишей</h2>
+        <p class="screen-sub">Бойцы и прокачка</p>
       </div>
     </div>
 
     <div class="card">
       <h3>Коллекция</h3>
       <div class="chars-grid">
-        <div class="char-card">
-          <div class="char-avatar">⚡</div>
-          <div class="char-name">Волт</div>
-          <div class="char-rarity" style="color:#7dff9e;">Открыт</div>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar">🔒</div>
-          <div class="char-name">Рей</div>
-          <div class="char-rarity">49 RC</div>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar">🔒</div>
-          <div class="char-name">Лира</div>
-          <div class="char-rarity" style="color:#c79dff;">99 RC</div>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar">🔒</div>
-          <div class="char-name">Маскот</div>
-          <div class="char-rarity" style="color:#ffe17d;">149 RC</div>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar">🔒</div>
-          <div class="char-name">Кайден</div>
-          <div class="char-rarity" style="color:#ffe17d;">149 RC</div>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar">🔒</div>
-          <div class="char-name">Ricoel</div>
-          <div class="char-rarity" style="color:#ff9e9e;">199 RC</div>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar">🔒</div>
-          <div class="char-name">Red Man</div>
-          <div class="char-rarity" style="color:#ff6b6b;">299 RC</div>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar">🔒</div>
-          <div class="char-name">Алхимик</div>
-          <div class="char-rarity" style="color:#ff4d4d;">1999 RC</div>
-        </div>
+        <div class="char-card"><div class="char-avatar">⚡</div><div class="char-name">Волт</div><div class="char-rarity" style="color:#7dff9e;">Открыт</div></div>
+        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Рей</div><div class="char-rarity">49 RC</div></div>
+        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Лира</div><div class="char-rarity" style="color:#c79dff;">99 RC</div></div>
+        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Маскот</div><div class="char-rarity" style="color:#ffe17d;">149 RC</div></div>
+        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Кайден</div><div class="char-rarity" style="color:#ffe17d;">149 RC</div></div>
+        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Ricoel</div><div class="char-rarity" style="color:#ff9e9e;">199 RC</div></div>
+        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Red Man</div><div class="char-rarity" style="color:#ff6b6b;">299 RC</div></div>
+        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Алхимик</div><div class="char-rarity" style="color:#ff4d4d;">1999 RC</div></div>
       </div>
     </div>
 
     <div class="card">
       <h3>Волт — прокачка</h3>
-      <p><b>Уровень 1</b> → Уровень 11</p>
+      <p><strong>Уровень 1 → 11</strong></p>
       <p>HP: 3000 → 7200</p>
       <p>Урон: 600 → 1600</p>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">Гаджет</div>
-          <div class="desc">Открыть способность</div>
-        </div>
+        <div class="shop-info"><div class="title">Гаджет</div><div class="desc">Открыть способность</div></div>
         <button class="buy-btn gold">1000 Gold</button>
       </div>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">Пассивка</div>
-          <div class="desc">Постоянный бонус</div>
-        </div>
+        <div class="shop-info"><div class="title">Пассивка</div><div class="desc">Постоянный бонус</div></div>
         <button class="buy-btn gold">2200 Gold</button>
       </div>
       <div class="shop-item">
-        <div class="shop-info">
-          <div class="title">Апгрейд 1 → 2</div>
-          <div class="desc">Следующий уровень</div>
-        </div>
+        <div class="shop-info"><div class="title">Апгрейд 1 → 2</div><div class="desc">Следующий уровень</div></div>
         <button class="buy-btn">2 Energy</button>
       </div>
     </div>
@@ -678,9 +662,166 @@
       <ul>
         <li>20 кубков → 200 Gold</li>
         <li>50 кубков → 50 RC</li>
-        <li>100 кубков → <b>Рей</b></li>
+        <li>100 кубков → <strong>Рей</strong></li>
         <li>200 кубков → 300 Gold</li>
       </ul>
+    </div>
+
+    <div class="card">
+      <h3>Жители</h3>
+      <div class="info-chars">
+        <span class="chip">Волт</span>
+        <span class="chip">Рей</span>
+        <span class="chip">Астра</span>
+        <span class="chip">Брук</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ -->
+<!-- ОСТАЛЬНЫЕ РАЙОНЫ — ИНФО      -->
+<!-- ============================ -->
+
+<div id="s-north" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-north')">←</button>
+      <div><h2 class="screen-title">Северные пригороды</h2><p class="screen-sub">Спокойная окраина</p></div>
+    </div>
+    <div class="card">
+      <p>Тихий район на севере Super_city. Почти нет фракций и конфликтов. Живут семьи, рабочие, пенсионеры. Туман здесь особенно густой утром.</p>
+    </div>
+  </div>
+</div>
+
+<div id="s-fanzone" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-fanzone')">←</button>
+      <div><h2 class="screen-title">Fan Zone</h2><p class="screen-sub">Район фанатов</p></div>
+    </div>
+    <div class="card">
+      <p>Мирный район, где живёт <strong>Лакс</strong>. Сюда же переехал <strong>Марк (Абсолют)</strong>, скрываясь под обычным именем. Лакс не знает, что его друг — бывший босс Anti-Star.</p>
+      <div class="info-chars">
+        <span class="chip">Lax</span>
+        <span class="chip">Марк</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Сюжет</h3>
+      <p>Здесь начинается линия «Лакс и Абсолют». Игрок может встретить Марка, не зная, кто он на самом деле.</p>
+    </div>
+  </div>
+</div>
+
+<div id="s-lanterns" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-lanterns')">←</button>
+      <div><h2 class="screen-title">Улица Разбитых Фонарей</h2><p class="screen-sub">Street of Broken Lanterns</p></div>
+    </div>
+    <div class="card">
+      <p>Узкие улочки с бумажными фонарями. Атмосфера мафии и торговцев. Здесь живёт <strong>Кайден</strong>, который думает, что его брат <strong>Тошинори</strong> погиб.</p>
+      <div class="info-chars">
+        <span class="chip">Ji</span>
+        <span class="chip">Kaiden</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Сюжет</h3>
+      <p>Здесь начинается линия «Кайден и Тошинори». Тошинори — близнец Кайдена, похищенный Anti-Star. Кайден не знает, что брат жив.</p>
+    </div>
+  </div>
+</div>
+
+<div id="s-skate" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-skate')">←</button>
+      <div><h2 class="screen-title">Скейт Парк</h2><p class="screen-sub">Skate Park</p></div>
+    </div>
+    <div class="card">
+      <p>Молодёжный район с рампами и граффити. Здесь живёт <strong>Ricoel</strong> — легендарный брейкдансер и режиссёр.</p>
+      <div class="info-chars">
+        <span class="chip">Ricoel</span>
+        <span class="chip">Kiro</span>
+        <span class="chip">Jake</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="s-abandoned" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-abandoned')">←</button>
+      <div><h2 class="screen-title">Заброшенный район</h2><p class="screen-sub">Руины</p></div>
+    </div>
+    <div class="card">
+      <h3>Тайна</h3>
+      <p>Здесь прячутся <strong>выжившие после 2028 года</strong>: Венди, Фрэнк, Мортис, Брюс (медведь Ниты), Пэм, некоторые роботы и ещё 20 бравлеров.</p>
+      <p>Они скрываются от Anti-Star и Red Man’а.</p>
+      <div class="info-chars">
+        <span class="chip">Венди</span>
+        <span class="chip">Фрэнк</span>
+        <span class="chip">Мортис</span>
+        <span class="chip">Брюс</span>
+        <span class="chip">Пэм</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Слух</h3>
+      <p>Жители говорят, что ночью здесь слышны странные звуки и виден синий свет. Возможно, это связано с 2028 годом.</p>
+    </div>
+  </div>
+</div>
+
+<div id="s-resident" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-resident')">←</button>
+      <div><h2 class="screen-title">Жилой район</h2><p class="screen-sub">Спальный квартал</p></div>
+    </div>
+    <div class="card">
+      <p>Обычные дома, где живут мирные жители. Здесь нет фракций, но именно отсюда начинаются слухи о странностях в городе.</p>
+    </div>
+  </div>
+</div>
+
+<div id="s-port" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-port')">←</button>
+      <div><h2 class="screen-title">Порт</h2><p class="screen-sub">Морские ворота</p></div>
+    </div>
+    <div class="card">
+      <p>Крупный порт с кораблями и складами. Через него в город поступают товары, в том числе ингредиенты для Energy Drink.</p>
+      <p>Возможно, здесь Red Man проворачивает свои тёмные дела.</p>
+    </div>
+  </div>
+</div>
+
+<div id="s-eastgate" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-eastgate')">←</button>
+      <div><h2 class="screen-title">Восточные ворота</h2><p class="screen-sub">Выход из города</p></div>
+    </div>
+    <div class="card">
+      <p>Массивные ворота, ведущие на восток. Через них когда-то пытались сбежать выжившие после уничтожения Starr Park. Сейчас закрыты и охраняются.</p>
+    </div>
+  </div>
+</div>
+
+<div id="s-south" class="screen">
+  <div class="screen-content">
+    <div class="screen-header">
+      <button class="back-btn" onclick="closeScreen('s-south')">←</button>
+      <div><h2 class="screen-title">Южные пригороды</h2><p class="screen-sub">Лесная зона</p></div>
+    </div>
+    <div class="card">
+      <p>Южная окраина города. Здесь начинаются леса и горы. Место, где можно спрятаться от тумана и городской суеты.</p>
     </div>
   </div>
 </div>
@@ -697,7 +838,6 @@
     document.body.style.overflow = "";
   }
 
-  // Escape для закрытия
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       document.querySelectorAll(".screen.active").forEach(s => s.classList.remove("active"));
@@ -707,4 +847,4 @@
 </script>
 
 </body>
-  </html>
+ </html>
