@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>RED_CLASH — Карта</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RED_CLASH — Проект</title>
 
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -15,10 +15,8 @@
     --text: #ffffff;
     --text-dim: #999;
     --text-mid: #bbb;
+    --text-soft: #ccc;
     --red: #e52b38;
-    --blue: #3b82c4;
-    --purple: #8b2fc9;
-    --gold: #e5a52b;
     --tab-bg: #171922;
     --tab-hover: #222530;
   }
@@ -30,42 +28,160 @@
     background: var(--bg);
     color: var(--text);
     font-family: Arial, sans-serif;
-    overflow-x: hidden;
+    transition: background 0.2s, color 0.2s;
   }
 
-  /* ---------- КАРТА ---------- */
-
-  #mapScreen {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    position: relative;
+  body.inverted {
+    --bg: #f2f2f5; --card: #ffffff; --card-border: #d5d8e0;
+    --text: #0a0a0f; --text-dim: #555; --text-mid: #333;
+    --text-soft: #222; --tab-bg: #e3e5ec; --tab-hover: #d3d6e0;
   }
 
-  .map-header {
-    text-align: center;
+  body.high-contrast {
+    --bg: #000; --card: #0a0a0a; --card-border: #fff;
+    --text: #fff; --text-dim: #ddd; --text-mid: #eee; --text-soft: #fff;
+  }
+
+  body.high-contrast.inverted {
+    --bg: #fff; --card: #fff; --card-border: #000;
+    --text: #000; --text-dim: #111; --text-mid: #000; --text-soft: #000;
+  }
+
+  body.no-anim * { transition: none !important; animation: none !important; }
+  body { filter: brightness(var(--brightness, 1)); }
+
+  .container {
+    width: min(900px, 92%);
+    margin: 40px auto;
+    font-size: var(--font-scale, 1rem);
+  }
+
+  .title { text-align: center; margin-bottom: 30px; }
+  .title h1 { margin: 0; font-size: 42px; letter-spacing: 2px; }
+  .title p { color: var(--text-dim); margin-top: 10px; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
+
+  .tab {
+    flex: 1; min-width: 90px;
+    padding: 14px 8px;
+    border: none; border-radius: 14px;
+    background: var(--tab-bg); color: var(--text-dim);
+    font-size: 14px; font-weight: bold;
+    cursor: pointer;
+  }
+
+  .tab:hover { background: var(--tab-hover); }
+  .tab.active { background: var(--red); color: white; }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px;
     margin-bottom: 14px;
   }
 
-  .map-header h1 {
-    margin: 0;
-    font-size: 26px;
-    letter-spacing: 2px;
+  .card h2 { margin-top: 0; }
+  .card h3 { margin-top: 0; color: var(--red); text-transform: uppercase; letter-spacing: 1px; font-size: 15px; }
+  .card p { color: var(--text-mid); line-height: 1.6; }
+  .card li { margin: 8px 0; color: var(--text-soft); }
+  .card strong { color: var(--text); }
+
+  .number {
+    display: inline-flex; width: 35px; height: 35px;
+    align-items: center; justify-content: center;
+    background: var(--red); border-radius: 10px;
+    font-weight: bold; margin-right: 10px;
   }
 
-  .map-header p {
-    color: var(--text-dim);
-    margin: 6px 0 0;
-    font-size: 13px;
+  .draft {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    margin-bottom: 10px; overflow: hidden;
   }
 
+  .draft-button {
+    width: 100%; border: none; background: transparent;
+    color: var(--text); padding: 18px; text-align: left;
+    font-size: 16px; font-weight: bold; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .draft-button:hover { background: var(--tab-hover); }
+  .draft-content { display: none; padding: 0 18px 18px; color: var(--text-dim); line-height: 1.6; }
+  .draft-content.open { display: block; }
+  .arrow { color: var(--red); font-size: 20px; }
+
+  .sub-block {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--card-border);
+    border-radius: 12px; padding: 14px 16px; margin: 10px 0;
+  }
+
+  body.inverted .sub-block { background: rgba(0,0,0,0.05); }
+
+  .sub-block h4 {
+    margin: 0 0 8px; color: var(--red);
+    font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+  }
+
+  .sub-block p, .sub-block li {
+    color: var(--text-mid); font-size: 14px;
+    line-height: 1.6; margin: 4px 0;
+  }
+
+  .sub-block ul { margin: 6px 0 0; padding-left: 18px; }
+
+  .tag {
+    display: inline-block; padding: 2px 8px;
+    border-radius: 6px; font-size: 11px; font-weight: bold;
+    margin-right: 6px; text-transform: uppercase;
+  }
+
+  .tag-ok { background: #1e5c2e; color: #7dff9e; }
+  .tag-dev { background: #5c4b1e; color: #ffe17d; }
+  .tag-idea { background: #3a1e5c; color: #c79dff; }
+
+  /* НАСТРОЙКИ */
+  .setting {
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 16px 0; border-bottom: 1px solid var(--card-border);
+  }
+  .setting:last-child { border-bottom: none; }
+  .setting-row {
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 12px;
+  }
+  .setting-label { font-weight: bold; color: var(--text); font-size: 15px; }
+  .setting-value { color: var(--red); font-weight: bold; font-size: 14px; min-width: 60px; text-align: right; }
+  .setting-desc { color: var(--text-dim); font-size: 13px; line-height: 1.5; }
+
+  input[type="range"] { width: 100%; accent-color: var(--red); cursor: pointer; }
+
+  .toggle-btn {
+    background: var(--tab-bg); border: 1px solid var(--card-border);
+    color: var(--text); padding: 10px 18px; border-radius: 10px;
+    cursor: pointer; font-weight: bold; font-size: 14px;
+  }
+  .toggle-btn:hover { background: var(--tab-hover); }
+  .toggle-btn.on { background: var(--red); color: white; border-color: var(--red); }
+
+  .btn-reset {
+    width: 100%; background: var(--red); border: none; color: white;
+    padding: 16px; border-radius: 14px; font-size: 16px;
+    font-weight: bold; cursor: pointer; margin-top: 10px;
+  }
+  .btn-reset:hover { filter: brightness(1.1); }
+
+  /* КАРТА */
   .map-wrap {
     position: relative;
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
     aspect-ratio: 3 / 4;
     background: radial-gradient(circle at 50% 40%, #1a1d29 0%, #0a0b10 85%);
     border: 1px solid var(--card-border);
@@ -92,7 +208,7 @@
 
   .district {
     position: absolute;
-    border-radius: 12px;
+    border-radius: 10px;
     border: 2px solid rgba(255,255,255,0.12);
     display: flex;
     flex-direction: column;
@@ -101,7 +217,7 @@
     text-align: center;
     font-weight: bold;
     color: #fff;
-    padding: 4px;
+    padding: 3px;
     cursor: pointer;
     transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
     text-shadow: 0 2px 4px rgba(0,0,0,0.9);
@@ -110,9 +226,9 @@
     overflow: hidden;
   }
 
-  .district .icon { font-size: 18px; margin-bottom: 2px; }
-  .district .name { font-size: 10px; }
-  .district .sub  { font-size: 8px; font-weight: normal; opacity: 0.85; margin-top: 1px; }
+  .district .icon { font-size: 14px; margin-bottom: 2px; }
+  .district .name { font-size: 9px; }
+  .district .sub  { font-size: 7px; font-weight: normal; opacity: 0.85; margin-top: 1px; }
 
   .district:active { transform: scale(0.96); }
   .district:hover {
@@ -121,7 +237,6 @@
     z-index: 5;
   }
 
-  /* Цвета */
   .d-north     { background: linear-gradient(145deg, #2a2f3a, #3a4050); }
   .d-office    { background: linear-gradient(145deg, #2a3550, #4a6fa5); }
   .d-badguys   { background: linear-gradient(145deg, #4a1270, #8b2fc9); }
@@ -136,7 +251,6 @@
   .d-eastgate  { background: linear-gradient(145deg, #5a1010, #c92a2a); }
   .d-south     { background: linear-gradient(145deg, #2a2f3a, #3a4050); }
 
-  /* Позиции */
   #d-north     { left: 20%; top: 1%;  width: 60%; height: 6%; }
   #d-office    { left: 20%; top: 8%;  width: 60%; height: 12%; }
   #d-badguys   { left: 2%;  top: 9%;  width: 16%; height: 20%; }
@@ -151,8 +265,7 @@
   #d-eastgate  { left: 78%; top: 63%; width: 20%; height: 16%; }
   #d-south     { left: 20%; top: 71%; width: 60%; height: 10%; }
 
-  /* ---------- ЭКРАНЫ ---------- */
-
+  /* ЭКРАНЫ */
   .screen {
     position: fixed;
     inset: 0;
@@ -163,7 +276,6 @@
     display: none;
     animation: slideIn 0.25s ease-out;
   }
-
   .screen.active { display: block; }
 
   @keyframes slideIn {
@@ -172,67 +284,28 @@
   }
 
   .screen-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; padding-bottom: 16px;
     border-bottom: 1px solid var(--card-border);
   }
 
   .back-btn {
-    background: var(--tab-bg);
-    border: 1px solid var(--card-border);
-    color: var(--text);
-    width: 44px; height: 44px;
-    border-radius: 12px;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    background: var(--tab-bg); border: 1px solid var(--card-border);
+    color: var(--text); width: 44px; height: 44px;
+    border-radius: 12px; font-size: 20px;
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
   }
-
   .back-btn:hover { background: var(--tab-hover); }
 
-  .screen-title { font-size: 22px; font-weight: bold; margin: 0; }
+  .screen-title { font-size: 20px; font-weight: bold; margin: 0; }
   .screen-sub   { font-size: 12px; color: var(--text-dim); margin: 2px 0 0; }
   .screen-content { max-width: 700px; margin: 0 auto; }
 
-  .card {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 18px;
-    margin-bottom: 12px;
-  }
-
-  .card h3 {
-    margin: 0 0 10px;
-    font-size: 15px;
-    color: var(--red);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .card p, .card li {
-    color: var(--text-mid);
-    font-size: 14px;
-    line-height: 1.6;
-    margin: 6px 0;
-  }
-
-  .card ul { padding-left: 18px; margin: 8px 0; }
-  .card strong { color: var(--text); }
-
   .shop-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--card-border);
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--card-border);
   }
   .shop-item:last-child { border-bottom: none; }
   .shop-info { flex: 1; }
@@ -240,40 +313,31 @@
   .shop-info .desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
 
   .buy-btn {
-    background: var(--red);
-    border: none; color: white;
-    padding: 9px 14px;
-    border-radius: 10px;
+    background: var(--red); border: none; color: white;
+    padding: 9px 14px; border-radius: 10px;
     font-weight: bold; font-size: 12px;
     cursor: pointer; white-space: nowrap;
   }
-  .buy-btn.gold { background: var(--gold); color: #000; }
-  .buy-btn.blue { background: var(--blue); }
+  .buy-btn.gold { background: #e5a52b; color: #000; }
+  .buy-btn.blue { background: #3b82c4; }
 
   .chars-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px; margin-top: 10px;
   }
 
   .char-card {
-    background: var(--tab-bg);
-    border: 2px solid var(--card-border);
-    border-radius: 14px;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.15s, border-color 0.15s;
+    background: var(--tab-bg); border: 2px solid var(--card-border);
+    border-radius: 14px; padding: 10px;
+    text-align: center; cursor: pointer;
   }
-  .char-card:hover { transform: translateY(-2px); border-color: var(--red); }
   .char-avatar {
-    width: 55px; height: 55px;
-    border-radius: 50%;
+    width: 50px; height: 50px; border-radius: 50%;
     background: linear-gradient(145deg, #2a2d3a, #3a3f52);
     margin: 0 auto 8px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
+    font-size: 22px;
   }
   .char-name { font-size: 12px; font-weight: bold; }
   .char-rarity { font-size: 10px; color: var(--text-dim); margin-top: 2px; text-transform: uppercase; }
@@ -285,158 +349,478 @@
   .news-text { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
 
   .event-item {
-    background: var(--tab-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 16px;
-    margin-bottom: 10px;
+    background: var(--tab-bg); border: 1px solid var(--card-border);
+    border-radius: 14px; padding: 16px; margin-bottom: 10px;
   }
   .event-badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 8px;
-    font-size: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+    display: inline-block; padding: 3px 10px;
+    border-radius: 8px; font-size: 10px; font-weight: bold;
+    text-transform: uppercase; margin-bottom: 8px;
   }
   .badge-active { background: #1e5c2e; color: #7dff9e; }
   .badge-soon   { background: #5c4b1e; color: #ffe17d; }
 
   .btn-primary {
-    width: 100%;
-    background: var(--red);
-    border: none; color: white;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
+    width: 100%; background: var(--red); border: none;
+    color: white; padding: 14px; border-radius: 12px;
+    font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 10px;
   }
   .btn-primary:hover { filter: brightness(1.1); }
-  .btn-primary.blue { background: var(--blue); }
+  .btn-primary.blue { background: #3b82c4; }
 
-  .info-chars {
-    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
-  }
+  .info-chars { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   .chip {
-    padding: 4px 10px;
-    border-radius: 8px;
-    background: var(--tab-bg);
-    font-size: 12px;
-    color: var(--text);
-    border: 1px solid var(--card-border);
+    padding: 4px 10px; border-radius: 8px;
+    background: var(--tab-bg); font-size: 12px;
+    color: var(--text); border: 1px solid var(--card-border);
   }
 
   @media (max-width: 600px) {
-    .district .name { font-size: 8px; }
-    .district .sub  { font-size: 7px; }
-    .district .icon { font-size: 14px; }
-    .screen-title { font-size: 18px; }
+    .container { width: 94%; margin: 25px auto; }
+    .title h1 { font-size: 30px; }
+    .tab { padding: 11px 6px; font-size: 12px; min-width: 70px; }
+    .card { padding: 17px; }
   }
 </style>
 </head>
 
 <body>
 
-<!-- ============================ -->
-<!-- КАРТА                        -->
-<!-- ============================ -->
+<div class="container">
 
-<div id="mapScreen">
-
-  <div class="map-header">
-    <h1>SUPER_CITY</h1>
-    <p>Выбери район</p>
+  <div class="title">
+    <h1>RED_CLASH</h1>
+    <p>Проект игры и её мира</p>
   </div>
 
-  <div class="map-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="openPage('plan', this)">📋 План</button>
+    <button class="tab" onclick="openPage('map', this)">🗺️ Карта</button>
+    <button class="tab" onclick="openPage('drafts', this)">🗂️ Заготовки</button>
+    <button class="tab" onclick="openPage('settings', this)">⚙️ Настройки</button>
+  </div>
 
-    <div class="district d-north"     id="d-north"     onclick="openScreen('s-north')">
-      <div class="name">Северные пригороды</div>
+  <!-- ========================= -->
+  <!-- ПЛАН -->
+  <!-- ========================= -->
+
+  <div id="plan" class="page active">
+
+    <div class="card">
+      <h2><span class="number">01</span>Идеи и подготовка</h2>
+      <p>Во время учёбы основная работа над RED_CLASH — развитие мира и игровых идей.</p>
+      <ul>
+        <li>Придумывать персонажей.</li>
+        <li>Создавать группировки.</li>
+        <li>Писать истории персонажей.</li>
+        <li>Придумывать районы города.</li>
+        <li>Создавать игровые механики.</li>
+        <li>Придумывать события.</li>
+        <li>Записывать новые идеи.</li>
+      </ul>
     </div>
 
-    <div class="district d-office"    id="d-office"    onclick="openScreen('s-office')">
-      <div class="icon">🏢</div>
-      <div class="name">Офисный район</div>
-      <div class="sub">Новости</div>
+    <div class="card">
+      <h2><span class="number">02</span>Библия RED_CLASH</h2>
+      <p>Единая база всей информации о проекте.</p>
+      <ul>
+        <li>Персонажи.</li>
+        <li>Группировки.</li>
+        <li>Карта города.</li>
+        <li>Районы.</li>
+        <li>Способности.</li>
+        <li>Редкости.</li>
+        <li>Экономика.</li>
+        <li>Сюжет.</li>
+        <li>События.</li>
+      </ul>
+      <p>Каждая информация получает статус: <strong>утверждено</strong>, <strong>в разработке</strong> или <strong>идея</strong>.</p>
     </div>
 
-    <div class="district d-badguys"   id="d-badguys"   onclick="openScreen('s-badguys')">
-      <div class="icon">😈</div>
-      <div class="name">Город Плохишей</div>
+    <div class="card">
+      <h2><span class="number">03</span>Выходные — Blender</h2>
+      <ul>
+        <li>Учиться 3D-моделированию.</li>
+        <li>Создавать небольшие объекты.</li>
+        <li>Создавать элементы локаций.</li>
+        <li>Постепенно делать RED Park.</li>
+        <li>Создавать библиотеку 3D-ассетов.</li>
+      </ul>
     </div>
 
-    <div class="district d-fanzone"   id="d-fanzone"   onclick="openScreen('s-fanzone')">
-      <div class="icon">🎉</div>
-      <div class="name">Fan Zone</div>
+    <div class="card">
+      <h2><span class="number">04</span>Игровое ядро</h2>
+      <p><strong>Меню → Персонаж → Бой → Победа/поражение → Награды</strong></p>
+      <p>Дополнительные системы добавляются после того, как основной цикл работает.</p>
     </div>
 
-    <div class="district d-lanterns"  id="d-lanterns"  onclick="openScreen('s-lanterns')">
-      <div class="icon">🏮</div>
-      <div class="name">Улица Фонарей</div>
+    <div class="card">
+      <h2><span class="number">05</span>Первый прототип</h2>
+      <ol>
+        <li>Небольшая тестовая карта.</li>
+        <li>Один персонаж.</li>
+        <li>Управление.</li>
+        <li>Движение.</li>
+        <li>Обычная атака.</li>
+        <li>Получение урона.</li>
+        <li>Смерть.</li>
+        <li>Победа и поражение.</li>
+      </ol>
+      <p>Цель — проверить игровой процесс, а не сделать сразу красивую готовую игру.</p>
     </div>
 
-    <div class="district d-redpark"   id="d-redpark"   onclick="openScreen('s-redpark')">
-      <div class="icon">🎪</div>
-      <div class="name">RED PARK</div>
-      <div class="sub">Магазин</div>
+    <div class="card">
+      <h2><span class="number">06</span>Лето и другие каникулы</h2>
+      <ul>
+        <li>Проверять Unity.</li>
+        <li>Проверять другие игровые движки.</li>
+        <li>Тестировать возможности ПК.</li>
+        <li>Создавать первые прототипы.</li>
+        <li>Определиться с инструментами разработки.</li>
+      </ul>
     </div>
 
-    <div class="district d-skate"     id="d-skate"     onclick="openScreen('s-skate')">
-      <div class="icon">🛹</div>
-      <div class="name">Скейт Парк</div>
+    <div class="card">
+      <h2><span class="number">07</span>Мир RED_CLASH</h2>
+      <ul>
+        <li>Создавать районы.</li>
+        <li>Создавать группировки.</li>
+        <li>Связывать персонажей историями.</li>
+        <li>Создавать сюжетные арки.</li>
+        <li>Добавлять события.</li>
+        <li>Постепенно раскрывать тайны мира.</li>
+      </ul>
     </div>
 
-    <div class="district d-abandoned" id="d-abandoned" onclick="openScreen('s-abandoned')">
-      <div class="icon">🏚️</div>
-      <div class="name">Заброшенный</div>
+    <div class="card">
+      <h2><span class="number">08</span>Персонажи</h2>
+      <p>Для каждого персонажа постепенно создавать:</p>
+      <ul>
+        <li>Имя.</li><li>Внешность.</li><li>Характер.</li>
+        <li>Группировку.</li><li>Историю.</li>
+        <li>Атаку.</li><li>Ульту.</li><li>Гаджеты.</li>
+        <li>Пассивную способность.</li>
+        <li>Связи с другими персонажами.</li>
+      </ul>
     </div>
 
-    <div class="district d-resident"  id="d-resident"  onclick="openScreen('s-resident')">
-      <div class="icon">🏠</div>
-      <div class="name">Жилой</div>
+    <div class="card">
+      <h2><span class="number">09</span>Музыка и звук</h2>
+      <ul>
+        <li>Музыка меню.</li><li>Музыка событий.</li>
+        <li>Звуки атак.</li><li>Звуки окружения.</li>
+        <li>Формирование собственного звукового стиля.</li>
+      </ul>
     </div>
 
-    <div class="district d-port"      id="d-port"      onclick="openScreen('s-port')">
-      <div class="icon">⚓</div>
-      <div class="name">Порт</div>
+    <div class="card">
+      <h2><span class="number">10</span>Тестирование</h2>
+      <ul>
+        <li>Проверять управление.</li>
+        <li>Проверять баланс.</li>
+        <li>Проверять карты.</li>
+        <li>Искать баги.</li>
+        <li>Давать игру тестировщику.</li>
+        <li>Исправлять проблемы.</li>
+      </ul>
     </div>
 
-    <div class="district d-station"   id="d-station"   onclick="openScreen('s-station')">
-      <div class="icon">🚉</div>
-      <div class="name">Вокзал</div>
-      <div class="sub">Зал кланов</div>
+    <div class="card">
+      <h2><span class="number">11</span>Расширение</h2>
+      <ul>
+        <li>Новые персонажи.</li>
+        <li>Новые карты.</li>
+        <li>Новые группировки.</li>
+        <li>Расширение города.</li>
+        <li>Новые события.</li>
+        <li>Продолжение сюжета.</li>
+      </ul>
     </div>
 
-    <div class="district d-eastgate"  id="d-eastgate"  onclick="openScreen('s-eastgate')">
-      <div class="icon">🚪</div>
-      <div class="name">Вост. ворота</div>
+    <div class="card">
+      <h2><span class="number">12</span>Большое будущее</h2>
+      <ul>
+        <li>Расширение команды.</li>
+        <li>Художники.</li>
+        <li>3D-моделлеры.</li>
+        <li>Новые режимы.</li>
+        <li>Крупные события.</li>
+        <li>Возможные официальные коллаборации.</li>
+      </ul>
     </div>
 
-    <div class="district d-south"     id="d-south"     onclick="openScreen('s-south')">
-      <div class="name">Южные пригороды</div>
+    <div class="card">
+      <h2>🎯 Общий путь</h2>
+      <p><strong>Идеи → Дизайн → Blender → Прототип → Тестирование → Расширение → RED_CLASH</strong></p>
     </div>
 
+  </div>
+
+  <!-- ========================= -->
+  <!-- КАРТА -->
+  <!-- ========================= -->
+
+  <div id="map" class="page">
+
+    <div class="card">
+      <h2>🗺️ Super_city</h2>
+      <p>Нажми на район, чтобы открыть его.</p>
+    </div>
+
+    <div class="map-wrap">
+
+      <div class="district d-north"     id="d-north"     onclick="openScreen('s-north')"><div class="name">Северные пригороды</div></div>
+      <div class="district d-office"    id="d-office"    onclick="openScreen('s-office')"><div class="icon">🏢</div><div class="name">Офисный</div><div class="sub">Новости</div></div>
+      <div class="district d-badguys"   id="d-badguys"   onclick="openScreen('s-badguys')"><div class="icon">😈</div><div class="name">Город Плохишей</div></div>
+      <div class="district d-fanzone"   id="d-fanzone"   onclick="openScreen('s-fanzone')"><div class="icon">🎉</div><div class="name">Fan Zone</div></div>
+      <div class="district d-lanterns"  id="d-lanterns"  onclick="openScreen('s-lanterns')"><div class="icon">🏮</div><div class="name">Улица Фонарей</div></div>
+      <div class="district d-redpark"   id="d-redpark"   onclick="openScreen('s-redpark')"><div class="icon">🎪</div><div class="name">RED PARK</div><div class="sub">Магазин</div></div>
+      <div class="district d-skate"     id="d-skate"     onclick="openScreen('s-skate')"><div class="icon">🛹</div><div class="name">Скейт</div></div>
+      <div class="district d-abandoned" id="d-abandoned" onclick="openScreen('s-abandoned')"><div class="icon">🏚️</div><div class="name">Заброшенный</div></div>
+      <div class="district d-resident"  id="d-resident"  onclick="openScreen('s-resident')"><div class="icon">🏠</div><div class="name">Жилой</div></div>
+      <div class="district d-port"      id="d-port"      onclick="openScreen('s-port')"><div class="icon">⚓</div><div class="name">Порт</div></div>
+      <div class="district d-station"   id="d-station"   onclick="openScreen('s-station')"><div class="icon">🚉</div><div class="name">Вокзал</div><div class="sub">Зал кланов</div></div>
+      <div class="district d-eastgate"  id="d-eastgate"  onclick="openScreen('s-eastgate')"><div class="icon">🚪</div><div class="name">Вост. ворота</div></div>
+      <div class="district d-south"     id="d-south"     onclick="openScreen('s-south')"><div class="name">Южные пригороды</div></div>
+
+    </div>
+
+  </div>
+
+  <!-- ========================= -->
+  <!-- ЗАГОТОВКИ -->
+  <!-- ========================= -->
+
+  <div id="drafts" class="page">
+
+    <div class="card">
+      <h2>🗂️ Заготовки RED_CLASH</h2>
+      <p>Статусы: <span class="tag tag-ok">утверждено</span> <span class="tag tag-dev">в разработке</span> <span class="tag tag-idea">идея</span></p>
+    </div>
+
+    <div class="draft">
+      <button class="draft-button" onclick="toggleDraft('characters', this)">👤 Персонажи <span class="arrow">›</span></button>
+      <div id="characters" class="draft-content">
+        <div class="sub-block">
+          <h4>City of Bad Guys</h4>
+          <p><strong>Волт</strong> — стартовый стрелок. 7200 HP, 1600 ATK. Супер «Двойной выстрел».</p>
+          <p><strong>Рей</strong> — редкий, 49 RC. Открывается на 100 кубках.</p>
+          <p><strong>Астра</strong> — мифическая. Глава «Звёздного пути».</p>
+          <p><strong>Брук</strong> — охранник. Дробовик, пёс Рекс.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Skate Park</h4>
+          <p><strong>Ricoel</strong> — легендарный, 199 RC.</p>
+          <p><strong>Kiro</strong>, <strong>Jake</strong> — в разработке.</p>
+        </div>
+        <div class="sub-block">
+          <h4>RED Park</h4>
+          <p><strong>Red Man</strong> — антагонист, производит Energy Drink.</p>
+          <p><strong>Лира</strong> — сверхредкая, 99 RC.</p>
+          <p><strong>Маскот</strong> — эпический, 149 RC.</p>
+          <p><strong>Лео</strong> — редкий, 49 RC.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Office District</h4>
+          <p><strong>Bait</strong> — робот из Новгорода-7, говорит голосом на Морзе.</p>
+          <p><strong>Игрис</strong> — танк, переводчик Байта.</p>
+          <p><strong>Стелла</strong> — почтальон, влюблена в Авторское право.</p>
+          <p><strong>Авторское право</strong> — «банхаммер».</p>
+        </div>
+        <div class="sub-block">
+          <h4>Street of Broken Lanterns</h4>
+          <p><strong>Ji</strong> — в разработке.</p>
+          <p><strong>Kaiden</strong> — танк, 9700 HP, 3500 ATK.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Fan Zone</h4>
+          <p><strong>Lax</strong> — убийца, система «Нэн».</p>
+          <p><strong>Марк (Абсолют)</strong> — скрывается.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Anti-Star (тайная)</h4>
+          <p><strong>Абсолют</strong> — бывший босс.</p>
+          <p><strong>Алхимик</strong> — лидер, 75-й боец, Godly.</p>
+          <p><strong>Авторское право</strong> — законник.</p>
+          <p><strong>Инджениум</strong> — воин-инженер, киборг.</p>
+          <p><strong>Тошинори Эго</strong> — разведчик, близнец Кайдена.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="draft">
+      <button class="draft-button" onclick="toggleDraft('story', this)">📖 Сюжет и лор <span class="arrow">›</span></button>
+      <div id="story" class="draft-content">
+        <div class="sub-block">
+          <h4>Таймлайн</h4>
+          <p><strong>2028</strong> — уничтожение Starr Park («забытого парка звезды»).</p>
+          <p><strong>2034</strong> — настоящее время игры.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Red Man</h4>
+          <p>Работал в NanoStarr. Во время побега Венди украл нано-лапшу и записи. Создал Energy Drink. Антагонист. Платит Anti-Star.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Абсолют / Марк</h4>
+          <p>Бывший босс Anti-Star. Независимый. Стёр Лаксу память. Финансирует «Звёздный путь».</p>
+        </div>
+        <div class="sub-block">
+          <h4>Лакс и Марк</h4>
+          <p>Лучшие друзья. Лакс узнал правду, не вынес, память стёрта.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Кайден и Тошинори</h4>
+          <p>Близнецы. Тошинори похищен, ненавидит Кайдена. Кайден думает, что брат мёртв.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Байт</h4>
+          <p>Робот из Новгорода-7. Был в Starr Park в 2028. Говорит Морзе. Понимает только Игрис.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Anti-Star</h4>
+          <p>Тайная организация. Знают только Red Man и Абсолют.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="draft">
+      <button class="draft-button" onclick="toggleDraft('mechanics', this)">⚔️ Механики <span class="arrow">›</span></button>
+      <div id="mechanics" class="draft-content">
+        <div class="sub-block"><h4>Соло ШД</h4><p>5 игроков. Через 30 сек карта обрушается. Кто упал — вылетает.</p></div>
+        <div class="sub-block"><h4>Футбол 1v1</h4><p>Физический мяч.</p></div>
+        <div class="sub-block"><h4>Зона 1v1</h4><p>Два полукруга. Убийства мешают врагу.</p></div>
+        <div class="sub-block"><h4>Босс v2</h4><p>2 игрока против босса.</p></div>
+        <div class="sub-block"><h4>Кланы</h4><p>30 человек. Создание: 2000 Gold + 10 RC.</p></div>
+        <div class="sub-block"><h4>Sabyey Run</h4><p>Мини-игра на заброшенной железной дороге.</p></div>
+        <div class="sub-block"><h4>RED Park Arcade</h4><p>5 игр в день, билеты за задания.</p></div>
+      </div>
+    </div>
+
+    <div class="draft">
+      <button class="draft-button" onclick="toggleDraft('economy', this)">💰 Экономика <span class="arrow">›</span></button>
+      <div id="economy" class="draft-content">
+        <div class="sub-block">
+          <h4>Валюты</h4>
+          <p><strong>Gold</strong> — гаджеты, пассивки, косметика.</p>
+          <p><strong>Red Coins</strong> — бойцы, ящики, Battle Pass.</p>
+          <p><strong>Energy Drink</strong> — прокачка.</p>
+          <p><strong>Билеты</strong> — аркада.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Обмен</h4>
+          <p>1 RC = 100 Gold</p>
+          <p>1 RC = 5 Energy</p>
+        </div>
+        <div class="sub-block">
+          <h4>Бойцы</h4>
+          <ul>
+            <li>Волт — 0</li>
+            <li>Рей, Лео — 49</li>
+            <li>Лира — 99</li>
+            <li>Маскот, Кайден — 149</li>
+            <li>Ricoel — 199</li>
+            <li>Red Man — 299</li>
+            <li>Алхимик — 1999</li>
+          </ul>
+        </div>
+        <div class="sub-block">
+          <h4>Ящики</h4>
+          <p>Обычный 39, Редкий 59, Сверхредкий 89, Эпический 149, Легендарный 169, Мифический 199.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Прокачка</h4>
+          <p>1→2: 2 Energy. 10→11: 699 Energy. Гаджет: 1000 Gold. Пассивка: 2200 Gold.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Battle Pass</h4>
+          <p>289 Red Coins.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="draft">
+      <button class="draft-button" onclick="toggleDraft('events', this)">🎪 События <span class="arrow">›</span></button>
+      <div id="events" class="draft-content">
+        <div class="sub-block"><h4>Лакс всё узнал (50 бойцов)</h4><p>Скин «Костюм от Марка».</p></div>
+        <div class="sub-block"><h4>Путь звезды (Астра)</h4><p>Создание «Звёздного пути». Скин «Звёздная Астра».</p></div>
+        <div class="sub-block"><h4>Ивент на 75-го бойца</h4><p>Алхимик становится играбельным.</p></div>
+        <div class="sub-block"><h4>Зал</h4><p>Чат, ивенты, коллаборации, комьюнити-события.</p></div>
+      </div>
+    </div>
+
+    <div class="draft">
+      <button class="draft-button" onclick="toggleDraft('ideas', this)">💡 Будущие идеи <span class="arrow">›</span></button>
+      <div id="ideas" class="draft-content">
+        <div class="sub-block"><h4>Коллаборация с Brawl Stars</h4><p>«Сириус с тенями против Абсолюта».</p></div>
+        <div class="sub-block"><h4>Коллаборация с MHA</h4><p>Долгосрочная идея.</p></div>
+        <div class="sub-block"><h4>Мотивация игрока</h4><p>Пока открыта.</p></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========================= -->
+  <!-- НАСТРОЙКИ -->
+  <!-- ========================= -->
+
+  <div id="settings" class="page">
+    <div class="card">
+      <h2>⚙️ Настройки сайта</h2>
+      <p>Все настройки сохраняются в браузере.</p>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">☀️ Яркость</span>
+          <span class="setting-value" id="brightnessValue">100%</span>
+        </div>
+        <input type="range" id="brightness" min="30" max="150" value="100">
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">🔤 Размер шрифта</span>
+          <span class="setting-value" id="fontValue">100%</span>
+        </div>
+        <input type="range" id="fontSize" min="70" max="180" value="100">
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">🌗 Инверсия света</span>
+          <button class="toggle-btn" id="invertBtn" onclick="toggleInvert()">Выкл</button>
+        </div>
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">🌓 Высокий контраст</span>
+          <button class="toggle-btn" id="contrastBtn" onclick="toggleContrast()">Выкл</button>
+        </div>
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <span class="setting-label">🎞️ Анимации</span>
+          <button class="toggle-btn on" id="animBtn" onclick="toggleAnim()">Вкл</button>
+        </div>
+      </div>
+
+      <button class="btn-reset" onclick="resetSettings()">🔄 Сбросить все настройки</button>
+    </div>
   </div>
 
 </div>
 
 <!-- ============================ -->
-<!-- ОФИС — НОВОСТИ               -->
+<!-- ЭКРАНЫ РАЙОНОВ               -->
 <!-- ============================ -->
 
 <div id="s-office" class="screen">
   <div class="screen-content">
     <div class="screen-header">
       <button class="back-btn" onclick="closeScreen('s-office')">←</button>
-      <div>
-        <h2 class="screen-title">Офисный район</h2>
-        <p class="screen-sub">Новости • Стелла и Байт</p>
-      </div>
+      <div><h2 class="screen-title">Офисный район</h2><p class="screen-sub">Новости • Стелла и Байт</p></div>
     </div>
-
     <div class="card">
       <h3>Новости</h3>
       <div class="news-item">
@@ -455,13 +839,8 @@
         <div class="news-text">Red Man заявляет, что напиток абсолютно безопасен. Но некоторые клешеры стали агрессивнее...</div>
       </div>
     </div>
-
     <div class="card">
       <h3>Сотрудники</h3>
-      <p><strong>Стелла</strong> — почтальон, выдаёт новости.</p>
-      <p><strong>Байт</strong> — робот, общается на Морзе.</p>
-      <p><strong>Игрис</strong> — грузчик, переводит Байта.</p>
-      <p><strong>Авторское право</strong> — босс офиса.</p>
       <div class="info-chars">
         <span class="chip">Авторское право</span>
         <span class="chip">Bait</span>
@@ -472,74 +851,35 @@
   </div>
 </div>
 
-<!-- ============================ -->
-<!-- RED PARK — МАГАЗИН           -->
-<!-- ============================ -->
-
 <div id="s-redpark" class="screen">
   <div class="screen-content">
     <div class="screen-header">
       <button class="back-btn" onclick="closeScreen('s-redpark')">←</button>
-      <div>
-        <h2 class="screen-title">RED Park</h2>
-        <p class="screen-sub">Магазин • Лира проверяет билеты</p>
-      </div>
+      <div><h2 class="screen-title">RED Park</h2><p class="screen-sub">Магазин • Лира проверяет билеты</p></div>
     </div>
-
     <div class="card">
       <h3>Ящики</h3>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Обычный ящик</div><div class="desc">Gold, Energy, пины</div></div>
-        <button class="buy-btn">39 RC</button>
-      </div>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Редкий ящик</div><div class="desc">+ шанс на редкого бойца</div></div>
-        <button class="buy-btn">59 RC</button>
-      </div>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Сверхредкий ящик</div><div class="desc">+ шанс на сверхредкого</div></div>
-        <button class="buy-btn">89 RC</button>
-      </div>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Эпический ящик</div><div class="desc">Red Coins + эпик</div></div>
-        <button class="buy-btn">149 RC</button>
-      </div>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Легендарный ящик</div><div class="desc">Легендарный/мифик</div></div>
-        <button class="buy-btn">169 RC</button>
-      </div>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Мифический ящик</div><div class="desc">Шанс на Godly</div></div>
-        <button class="buy-btn">199 RC</button>
-      </div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Обычный ящик</div><div class="desc">Gold, Energy, пины</div></div><button class="buy-btn">39 RC</button></div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Редкий ящик</div><div class="desc">+ шанс на редкого бойца</div></div><button class="buy-btn">59 RC</button></div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Сверхредкий ящик</div><div class="desc">+ сверхредкий</div></div><button class="buy-btn">89 RC</button></div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Эпический ящик</div><div class="desc">Red Coins + эпик</div></div><button class="buy-btn">149 RC</button></div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Легендарный ящик</div><div class="desc">Легендарный/мифик</div></div><button class="buy-btn">169 RC</button></div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Мифический ящик</div><div class="desc">Шанс на Godly</div></div><button class="buy-btn">199 RC</button></div>
     </div>
-
     <div class="card">
       <h3>Battle Pass</h3>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Сезон 1: Побег</div><div class="desc">Скины, RC, ящики, пины</div></div>
-        <button class="buy-btn gold">289 RC</button>
-      </div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Сезон 1: Побег</div><div class="desc">Скины, RC, ящики, пины</div></div><button class="buy-btn gold">289 RC</button></div>
     </div>
-
     <div class="card">
       <h3>Обмен</h3>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">1 RC → 100 Gold</div></div>
-        <button class="buy-btn blue">Обменять</button>
-      </div>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">1 RC → 5 Energy</div></div>
-        <button class="buy-btn blue">Обменять</button>
-      </div>
+      <div class="shop-item"><div class="shop-info"><div class="title">1 RC → 100 Gold</div></div><button class="buy-btn blue">Обменять</button></div>
+      <div class="shop-item"><div class="shop-info"><div class="title">1 RC → 5 Energy</div></div><button class="buy-btn blue">Обменять</button></div>
     </div>
-
     <div class="card">
       <h3>Аркада</h3>
       <p>5 игр в день. Задания дают 4–10 билетов.</p>
       <button class="btn-primary">Играть в аркаду</button>
     </div>
-
     <div class="card">
       <h3>Жители парка</h3>
       <div class="info-chars">
@@ -552,48 +892,33 @@
   </div>
 </div>
 
-<!-- ============================ -->
-<!-- ВОКЗАЛ — ЗАЛ КЛАНОВ           -->
-<!-- ============================ -->
-
 <div id="s-station" class="screen">
   <div class="screen-content">
     <div class="screen-header">
       <button class="back-btn" onclick="closeScreen('s-station')">←</button>
-      <div>
-        <h2 class="screen-title">Вокзал</h2>
-        <p class="screen-sub">Зал кланов и ивенты</p>
-      </div>
+      <div><h2 class="screen-title">Вокзал</h2><p class="screen-sub">Зал кланов и ивенты</p></div>
     </div>
-
     <div class="card">
       <h3>Активные ивенты</h3>
       <div class="event-item">
         <span class="event-badge badge-active">активен</span>
         <div style="font-weight:bold; font-size:15px;">Путь звезды</div>
-        <div style="font-size:13px; color:#bbb; margin-top:6px;">
-          Главный боец — Астра. Награда: скин «Звёздная Астра».
-        </div>
+        <div style="font-size:13px; color:#bbb; margin-top:6px;">Главный боец — Астра. Награда: скин «Звёздная Астра».</div>
       </div>
       <div class="event-item">
         <span class="event-badge badge-soon">скоро</span>
         <div style="font-weight:bold; font-size:15px;">Лакс всё узнал</div>
-        <div style="font-size:13px; color:#bbb; margin-top:6px;">
-          Откроется на 50 бойцов. Награда: скин «Костюм от Марка».
-        </div>
+        <div style="font-size:13px; color:#bbb; margin-top:6px;">Откроется на 50 бойцов. Награда: скин «Костюм от Марка».</div>
       </div>
     </div>
-
     <div class="card">
       <h3>Мой клан</h3>
       <p>Ты ещё не в клане.</p>
       <button class="btn-primary">Создать клан (2000 Gold + 10 RC)</button>
       <button class="btn-primary blue">Найти клан</button>
     </div>
-
     <div class="card">
       <h3>Клановый сезон</h3>
-      <p>Сезон длится 30 дней. Награды в конце — по вкладу.</p>
       <ul>
         <li>Топ 1% — легендарный ящик + 500 RC + скин</li>
         <li>Топ 10% — эпический ящик + 300 RC</li>
@@ -601,7 +926,6 @@
         <li>Остальные — обычный ящик + 50 RC</li>
       </ul>
     </div>
-
     <div class="card">
       <h3>Заброшенная железная дорога</h3>
       <p>Мини-игра «Побег» (Sabyey Run).</p>
@@ -610,20 +934,12 @@
   </div>
 </div>
 
-<!-- ============================ -->
-<!-- ГОРОД ПЛОХИШЕЙ — БОЙЦЫ        -->
-<!-- ============================ -->
-
 <div id="s-badguys" class="screen">
   <div class="screen-content">
     <div class="screen-header">
       <button class="back-btn" onclick="closeScreen('s-badguys')">←</button>
-      <div>
-        <h2 class="screen-title">Город Плохишей</h2>
-        <p class="screen-sub">Бойцы и прокачка</p>
-      </div>
+      <div><h2 class="screen-title">Город Плохишей</h2><p class="screen-sub">Бойцы и прокачка</p></div>
     </div>
-
     <div class="card">
       <h3>Коллекция</h3>
       <div class="chars-grid">
@@ -637,26 +953,15 @@
         <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Алхимик</div><div class="char-rarity" style="color:#ff4d4d;">1999 RC</div></div>
       </div>
     </div>
-
     <div class="card">
       <h3>Волт — прокачка</h3>
       <p><strong>Уровень 1 → 11</strong></p>
       <p>HP: 3000 → 7200</p>
       <p>Урон: 600 → 1600</p>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Гаджет</div><div class="desc">Открыть способность</div></div>
-        <button class="buy-btn gold">1000 Gold</button>
-      </div>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Пассивка</div><div class="desc">Постоянный бонус</div></div>
-        <button class="buy-btn gold">2200 Gold</button>
-      </div>
-      <div class="shop-item">
-        <div class="shop-info"><div class="title">Апгрейд 1 → 2</div><div class="desc">Следующий уровень</div></div>
-        <button class="buy-btn">2 Energy</button>
-      </div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Гаджет</div><div class="desc">Открыть способность</div></div><button class="buy-btn gold">1000 Gold</button></div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Пассивка</div><div class="desc">Постоянный бонус</div></div><button class="buy-btn gold">2200 Gold</button></div>
+      <div class="shop-item"><div class="shop-info"><div class="title">Апгрейд 1 → 2</div><div class="desc">Следующий уровень</div></div><button class="buy-btn">2 Energy</button></div>
     </div>
-
     <div class="card">
       <h3>Путь славы</h3>
       <ul>
@@ -666,22 +971,8 @@
         <li>200 кубков → 300 Gold</li>
       </ul>
     </div>
-
-    <div class="card">
-      <h3>Жители</h3>
-      <div class="info-chars">
-        <span class="chip">Волт</span>
-        <span class="chip">Рей</span>
-        <span class="chip">Астра</span>
-        <span class="chip">Брук</span>
-      </div>
-    </div>
   </div>
 </div>
-
-<!-- ============================ -->
-<!-- ОСТАЛЬНЫЕ РАЙОНЫ — ИНФО      -->
-<!-- ============================ -->
 
 <div id="s-north" class="screen">
   <div class="screen-content">
@@ -689,9 +980,7 @@
       <button class="back-btn" onclick="closeScreen('s-north')">←</button>
       <div><h2 class="screen-title">Северные пригороды</h2><p class="screen-sub">Спокойная окраина</p></div>
     </div>
-    <div class="card">
-      <p>Тихий район на севере Super_city. Почти нет фракций и конфликтов. Живут семьи, рабочие, пенсионеры. Туман здесь особенно густой утром.</p>
-    </div>
+    <div class="card"><p>Тихий район на севере Super_city. Почти нет фракций. Живут семьи, рабочие, пенсионеры. Туман особенно густой утром.</p></div>
   </div>
 </div>
 
@@ -703,14 +992,7 @@
     </div>
     <div class="card">
       <p>Мирный район, где живёт <strong>Лакс</strong>. Сюда же переехал <strong>Марк (Абсолют)</strong>, скрываясь под обычным именем. Лакс не знает, что его друг — бывший босс Anti-Star.</p>
-      <div class="info-chars">
-        <span class="chip">Lax</span>
-        <span class="chip">Марк</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Сюжет</h3>
-      <p>Здесь начинается линия «Лакс и Абсолют». Игрок может встретить Марка, не зная, кто он на самом деле.</p>
+      <div class="info-chars"><span class="chip">Lax</span><span class="chip">Марк</span></div>
     </div>
   </div>
 </div>
@@ -722,15 +1004,8 @@
       <div><h2 class="screen-title">Улица Разбитых Фонарей</h2><p class="screen-sub">Street of Broken Lanterns</p></div>
     </div>
     <div class="card">
-      <p>Узкие улочки с бумажными фонарями. Атмосфера мафии и торговцев. Здесь живёт <strong>Кайден</strong>, который думает, что его брат <strong>Тошинори</strong> погиб.</p>
-      <div class="info-chars">
-        <span class="chip">Ji</span>
-        <span class="chip">Kaiden</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Сюжет</h3>
-      <p>Здесь начинается линия «Кайден и Тошинори». Тошинори — близнец Кайдена, похищенный Anti-Star. Кайден не знает, что брат жив.</p>
+      <p>Узкие улочки с бумажными фонарями. Здесь живёт <strong>Кайден</strong>, который думает, что его брат <strong>Тошинори</strong> погиб.</p>
+      <div class="info-chars"><span class="chip">Ji</span><span class="chip">Kaiden</span></div>
     </div>
   </div>
 </div>
@@ -743,11 +1018,7 @@
     </div>
     <div class="card">
       <p>Молодёжный район с рампами и граффити. Здесь живёт <strong>Ricoel</strong> — легендарный брейкдансер и режиссёр.</p>
-      <div class="info-chars">
-        <span class="chip">Ricoel</span>
-        <span class="chip">Kiro</span>
-        <span class="chip">Jake</span>
-      </div>
+      <div class="info-chars"><span class="chip">Ricoel</span><span class="chip">Kiro</span><span class="chip">Jake</span></div>
     </div>
   </div>
 </div>
@@ -760,19 +1031,8 @@
     </div>
     <div class="card">
       <h3>Тайна</h3>
-      <p>Здесь прячутся <strong>выжившие после 2028 года</strong>: Венди, Фрэнк, Мортис, Брюс (медведь Ниты), Пэм, некоторые роботы и ещё 20 бравлеров.</p>
-      <p>Они скрываются от Anti-Star и Red Man’а.</p>
-      <div class="info-chars">
-        <span class="chip">Венди</span>
-        <span class="chip">Фрэнк</span>
-        <span class="chip">Мортис</span>
-        <span class="chip">Брюс</span>
-        <span class="chip">Пэм</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Слух</h3>
-      <p>Жители говорят, что ночью здесь слышны странные звуки и виден синий свет. Возможно, это связано с 2028 годом.</p>
+      <p>Здесь прячутся <strong>выжившие после 2028 года</strong>: Венди, Фрэнк, Мортис, Брюс, Пэм, некоторые роботы и ещё 20 бравлеров.</p>
+      <div class="info-chars"><span class="chip">Венди</span><span class="chip">Фрэнк</span><span class="chip">Мортис</span><span class="chip">Брюс</span><span class="chip">Пэм</span></div>
     </div>
   </div>
 </div>
@@ -783,9 +1043,7 @@
       <button class="back-btn" onclick="closeScreen('s-resident')">←</button>
       <div><h2 class="screen-title">Жилой район</h2><p class="screen-sub">Спальный квартал</p></div>
     </div>
-    <div class="card">
-      <p>Обычные дома, где живут мирные жители. Здесь нет фракций, но именно отсюда начинаются слухи о странностях в городе.</p>
-    </div>
+    <div class="card"><p>Обычные дома, где живут мирные жители. Отсюда начинаются слухи о странностях в городе.</p></div>
   </div>
 </div>
 
@@ -796,8 +1054,7 @@
       <div><h2 class="screen-title">Порт</h2><p class="screen-sub">Морские ворота</p></div>
     </div>
     <div class="card">
-      <p>Крупный порт с кораблями и складами. Через него в город поступают товары, в том числе ингредиенты для Energy Drink.</p>
-      <p>Возможно, здесь Red Man проворачивает свои тёмные дела.</p>
+      <p>Крупный порт с кораблями и складами. Через него поступают ингредиенты для Energy Drink. Возможно, здесь Red Man проворачивает тёмные дела.</p>
     </div>
   </div>
 </div>
@@ -808,9 +1065,7 @@
       <button class="back-btn" onclick="closeScreen('s-eastgate')">←</button>
       <div><h2 class="screen-title">Восточные ворота</h2><p class="screen-sub">Выход из города</p></div>
     </div>
-    <div class="card">
-      <p>Массивные ворота, ведущие на восток. Через них когда-то пытались сбежать выжившие после уничтожения Starr Park. Сейчас закрыты и охраняются.</p>
-    </div>
+    <div class="card"><p>Массивные ворота на восток. Через них пытались сбежать выжившие после Starr Park. Сейчас закрыты.</p></div>
   </div>
 </div>
 
@@ -820,13 +1075,28 @@
       <button class="back-btn" onclick="closeScreen('s-south')">←</button>
       <div><h2 class="screen-title">Южные пригороды</h2><p class="screen-sub">Лесная зона</p></div>
     </div>
-    <div class="card">
-      <p>Южная окраина города. Здесь начинаются леса и горы. Место, где можно спрятаться от тумана и городской суеты.</p>
-    </div>
+    <div class="card"><p>Южная окраина. Здесь начинаются леса и горы. Место, где можно спрятаться от тумана.</p></div>
   </div>
 </div>
 
 <script>
+
+  /* ---------- Вкладки ---------- */
+  function openPage(pageId, button) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.getElementById(pageId).classList.add("active");
+    button.classList.add("active");
+  }
+
+  function toggleDraft(id, button) {
+    const content = document.getElementById(id);
+    const arrow = button.querySelector(".arrow");
+    content.classList.toggle("open");
+    arrow.textContent = content.classList.contains("open") ? "⌄" : "›";
+  }
+
+  /* ---------- Экраны районов ---------- */
   function openScreen(id) {
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     document.getElementById(id).classList.add("active");
@@ -844,7 +1114,82 @@
       document.body.style.overflow = "";
     }
   });
+
+  /* ---------- Настройки ---------- */
+  const body = document.body;
+
+  function setBrightness(val) {
+    document.documentElement.style.setProperty("--brightness", val / 100);
+    document.getElementById("brightnessValue").textContent = val + "%";
+    localStorage.setItem("rc_brightness", val);
+  }
+
+  function setFontSize(val) {
+    document.documentElement.style.fontSize = (val / 100 * 16) + "px";
+    document.getElementById("fontValue").textContent = val + "%";
+    localStorage.setItem("rc_font", val);
+  }
+
+  function toggleInvert() {
+    body.classList.toggle("inverted");
+    const on = body.classList.contains("inverted");
+    const btn = document.getElementById("invertBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_invert", on);
+  }
+
+  function toggleContrast() {
+    body.classList.toggle("high-contrast");
+    const on = body.classList.contains("high-contrast");
+    const btn = document.getElementById("contrastBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_contrast", on);
+  }
+
+  function toggleAnim() {
+    body.classList.toggle("no-anim");
+    const on = !body.classList.contains("no-anim");
+    const btn = document.getElementById("animBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_anim", on);
+  }
+
+  function resetSettings() {
+    ["rc_brightness","rc_font","rc_invert","rc_contrast","rc_anim"].forEach(k => localStorage.removeItem(k));
+    document.getElementById("brightness").value = 100;
+    document.getElementById("fontSize").value = 100;
+    body.classList.remove("inverted","high-contrast","no-anim");
+    document.getElementById("invertBtn").textContent = "Выкл";
+    document.getElementById("invertBtn").classList.remove("on");
+    document.getElementById("contrastBtn").textContent = "Выкл";
+    document.getElementById("contrastBtn").classList.remove("on");
+    document.getElementById("animBtn").textContent = "Вкл";
+    document.getElementById("animBtn").classList.add("on");
+    setBrightness(100);
+    setFontSize(100);
+  }
+
+  window.addEventListener("load", () => {
+    const b = localStorage.getItem("rc_brightness");
+    const f = localStorage.getItem("rc_font");
+    const inv = localStorage.getItem("rc_invert") === "true";
+    const con = localStorage.getItem("rc_contrast") === "true";
+    const anim = localStorage.getItem("rc_anim") !== "false";
+
+    if (b) { document.getElementById("brightness").value = b; setBrightness(b); }
+    if (f) { document.getElementById("fontSize").value = f; setFontSize(f); }
+    if (inv) { body.classList.add("inverted"); const btn = document.getElementById("invertBtn"); btn.textContent = "Вкл"; btn.classList.add("on"); }
+    if (con) { body.classList.add("high-contrast"); const btn = document.getElementById("contrastBtn"); btn.textContent = "Вкл"; btn.classList.add("on"); }
+    if (!anim) { body.classList.add("no-anim"); const btn = document.getElementById("animBtn"); btn.textContent = "Выкл"; btn.classList.remove("on"); }
+
+    document.getElementById("brightness").addEventListener("input", e => setBrightness(e.target.value));
+    document.getElementById("fontSize").addEventListener("input", e => setFontSize(e.target.value));
+  });
+
 </script>
 
 </body>
- </html>
+                                                                                             </html>
