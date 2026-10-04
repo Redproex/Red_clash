@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RED_CLASH — Проект</title>
+<title>RED_CLASH OF RED_PARK — Проект</title>
 
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -128,519 +128,272 @@
     100% { opacity: 1;   transform: scale(1.06); }
   }
 
-  /* --- Верхняя панель --- */
-
   .top-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     background: rgba(0,0,0,0.5);
     border: 1px solid var(--card-border);
     border-radius: 14px;
-    padding: 10px 14px;
-    margin-bottom: 12px;
-    position: relative;
-    z-index: 1;
-    flex-wrap: wrap;
+    padding: 10px 14px; margin-bottom: 12px;
+    position: relative; z-index: 1; flex-wrap: wrap;
   }
 
-  .profile-mini {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-
+  .profile-mini { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .profile-mini .avatar {
-    width: 42px; height: 42px;
-    border-radius: 10px;
+    width: 42px; height: 42px; border-radius: 10px;
     background: linear-gradient(145deg, #2a3550, #4a6fa5);
     display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    border: 2px solid rgba(255,255,255,0.15);
+    font-size: 20px; border: 2px solid rgba(255,255,255,0.15);
   }
-
   .profile-mini .nick { font-size: 13px; font-weight: bold; line-height: 1.1; }
   .profile-mini .lvl  { font-size: 11px; color: var(--red); font-weight: bold; }
 
   .currencies {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-left: auto;
-    flex-wrap: wrap;
+    display: flex; align-items: center; gap: 6px;
+    margin-left: auto; flex-wrap: wrap;
   }
 
   .currency {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    display: flex; align-items: center; gap: 5px;
     background: rgba(0,0,0,0.6);
     border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 5px 10px;
-    font-size: 12px;
-    font-weight: bold;
+    border-radius: 10px; padding: 5px 10px;
+    font-size: 12px; font-weight: bold;
   }
-
   .currency .icon { font-size: 14px; }
   .currency .val { color: #fff; }
 
   .icon-btn {
-    width: 36px; height: 36px;
-    border-radius: 10px;
+    width: 36px; height: 36px; border-radius: 10px;
     background: rgba(0,0,0,0.6);
     border: 1px solid var(--card-border);
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
+    color: #fff; font-size: 16px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     position: relative;
   }
-
   .icon-btn:hover { background: var(--tab-hover); }
-
   .icon-btn .dot {
-    position: absolute;
-    top: -3px; right: -3px;
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    background: var(--red);
-    color: #fff;
-    font-size: 9px;
+    position: absolute; top: -3px; right: -3px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--red); color: #fff; font-size: 9px;
     display: flex; align-items: center; justify-content: center;
-    font-weight: bold;
-    border: 2px solid var(--bg);
+    font-weight: bold; border: 2px solid var(--bg);
   }
-
-  /* --- Основная сетка --- */
 
   .main-grid {
     display: grid;
     grid-template-columns: 80px 130px 1fr 180px;
-    gap: 12px;
-    position: relative;
-    z-index: 1;
+    gap: 12px; position: relative; z-index: 1;
   }
 
-  /* --- Левое вертикальное меню --- */
-
-  .side-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .side-menu { display: flex; flex-direction: column; gap: 8px; }
 
   .side-item {
     background: rgba(0,0,0,0.6);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 10px 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+    border-radius: 12px; padding: 10px 4px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
     cursor: pointer;
     transition: background 0.15s, border-color 0.15s, transform 0.1s;
   }
-
-  .side-item:hover {
-    background: rgba(229,43,56,0.15);
-    border-color: var(--red);
-  }
-
+  .side-item:hover { background: rgba(229,43,56,0.15); border-color: var(--red); }
   .side-item:active { transform: scale(0.96); }
-
   .side-item .ico { font-size: 20px; }
   .side-item .lbl {
-    font-size: 9px;
-    font-weight: bold;
-    text-align: center;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    line-height: 1.1;
+    font-size: 9px; font-weight: bold; text-align: center;
+    color: var(--text-dim); text-transform: uppercase; line-height: 1.1;
   }
-
-  .side-item.active {
-    background: rgba(229,43,56,0.2);
-    border-color: var(--red);
-  }
-
+  .side-item.active { background: rgba(229,43,56,0.2); border-color: var(--red); }
   .side-item.active .lbl { color: #fff; }
-
-  /* --- Панель выбранного бойца --- */
 
   .fighter-panel {
     background: rgba(0,0,0,0.55);
     border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 12px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    text-align: center;
+    border-radius: 16px; padding: 12px 10px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px; text-align: center;
   }
-
   .fighter-panel .fp-label {
-    font-size: 9px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
+    font-size: 9px; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
   }
-
   .fighter-avatar {
-    width: 80px; height: 80px;
-    border-radius: 50%;
+    width: 80px; height: 80px; border-radius: 50%;
     background: linear-gradient(145deg, #2a3550, #4a6fa5);
     display: flex; align-items: center; justify-content: center;
-    font-size: 36px;
-    border: 3px solid var(--red);
+    font-size: 36px; border: 3px solid var(--red);
     box-shadow: 0 0 20px rgba(229,43,56,0.4);
     position: relative;
   }
-
   .fighter-avatar .rarity {
-    position: absolute;
-    bottom: -4px;
-    background: var(--red);
-    color: #fff;
-    font-size: 9px;
-    padding: 2px 8px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-transform: uppercase;
+    position: absolute; bottom: -4px;
+    background: var(--red); color: #fff;
+    font-size: 9px; padding: 2px 8px;
+    border-radius: 8px; font-weight: bold; text-transform: uppercase;
   }
-
-  .fighter-name {
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1.1;
-  }
-
-  .fighter-lvl {
-    font-size: 11px;
-    color: var(--text-dim);
-  }
-
+  .fighter-name { font-size: 14px; font-weight: bold; line-height: 1.1; }
+  .fighter-lvl { font-size: 11px; color: var(--text-dim); }
   .fighter-lvl strong { color: var(--red); }
-
   .fighter-bar {
-    width: 100%;
-    height: 4px;
+    width: 100%; height: 4px;
     background: rgba(255,255,255,0.1);
-    border-radius: 2px;
-    overflow: hidden;
+    border-radius: 2px; overflow: hidden;
   }
-
-  .fighter-bar-fill {
-    height: 100%;
-    width: 60%;
-    background: var(--red);
-  }
-
+  .fighter-bar-fill { height: 100%; width: 60%; background: var(--red); }
   .btn-change {
-    width: 100%;
-    background: transparent;
-    border: 1px solid var(--red);
-    color: var(--red);
-    padding: 6px;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
+    width: 100%; background: transparent;
+    border: 1px solid var(--red); color: var(--red);
+    padding: 6px; border-radius: 8px;
+    font-size: 11px; font-weight: bold;
+    cursor: pointer; text-transform: uppercase;
   }
+  .btn-change:hover { background: var(--red); color: #fff; }
 
-  .btn-change:hover {
-    background: var(--red);
-    color: #fff;
-  }
-
-  /* --- Центр: режимы --- */
-
-  .center-area {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .modes-row {
-    display: flex;
-    gap: 6px;
-  }
-
+  .center-area { display: flex; flex-direction: column; gap: 10px; }
+  .modes-row { display: flex; gap: 6px; }
   .mode-tab {
-    flex: 1;
-    background: rgba(0,0,0,0.55);
+    flex: 1; background: rgba(0,0,0,0.55);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 8px 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    cursor: pointer;
+    border-radius: 12px; padding: 8px 4px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 3px; cursor: pointer;
     transition: background 0.15s, border-color 0.15s;
   }
-
   .mode-tab:hover { background: rgba(229,43,56,0.15); }
-  .mode-tab.active {
-    background: rgba(229,43,56,0.25);
-    border-color: var(--red);
-  }
+  .mode-tab.active { background: rgba(229,43,56,0.25); border-color: var(--red); }
   .mode-tab.active .mt-label { color: #fff; }
-
   .mode-tab .mt-ico { font-size: 18px; }
   .mode-tab .mt-label {
-    font-size: 9px;
-    font-weight: bold;
-    color: var(--text-dim);
-    text-transform: uppercase;
+    font-size: 9px; font-weight: bold;
+    color: var(--text-dim); text-transform: uppercase;
   }
 
   .mode-preview {
     background: rgba(0,0,0,0.55);
     border: 1px solid var(--card-border);
-    border-radius: 14px;
-    overflow: hidden;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    border-radius: 14px; overflow: hidden;
+    flex: 1; display: flex; flex-direction: column;
   }
-
   .mode-title-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    background: var(--red);
-    color: #fff;
-    font-weight: bold;
-    font-size: 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 12px; background: var(--red);
+    color: #fff; font-weight: bold; font-size: 14px;
   }
-
   .mode-title-bar .practice {
-    font-size: 10px;
-    background: rgba(255,255,255,0.2);
-    padding: 3px 8px;
-    border-radius: 6px;
-    cursor: pointer;
+    font-size: 10px; background: rgba(255,255,255,0.2);
+    padding: 3px 8px; border-radius: 6px; cursor: pointer;
   }
-
   .map-preview {
-    flex: 1;
-    min-height: 120px;
+    flex: 1; min-height: 120px;
     background: linear-gradient(160deg, #1e2a1e 0%, #2a3a2a 50%, #1a2a1a 100%);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    overflow: hidden;
+    position: relative; display: flex;
+    align-items: center; justify-content: center;
+    color: #fff; font-size: 11px; letter-spacing: 1px;
+    text-transform: uppercase; overflow: hidden;
   }
-
   .map-preview::before {
-    content: "";
-    position: absolute; inset: 0;
+    content: ""; position: absolute; inset: 0;
     background:
       radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08), transparent 40%),
       radial-gradient(circle at 70% 60%, rgba(0,0,0,0.3), transparent 50%);
   }
-
   .map-preview .map-name {
-    position: absolute;
-    top: 8px; left: 10px;
-    background: rgba(0,0,0,0.7);
-    padding: 3px 10px;
-    border-radius: 8px;
-    font-size: 10px;
-    font-weight: bold;
+    position: absolute; top: 8px; left: 10px;
+    background: rgba(0,0,0,0.7); padding: 3px 10px;
+    border-radius: 8px; font-size: 10px; font-weight: bold;
   }
-
   .map-preview .map-info {
-    position: absolute;
-    bottom: 6px; left: 10px; right: 10px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    color: rgba(255,255,255,0.85);
-    font-weight: bold;
+    position: absolute; bottom: 6px; left: 10px; right: 10px;
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: rgba(255,255,255,0.85); font-weight: bold;
   }
-
-  .map-preview .flag {
-    font-size: 40px;
-    opacity: 0.5;
-  }
+  .map-preview .flag { font-size: 40px; opacity: 0.5; }
 
   .play-btn {
     width: 100%;
     background: linear-gradient(90deg, #b81224 0%, #e52b38 50%, #ff4a58 100%);
-    border: none;
-    color: #fff;
-    padding: 16px;
-    border-radius: 14px;
-    font-size: 22px;
-    font-weight: bold;
-    letter-spacing: 2px;
+    border: none; color: #fff;
+    padding: 16px; border-radius: 14px;
+    font-size: 22px; font-weight: bold; letter-spacing: 2px;
     cursor: pointer;
     box-shadow: 0 0 25px rgba(229,43,56,0.5), inset 0 2px 0 rgba(255,255,255,0.2);
     text-shadow: 0 2px 6px rgba(0,0,0,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
   }
-
   .play-btn:hover { filter: brightness(1.15); }
   .play-btn:active { transform: scale(0.98); }
 
-  /* --- Правая колонка --- */
-
-  .right-col {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
+  .right-col { display: flex; flex-direction: column; gap: 8px; }
   .right-card {
     background: rgba(0,0,0,0.55);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 12px;
-    font-size: 12px;
+    border-radius: 12px; padding: 12px; font-size: 12px;
   }
-
   .right-card h4 {
-    margin: 0 0 6px;
-    font-size: 10px;
-    color: var(--red);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin: 0 0 6px; font-size: 10px;
+    color: var(--red); text-transform: uppercase; letter-spacing: 1px;
   }
-
-  .rank-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-  }
-
-  .rank-badge .crown {
-    font-size: 22px;
-    color: var(--gold);
-  }
-
+  .rank-badge { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .rank-badge .crown { font-size: 22px; color: var(--gold); }
   .rank-badge .rank-info { line-height: 1.2; }
   .rank-badge .rank-info .r-name { font-size: 13px; font-weight: bold; }
   .rank-badge .rank-info .r-sub { font-size: 10px; color: var(--text-dim); }
-
   .progress {
-    width: 100%;
-    height: 6px;
+    width: 100%; height: 6px;
     background: rgba(255,255,255,0.1);
-    border-radius: 3px;
-    overflow: hidden;
-    margin: 4px 0;
+    border-radius: 3px; overflow: hidden; margin: 4px 0;
   }
-
-  .progress-fill {
-    height: 100%;
-    background: var(--red);
-  }
-
+  .progress-fill { height: 100%; background: var(--red); }
   .btn-room {
-    width: 100%;
-    background: var(--blue);
-    border: none;
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 6px;
+    width: 100%; background: var(--blue);
+    border: none; color: #fff;
+    padding: 10px; border-radius: 10px;
+    font-size: 12px; font-weight: bold;
+    cursor: pointer; margin-top: 6px;
   }
-
   .btn-room:hover { filter: brightness(1.15); }
 
-  /* --- Нижние карточки --- */
-
   .bottom-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 12px;
-    position: relative;
-    z-index: 1;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; margin-top: 12px; position: relative; z-index: 1;
   }
-
   .bottom-card {
     background: rgba(0,0,0,0.6);
     border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 12px;
-    cursor: pointer;
+    border-radius: 14px; padding: 12px; cursor: pointer;
     transition: transform 0.15s, border-color 0.15s;
   }
-
-  .bottom-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--red);
-  }
-
+  .bottom-card:hover { transform: translateY(-2px); border-color: var(--red); }
   .bottom-card .bc-head {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
   }
-
   .bottom-card .bc-icon {
-    width: 32px; height: 32px;
-    border-radius: 8px;
+    width: 32px; height: 32px; border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
+    font-size: 16px; flex-shrink: 0;
   }
-
   .bottom-card .bc-title {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 12px; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 0.5px;
   }
-
   .bottom-card .bc-text {
-    font-size: 11px;
-    color: var(--text-dim);
-    line-height: 1.4;
+    font-size: 11px; color: var(--text-dim); line-height: 1.4;
   }
-
   .bc-gold  .bc-icon { background: rgba(229,165,43,0.2);  color: var(--gold); }
   .bc-red   .bc-icon { background: rgba(229,43,56,0.2);   color: var(--red); }
   .bc-blue  .bc-icon { background: rgba(59,130,196,0.2);  color: var(--blue); }
 
-  /* ========== КАРТА ГОРОДА ========== */
+  /* ========== КАРТА ========== */
 
   .map-wrap {
-    position: relative;
-    width: 100%;
+    position: relative; width: 100%;
     aspect-ratio: 3 / 4;
     background: radial-gradient(circle at 50% 40%, #1a1d29 0%, #0a0b10 85%);
     border: 1px solid var(--card-border);
-    border-radius: 20px;
-    overflow: hidden;
-    padding: 10px;
+    border-radius: 20px; overflow: hidden; padding: 10px;
   }
-
   .map-wrap::before {
-    content: "";
-    position: absolute; inset: 0;
+    content: ""; position: absolute; inset: 0;
     background:
       radial-gradient(circle at 25% 30%, rgba(255,255,255,0.05), transparent 45%),
       radial-gradient(circle at 75% 70%, rgba(255,255,255,0.04), transparent 45%),
@@ -648,38 +401,26 @@
     pointer-events: none;
     animation: fog 18s ease-in-out infinite alternate;
   }
-
   .district {
-    position: absolute;
-    border-radius: 10px;
+    position: absolute; border-radius: 10px;
     border: 2px solid rgba(255,255,255,0.12);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-    color: #fff;
-    padding: 3px;
-    cursor: pointer;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; font-weight: bold; color: #fff;
+    padding: 3px; cursor: pointer;
     transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
     text-shadow: 0 2px 4px rgba(0,0,0,0.9);
-    line-height: 1.1;
-    user-select: none;
-    overflow: hidden;
+    line-height: 1.1; user-select: none; overflow: hidden;
   }
-
   .district .icon { font-size: 14px; margin-bottom: 2px; }
   .district .name { font-size: 9px; }
   .district .sub  { font-size: 7px; font-weight: normal; opacity: 0.85; margin-top: 1px; }
-
   .district:active { transform: scale(0.96); }
   .district:hover {
     filter: brightness(1.2);
     box-shadow: 0 0 0 2px var(--red), 0 0 25px rgba(229,43,56,0.55);
     z-index: 5;
   }
-
   .d-north     { background: linear-gradient(145deg, #2a2f3a, #3a4050); }
   .d-office    { background: linear-gradient(145deg, #2a3550, #4a6fa5); }
   .d-badguys   { background: linear-gradient(145deg, #4a1270, #8b2fc9); }
@@ -693,7 +434,6 @@
   .d-station   { background: linear-gradient(145deg, #2e2470, #5b4db8); }
   .d-eastgate  { background: linear-gradient(145deg, #5a1010, #c92a2a); }
   .d-south     { background: linear-gradient(145deg, #2a2f3a, #3a4050); }
-
   #d-north     { left: 20%; top: 1%;  width: 60%; height: 6%; }
   #d-office    { left: 20%; top: 8%;  width: 60%; height: 12%; }
   #d-badguys   { left: 2%;  top: 9%;  width: 16%; height: 20%; }
@@ -713,17 +453,14 @@
   .draft {
     background: var(--card);
     border: 1px solid var(--card-border);
-    border-radius: 15px;
-    margin-bottom: 10px; overflow: hidden;
+    border-radius: 15px; margin-bottom: 10px; overflow: hidden;
   }
-
   .draft-button {
     width: 100%; border: none; background: transparent;
     color: var(--text); padding: 18px; text-align: left;
     font-size: 16px; font-weight: bold; cursor: pointer;
     display: flex; justify-content: space-between; align-items: center;
   }
-
   .draft-button:hover { background: var(--tab-hover); }
   .draft-content { display: none; padding: 0 18px 18px; color: var(--text-dim); line-height: 1.6; }
   .draft-content.open { display: block; }
@@ -734,19 +471,16 @@
     border: 1px solid var(--card-border);
     border-radius: 12px; padding: 14px 16px; margin: 10px 0;
   }
-
   body.inverted .sub-block { background: rgba(0,0,0,0.05); }
 
   .sub-block h4 {
     margin: 0 0 8px; color: var(--red);
     font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
   }
-
   .sub-block p, .sub-block li {
     color: var(--text-mid); font-size: 14px;
     line-height: 1.6; margin: 4px 0;
   }
-
   .sub-block ul { margin: 6px 0 0; padding-left: 18px; }
 
   .tag {
@@ -754,10 +488,110 @@
     border-radius: 6px; font-size: 11px; font-weight: bold;
     margin-right: 6px; text-transform: uppercase;
   }
-
   .tag-ok { background: #1e5c2e; color: #7dff9e; }
   .tag-dev { background: #5c4b1e; color: #ffe17d; }
   .tag-idea { background: #3a1e5c; color: #c79dff; }
+
+  /* ========== КАРТОЧКИ ПЕРСОНАЖЕЙ ========== */
+
+  .char-profile {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    margin: 12px 0;
+    border-left: 4px solid var(--text-dim);
+  }
+  body.inverted .char-profile { background: rgba(0,0,0,0.04); }
+
+  .char-profile.rarity-common   { border-left-color: #c0c0c0; }
+  .char-profile.rarity-rare     { border-left-color: #2ecc71; }
+  .char-profile.rarity-superrare{ border-left-color: #3b82c4; }
+  .char-profile.rarity-epic     { border-left-color: #8b2fc9; }
+  .char-profile.rarity-legend   { border-left-color: #e5a52b; }
+  .char-profile.rarity-mythic   { border-left-color: #ff4d4d; }
+  .char-profile.rarity-godly    { border-left-color: #ffffff; }
+  .char-profile.rarity-author   { border-left-color: #e52b38; }
+  .char-profile.rarity-excl     { border-left-color: #c79dff; }
+
+  .char-profile-header {
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--card-border);
+    flex-wrap: wrap;
+  }
+  .char-profile-name {
+    font-size: 18px; font-weight: bold; color: var(--text);
+  }
+  .char-profile-faction {
+    font-size: 11px; color: var(--text-dim); margin-top: 2px;
+  }
+  .char-profile-rarity {
+    font-size: 11px; font-weight: bold;
+    padding: 3px 10px; border-radius: 8px;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.1);
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .rarity-common    .char-profile-rarity { background: #c0c0c0; color: #000; }
+  .rarity-rare      .char-profile-rarity { background: #2ecc71; color: #000; }
+  .rarity-superrare .char-profile-rarity { background: #3b82c4; color: #fff; }
+  .rarity-epic      .char-profile-rarity { background: #8b2fc9; color: #fff; }
+  .rarity-legend    .char-profile-rarity { background: #e5a52b; color: #000; }
+  .rarity-mythic    .char-profile-rarity { background: #ff4d4d; color: #fff; }
+  .rarity-godly     .char-profile-rarity { background: #000; color: #fff; border: 1px solid #fff; }
+  .rarity-author    .char-profile-rarity { background: #e52b38; color: #fff; }
+  .rarity-excl      .char-profile-rarity { background: linear-gradient(90deg,#8b2fc9,#e5a52b,#e52b38); color: #fff; }
+
+  .char-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px; margin-bottom: 12px;
+  }
+  .char-stat {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px; padding: 8px 10px;
+  }
+  body.inverted .char-stat { background: rgba(0,0,0,0.04); }
+  .char-stat-label {
+    color: var(--text-dim); font-size: 9px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .char-stat-value {
+    color: var(--text); font-weight: bold;
+    font-size: 14px; margin-top: 2px;
+  }
+
+  .char-ability {
+    margin: 8px 0;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    border-left: 3px solid var(--red);
+  }
+  body.inverted .char-ability { background: rgba(0,0,0,0.03); }
+
+  .char-ability.super   { border-left-color: #e5a52b; }
+  .char-ability.gadget  { border-left-color: #8b2fc9; }
+  .char-ability.passive { border-left-color: #3b82c4; }
+
+  .char-ability-title {
+    font-size: 10px; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 4px;
+    color: var(--red);
+  }
+  .char-ability.super   .char-ability-title { color: #e5a52b; }
+  .char-ability.gadget  .char-ability-title { color: #8b2fc9; }
+  .char-ability.passive .char-ability-title { color: #3b82c4; }
+
+  .char-ability-text {
+    color: var(--text-mid);
+    font-size: 13px; line-height: 1.5;
+  }
 
   /* ========== НАСТРОЙКИ ========== */
 
@@ -773,7 +607,6 @@
   .setting-label { font-weight: bold; color: var(--text); font-size: 15px; }
   .setting-value { color: var(--red); font-weight: bold; font-size: 14px; min-width: 60px; text-align: right; }
   .setting-desc { color: var(--text-dim); font-size: 13px; line-height: 1.5; }
-
   input[type="range"] { width: 100%; accent-color: var(--red); cursor: pointer; }
 
   .toggle-btn {
@@ -791,20 +624,15 @@
   }
   .btn-reset:hover { filter: brightness(1.1); }
 
-  /* ========== ЭКРАНЫ РАЙОНОВ ========== */
+  /* ========== ЭКРАНЫ ========== */
 
   .screen {
-    position: fixed;
-    inset: 0;
-    background: var(--bg);
-    z-index: 100;
-    overflow-y: auto;
-    padding: 20px;
-    display: none;
-    animation: slideIn 0.25s ease-out;
+    position: fixed; inset: 0;
+    background: var(--bg); z-index: 100;
+    overflow-y: auto; padding: 20px;
+    display: none; animation: slideIn 0.25s ease-out;
   }
   .screen.active { display: block; }
-
   @keyframes slideIn {
     from { transform: translateY(20px); opacity: 0; }
     to   { transform: translateY(0);    opacity: 1; }
@@ -815,16 +643,13 @@
     margin-bottom: 20px; padding-bottom: 16px;
     border-bottom: 1px solid var(--card-border);
   }
-
   .back-btn {
     background: var(--tab-bg); border: 1px solid var(--card-border);
     color: var(--text); width: 44px; height: 44px;
-    border-radius: 12px; font-size: 20px;
-    cursor: pointer; display: flex;
-    align-items: center; justify-content: center; flex-shrink: 0;
+    border-radius: 12px; font-size: 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .back-btn:hover { background: var(--tab-hover); }
-
   .screen-title { font-size: 20px; font-weight: bold; margin: 0; }
   .screen-sub   { font-size: 12px; color: var(--text-dim); margin: 2px 0 0; }
   .screen-content { max-width: 700px; margin: 0 auto; }
@@ -838,7 +663,6 @@
   .shop-info { flex: 1; }
   .shop-info .title { font-weight: bold; font-size: 14px; color: var(--text); }
   .shop-info .desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
-
   .buy-btn {
     background: var(--red); border: none; color: white;
     padding: 9px 14px; border-radius: 10px;
@@ -853,7 +677,6 @@
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 10px; margin-top: 10px;
   }
-
   .char-card {
     background: var(--tab-bg); border: 2px solid var(--card-border);
     border-radius: 14px; padding: 10px;
@@ -905,9 +728,7 @@
   /* ========== АДАПТИВ ========== */
 
   @media (max-width: 900px) {
-    .main-grid {
-      grid-template-columns: 70px 110px 1fr;
-    }
+    .main-grid { grid-template-columns: 70px 110px 1fr; }
     .right-col { display: none; }
   }
 
@@ -917,44 +738,28 @@
     .title p { font-size: 13px; }
     .tab { padding: 10px 4px; font-size: 11px; min-width: 60px; }
     .card { padding: 15px; }
-
-    .main-grid {
-      grid-template-columns: 55px 90px 1fr;
-      gap: 8px;
-    }
-
+    .main-grid { grid-template-columns: 55px 90px 1fr; gap: 8px; }
     .side-item { padding: 6px 2px; }
     .side-item .ico { font-size: 16px; }
     .side-item .lbl { font-size: 7px; }
-
     .fighter-avatar { width: 60px; height: 60px; font-size: 26px; }
     .fighter-name { font-size: 12px; }
     .fighter-lvl { font-size: 10px; }
-
     .mode-tab { padding: 6px 2px; }
     .mode-tab .mt-ico { font-size: 14px; }
     .mode-tab .mt-label { font-size: 8px; }
-
     .mode-title-bar { font-size: 12px; padding: 6px 10px; }
     .mode-title-bar .practice { font-size: 9px; }
-
     .play-btn { font-size: 16px; padding: 12px; letter-spacing: 1px; }
-
-    .bottom-cards {
-      grid-template-columns: 1fr;
-      gap: 6px;
-    }
+    .bottom-cards { grid-template-columns: 1fr; gap: 6px; }
     .bottom-card { padding: 10px; }
     .bottom-card .bc-title { font-size: 11px; }
     .bottom-card .bc-text { font-size: 10px; }
-
     .profile-mini .avatar { width: 34px; height: 34px; font-size: 16px; }
     .profile-mini .nick { font-size: 11px; }
     .profile-mini .lvl { font-size: 10px; }
-
     .currency { padding: 4px 7px; font-size: 10px; }
     .currency .icon { font-size: 12px; }
-
     .icon-btn { width: 30px; height: 30px; font-size: 14px; }
   }
 </style>
@@ -1141,7 +946,6 @@
 
     <div class="game-ui">
 
-      <!-- Верхняя панель -->
       <div class="top-bar">
         <div class="profile-mini">
           <div class="avatar">⚡</div>
@@ -1161,10 +965,8 @@
         </div>
       </div>
 
-      <!-- Основная сетка -->
       <div class="main-grid">
 
-        <!-- Левое меню -->
         <div class="side-menu">
           <div class="side-item" onclick="openScreen('s-redpark')">
             <div class="ico">🎪</div>
@@ -1192,7 +994,6 @@
           </div>
         </div>
 
-        <!-- Выбранный боец -->
         <div class="fighter-panel">
           <div class="fp-label">Твой боец</div>
           <div class="fighter-avatar">
@@ -1205,7 +1006,6 @@
           <button class="btn-change">Сменить</button>
         </div>
 
-        <!-- Центр -->
         <div class="center-area">
 
           <div class="modes-row">
@@ -1242,13 +1042,10 @@
             </div>
           </div>
 
-          <button class="play-btn">
-            ⚡ В БОЙ
-          </button>
+          <button class="play-btn">⚡ В БОЙ</button>
 
         </div>
 
-        <!-- Правая колонка -->
         <div class="right-col">
           <div class="right-card">
             <h4>Ранг</h4>
@@ -1271,7 +1068,6 @@
 
       </div>
 
-      <!-- Нижние карточки -->
       <div class="bottom-cards">
         <div class="bottom-card bc-gold">
           <div class="bc-head">
@@ -1345,52 +1141,448 @@
     </div>
 
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('characters', this)">👤 Персонажи <span class="arrow">›</span></button>
+      <button class="draft-button" onclick="toggleDraft('characters', this)">👤 Персонажи (11 готово) <span class="arrow">›</span></button>
       <div id="characters" class="draft-content">
+
         <div class="sub-block">
-          <h4>City of Bad Guys</h4>
-          <p><strong>Волт</strong> — стартовый стрелок. 7200 HP, 1600 ATK. Супер «Двойной выстрел».</p>
-          <p><strong>Рей</strong> — редкий, 49 RC. Открывается на 100 кубках.</p>
-          <p><strong>Астра</strong> — мифическая. Глава «Звёздного пути».</p>
-          <p><strong>Брук</strong> — охранник. Дробовик, пёс Рекс.</p>
+          <h4>⚪ Начальный (0 RC)</h4>
         </div>
+
+        <div class="char-profile rarity-common">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">⚡ Волт</div>
+              <div class="char-profile-faction">City of Bad Guys</div>
+            </div>
+            <div class="char-profile-rarity">Начальный</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">7200</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Стрелок</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">8 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Двойной залп»</div>
+            <div class="char-ability-text">Два выстрела из двух пистолетов. Урон 800×2 = 1600. Заряды 3, перезарядка 1.5 сек.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Двойной выстрел»</div>
+            <div class="char-ability-text">Мощный залп из двух пистолетов. Урон 3200, пробивает врагов насквозь. Заряд: 10 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Ускоренная перезарядка»</div>
+            <div class="char-ability-text">Мгновенно восстанавливает 3 заряда. 3 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Дымовая завеса»</div>
+            <div class="char-ability-text">Дым вокруг себя. Враги теряют авто-наведение 3 сек. 2 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Скорость реакции»</div>
+            <div class="char-ability-text">+15% скорости на 5 сек после убийства.</div>
+          </div>
+        </div>
+
         <div class="sub-block">
-          <h4>Skate Park</h4>
-          <p><strong>Ricoel</strong> — легендарный, 199 RC.</p>
-          <p><strong>Kiro</strong>, <strong>Jake</strong> — в разработке.</p>
+          <h4>🟢 Редкий (49 RC)</h4>
         </div>
+
+        <div class="char-profile rarity-rare">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">🎯 Рей</div>
+              <div class="char-profile-faction">City of Bad Guys</div>
+            </div>
+            <div class="char-profile-rarity">Редкий</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6000</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Снайпер</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Высокая</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">12 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Прицельный выстрел»</div>
+            <div class="char-ability-text">Один точный выстрел. Урон зависит от дистанции: 800 (в упор) → 2600 (максимум). Заряды 3, перезарядка 1.5 сек.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Рывок сквозь тень»</div>
+            <div class="char-ability-text">Рывок на 5 клеток, неуязвимость, урон 1800 в конце. Заряд: 6 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Дымовая завеса»</div>
+            <div class="char-ability-text">Облако дыма радиусом 3 клетки на 4 сек. 2 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Ускорение»</div>
+            <div class="char-ability-text">+30% скорости на 4 сек. 3 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Дальний глаз»</div>
+            <div class="char-ability-text">Если не получал урон 3 сек, следующая атака +20% урона.</div>
+          </div>
+        </div>
+
+        <div class="char-profile rarity-rare">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">📚 Лео</div>
+              <div class="char-profile-faction">Школьники / Дети</div>
+            </div>
+            <div class="char-profile-rarity">Редкий</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">5800</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Поддержка</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">8 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Учебники»</div>
+            <div class="char-ability-text">Бросает учебник прямо. Урон 1460. Заряды 3. Третий заряд — особая книга: 1500 урона врагу ИЛИ 1500 лечения союзнику.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Живой рисунок»</div>
+            <div class="char-ability-text">Рисунок Маскота оживает и стреляет. Урон 800, HP 3000, 8 сек. Заряд: 8 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Домашка»</div>
+            <div class="char-ability-text">Восстанавливает 800 HP себе или союзнику. 2 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Рогатка»</div>
+            <div class="char-ability-text">Мощный выстрел, отбрасывает врага на 3 клетки. Урон 600. 3 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Любимый ученик»</div>
+            <div class="char-ability-text">+10% к скорости перезарядки, если союзник в радиусе 4 клеток.</div>
+          </div>
+        </div>
+
         <div class="sub-block">
-          <h4>RED Park</h4>
-          <p><strong>Red Man</strong> — антагонист, производит Energy Drink.</p>
-          <p><strong>Лира</strong> — сверхредкая, 99 RC.</p>
-          <p><strong>Маскот</strong> — эпический, 149 RC.</p>
-          <p><strong>Лео</strong> — редкий, 49 RC.</p>
+          <h4>🔵 Сверхредкий (99 RC)</h4>
         </div>
+
+        <div class="char-profile rarity-superrare">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">🎫 Лира</div>
+              <div class="char-profile-faction">RED Park</div>
+            </div>
+            <div class="char-profile-rarity">Сверхредкий</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">7200</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль / Урон</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">7 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Прыгающий шар»</div>
+            <div class="char-ability-text">Метает шар, отскакивает от стен (до 3 отскоков). Урон 1800. Заряды 3.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Большой прыжок»</div>
+            <div class="char-ability-text">Прыжок на 1–10 клеток. Урон 500 при приземлении. Даёт +30% урона на весь бой. Заряд: 9 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Билетник»</div>
+            <div class="char-ability-text">Атака разделяется на 3 шара. Урон 1080 за шар. 3 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Приветствую!»</div>
+            <div class="char-ability-text">Бросает билет, враг замораживается на 1 сек. 2 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Быстрый билет»</div>
+            <div class="char-ability-text">При заряженном супере атаки летят +20% быстрее и +15% дальше.</div>
+          </div>
+        </div>
+
+        <div class="char-profile rarity-superrare">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">🐕 Брук</div>
+              <div class="char-profile-faction">City of Bad Guys</div>
+            </div>
+            <div class="char-profile-rarity">Сверхредкий</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">9400</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Танк / Дамагер</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">5 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Дробовик»</div>
+            <div class="char-ability-text">Веер дроби. Урон 1500 в упор, 500 на дистанции. Заряды 2, перезарядка 2 сек.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Рекс, взять!»</div>
+            <div class="char-ability-text">Призывает пса Рекса: урон 800 за укус, HP 4000, длительность 10 сек. Брук получает +20% к перезарядке. Заряд: 8 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Свисток»</div>
+            <div class="char-ability-text">Рекс телепортируется к Бруку. Или +50% к заряду супера, если Рекса нет. 2 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Дымовая шашка»</div>
+            <div class="char-ability-text">Дым вокруг себя на 4 сек. Враги теряют авто-наведение. 2 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Напарник»</div>
+            <div class="char-ability-text">+10% урона и +10% скорости, пока Рекс жив.</div>
+          </div>
+        </div>
+
         <div class="sub-block">
-          <h4>Office District</h4>
-          <p><strong>Bait</strong> — робот из Новгорода-7, говорит голосом на Морзе.</p>
-          <p><strong>Игрис</strong> — танк, переводчик Байта.</p>
-          <p><strong>Стелла</strong> — почтальон, влюблена в Авторское право.</p>
-          <p><strong>Авторское право</strong> — «банхаммер».</p>
+          <h4>🟣 Эпический (149 RC)</h4>
         </div>
+
+        <div class="char-profile rarity-epic">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">🎪 Маскот</div>
+              <div class="char-profile-faction">RED Park</div>
+            </div>
+            <div class="char-profile-rarity">Эпический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">8000</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Универсал</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">3 / 8 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака (режим 1) — «Ближний бой»</div>
+            <div class="char-ability-text">8 ударов по площади. Урон 300×8 = 2400. Заряды 3.</div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака (режим 2) — «Дальний бой»</div>
+            <div class="char-ability-text">Один большой шарик. Урон 3000, взрыв по области. Заряды 1.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Смена режима»</div>
+            <div class="char-ability-text">Переключает режим на 20 сек. Неуязвим 0.5 сек при активации. Заряд: 8 (ближний) / 3 (дальний) попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Конфетти»</div>
+            <div class="char-ability-text">Враги в радиусе 3 клеток замедляются на 30% на 3 сек. 2 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Праздничный прыжок»</div>
+            <div class="char-ability-text">Прыжок на 4 клетки, урон 500 при приземлении. 3 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Лицо парка»</div>
+            <div class="char-ability-text">+10% HP и регенерация 1% HP/сек, если союзник в радиусе 5 клеток.</div>
+          </div>
+        </div>
+
+        <div class="char-profile rarity-epic">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">👊 Кайден</div>
+              <div class="char-profile-faction">Street of Broken Lanterns</div>
+            </div>
+            <div class="char-profile-rarity">Эпический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">10500</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Танк</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">3 клетки</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Удар ногой»</div>
+            <div class="char-ability-text">Мощный размашистый удар. Урон 3800, отбрасывает врага на 1 клетку. Заряды 2.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Раскрутка»</div>
+            <div class="char-ability-text">Раскрутка 0.34 сек, полёт на 5 клеток. Урон 1000 + замедление 0.5 сек. Заряд: 8 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Стойка»</div>
+            <div class="char-ability-text">−50% входящего урона на 3 сек, но нельзя двигаться. 2 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Рывок»</div>
+            <div class="char-ability-text">Рывок на 3 клетки. Урон 800 + отбрасывание. 3 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Не сдаваться»</div>
+            <div class="char-ability-text">При HP ниже 30% получает +15% урона и +10% скорости.</div>
+          </div>
+        </div>
+
+        <div class="char-profile rarity-epic">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">🛹 Kiro</div>
+              <div class="char-profile-faction">Skate Park</div>
+            </div>
+            <div class="char-profile-rarity">Эпический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6400</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Мобильный / Урон</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Высокая</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Скейтборд»</div>
+            <div class="char-ability-text">Бросает доску, едет по земле, отскакивает от стен 2 раза. Урон 1400. Заряды 2.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Трюк на рампе»</div>
+            <div class="char-ability-text">Прыжок на 4 клетки. Урон 1500 + отбрасывание. Неуязвим в полёте. Заряд: 8 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Граффити»</div>
+            <div class="char-ability-text">Лужа радиусом 3 клетки на 4 сек. Враги замедляются на 40%. 2 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Скейт-трюк»</div>
+            <div class="char-ability-text">Неуязвимость на 1 сек + отбрасывание врагов. 2 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Адреналин»</div>
+            <div class="char-ability-text">+25% скорости на 4 сек после убийства.</div>
+          </div>
+        </div>
+
+        <div class="char-profile rarity-epic">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">🎨 Jake</div>
+              <div class="char-profile-faction">Skate Park</div>
+            </div>
+            <div class="char-profile-rarity">Эпический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6200</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Зональный контроль</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Высокая</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">7 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Аэрозоль»</div>
+            <div class="char-ability-text">Струя краски летит прямо, оставляет краску на земле. Урон 1100. Враги на краске замедляются на 20%. Заряды 3.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Роллербол»</div>
+            <div class="char-ability-text">Разгон на 6 клеток. Урон 1800 + отбрасывание. Неуязвим в разгоне. Заряд: 9 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Трафарет»</div>
+            <div class="char-ability-text">Союзники +15% урона, враги получают +10% урона от Jake. Радиус 3 клетки. 2 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Прыжок с рампы»</div>
+            <div class="char-ability-text">Отпрыгивает назад на 4 клетки. Урон 700 при приземлении. 3 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Роллер»</div>
+            <div class="char-ability-text">Если стоит на месте 2 сек: +10% урона, +5% к перезарядке.</div>
+          </div>
+        </div>
+
+        <div class="char-profile rarity-epic">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">🏮 Ji</div>
+              <div class="char-profile-faction">Street of Broken Lanterns</div>
+            </div>
+            <div class="char-profile-rarity">Эпический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6400</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль / Урон</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Бумажный фонарь»</div>
+            <div class="char-ability-text">Летит прямо. Урон 1500 + взрыв по области (60%). Поджог: 200 HP/сек на 2 сек. Заряды 3.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «Фонарный шторм»</div>
+            <div class="char-ability-text">6 фонарей падают по площади. Урон 600 за фонарь. Поджог 3 сек. Ослепление на 3 сек. Заряд: 9 попаданий.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Дымный фонарь»</div>
+            <div class="char-ability-text">Облако дыма радиусом 3 клетки на 4 сек. 2 использования.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 2 — «Светлячок»</div>
+            <div class="char-ability-text">Подсвечивает врага на 5 сек. Он получает +15% урона от всех. 3 использования.</div>
+          </div>
+          <div class="char-ability passive">
+            <div class="char-ability-title">Пассивка — «Хранитель огня»</div>
+            <div class="char-ability-text">Рядом с горящим фонарём: +10% к перезарядке, регенерация 1% HP/сек.</div>
+          </div>
+        </div>
+
         <div class="sub-block">
-          <h4>Street of Broken Lanterns</h4>
-          <p><strong>Ji</strong> — в разработке.</p>
-          <p><strong>Kaiden</strong> — танк, 9700 HP, 3500 ATK.</p>
+          <h4>🟥🫠 Автор (специальный)</h4>
         </div>
+
+        <div class="char-profile rarity-author">
+          <div class="char-profile-header">
+            <div>
+              <div class="char-profile-name">⚖️ Авторское право</div>
+              <div class="char-profile-faction">Office District</div>
+            </div>
+            <div class="char-profile-rarity">Автор</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">10000</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Модератор</div></div>
+            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Медленная</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Атака — «Печать»</div>
+            <div class="char-ability-text">Бросает ©. Урон 1000 (2000, если враг использовал гаджет/супер за 3 сек). Заряды 2.</div>
+          </div>
+          <div class="char-ability super">
+            <div class="char-ability-title">Супер — «БАН АККАУНТА»</div>
+            <div class="char-ability-text">Игрок вылетает из матча, аккаунт блокируется на 24 часа. Работает только при нарушении правил. 1 раз за матч.</div>
+          </div>
+          <div class="char-ability gadget">
+            <div class="char-ability-title">Гаджет 1 — «Конец боя»</div>
+            <div class="char-ability-text">Наносит себе 100 000 урона, матч заканчивается ничьей. 1 раз за бой.</div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Гаджет 2</div>
+            <div class="char-ability-text">❌ Нет</div>
+          </div>
+          <div class="char-ability">
+            <div class="char-ability-title">Пассивка</div>
+            <div class="char-ability-text">❌ Нет</div>
+          </div>
+        </div>
+
         <div class="sub-block">
-          <h4>Fan Zone</h4>
-          <p><strong>Lax</strong> — убийца, система «Нэн».</p>
-          <p><strong>Марк (Абсолют)</strong> — скрывается.</p>
+          <h4>📊 Прогресс</h4>
+          <p><strong>Готово:</strong> 11 из 20</p>
+          <p><strong>Осталось:</strong> Игрис, Ricoel, Bait, Red Man, Астра, Lax, Алхимик, Инджениум, Тошинори Эго</p>
         </div>
+
         <div class="sub-block">
-          <h4>Anti-Star (тайная)</h4>
-          <p><strong>Абсолют</strong> — бывший босс.</p>
-          <p><strong>Алхимик</strong> — лидер, 75-й боец, Godly.</p>
-          <p><strong>Авторское право</strong> — законник.</p>
-          <p><strong>Инджениум</strong> — воин-инженер, киборг.</p>
-          <p><strong>Тошинори Эго</strong> — разведчик, близнец Кайдена.</p>
+          <h4>Группировки (краткая справка)</h4>
+          <p><strong>City of Bad Guys:</strong> Волт, Рей, Астра, Брук</p>
+          <p><strong>Skate Park:</strong> Ricoel, Kiro, Jake</p>
+          <p><strong>RED Park:</strong> Red Man, Лира, Маскот, Лео</p>
+          <p><strong>Office District:</strong> Bait, Игрис, Стелла, Авторское право</p>
+          <p><strong>Street of Broken Lanterns:</strong> Ji, Kaiden</p>
+          <p><strong>Fan Zone:</strong> Lax, Марк (Абсолют)</p>
+          <p><strong>Школьники / Дети:</strong> Лео</p>
+          <p><strong>Anti-Star (тайная):</strong> Абсолют, Алхимик, Авторское право, Инджениум, Тошинори Эго</p>
+          <p><strong>Звёздный путь:</strong> Астра, Марк</p>
         </div>
+
       </div>
     </div>
 
@@ -1462,10 +1654,10 @@
           <ul>
             <li>Волт — 0</li>
             <li>Рей, Лео — 49</li>
-            <li>Лира — 99</li>
-            <li>Маскот, Кайден — 149</li>
-            <li>Ricoel — 199</li>
-            <li>Red Man — 299</li>
+            <li>Лира, Брук — 99</li>
+            <li>Маскот, Кайден, Kiro, Jake, Ji — 149</li>
+            <li>Ricoel, Bait, Игрис — 199</li>
+            <li>Red Man, Астра, Lax — 299</li>
             <li>Алхимик — 1999</li>
           </ul>
         </div>
@@ -1827,7 +2019,6 @@
 
 <script>
 
-  /* ---------- Вкладки ---------- */
   function openPage(pageId, button) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
@@ -1839,9 +2030,7 @@
   function openTabFromMenu(pageId) {
     const tabIndex = { "plan": 0, "main": 1, "map": 2, "drafts": 3, "settings": 4 }[pageId];
     const tabs = document.querySelectorAll(".tab");
-    if (tabs[tabIndex]) {
-      tabs[tabIndex].click();
-    }
+    if (tabs[tabIndex]) tabs[tabIndex].click();
   }
 
   function toggleDraft(id, button) {
@@ -1851,14 +2040,12 @@
     arrow.textContent = content.classList.contains("open") ? "⌄" : "›";
   }
 
-  /* ---------- Выбор режима ---------- */
   function selectMode(el, modeName) {
     document.querySelectorAll(".mode-tab").forEach(t => t.classList.remove("active"));
     el.classList.add("active");
     document.getElementById("modeTitle").textContent = modeName;
   }
 
-  /* ---------- Экраны районов ---------- */
   function openScreen(id) {
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     document.getElementById(id).classList.add("active");
@@ -1877,7 +2064,6 @@
     }
   });
 
-  /* ---------- Настройки ---------- */
   const body = document.body;
 
   function setBrightness(val) {
