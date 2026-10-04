@@ -17,6 +17,10 @@
     --text-mid: #bbb;
     --text-soft: #ccc;
     --red: #e52b38;
+    --gold: #e5a52b;
+    --blue: #3b82c4;
+    --purple: #8b2fc9;
+    --green: #2ecc71;
     --tab-bg: #171922;
     --tab-hover: #222530;
   }
@@ -51,12 +55,11 @@
   body { filter: brightness(var(--brightness, 1)); }
 
   .container {
-    width: min(900px, 92%);
-    margin: 40px auto;
-    font-size: var(--font-scale, 1rem);
+    width: min(1100px, 96%);
+    margin: 30px auto;
   }
 
-  .title { text-align: center; margin-bottom: 30px; }
+  .title { text-align: center; margin-bottom: 25px; }
   .title h1 { margin: 0; font-size: 42px; letter-spacing: 2px; }
   .title p { color: var(--text-dim); margin-top: 10px; }
 
@@ -98,87 +101,532 @@
     font-weight: bold; margin-right: 10px;
   }
 
-  .draft {
-    background: var(--card);
+  /* ========== ГЛАВНОЕ МЕНЮ ИГРЫ ========== */
+
+  .game-ui {
+    background: linear-gradient(160deg, #0d0f16 0%, #1a0e14 50%, #0a0b10 100%);
     border: 1px solid var(--card-border);
-    border-radius: 15px;
-    margin-bottom: 10px; overflow: hidden;
+    border-radius: 20px;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .draft-button {
-    width: 100%; border: none; background: transparent;
-    color: var(--text); padding: 18px; text-align: left;
-    font-size: 16px; font-weight: bold; cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center;
+  .game-ui::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(229,43,56,0.12), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(139,47,201,0.1), transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(100,120,180,0.08), transparent 70%);
+    pointer-events: none;
+    animation: fog 18s ease-in-out infinite alternate;
   }
 
-  .draft-button:hover { background: var(--tab-hover); }
-  .draft-content { display: none; padding: 0 18px 18px; color: var(--text-dim); line-height: 1.6; }
-  .draft-content.open { display: block; }
-  .arrow { color: var(--red); font-size: 20px; }
+  @keyframes fog {
+    0%   { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 1;   transform: scale(1.06); }
+  }
 
-  .sub-block {
-    background: rgba(0,0,0,0.25);
+  /* --- Верхняя панель --- */
+
+  .top-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.5);
     border: 1px solid var(--card-border);
-    border-radius: 12px; padding: 14px 16px; margin: 10px 0;
+    border-radius: 14px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
   }
 
-  body.inverted .sub-block { background: rgba(0,0,0,0.05); }
-
-  .sub-block h4 {
-    margin: 0 0 8px; color: var(--red);
-    font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+  .profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
   }
 
-  .sub-block p, .sub-block li {
-    color: var(--text-mid); font-size: 14px;
-    line-height: 1.6; margin: 4px 0;
+  .profile-mini .avatar {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #2a3550, #4a6fa5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    border: 2px solid rgba(255,255,255,0.15);
   }
 
-  .sub-block ul { margin: 6px 0 0; padding-left: 18px; }
+  .profile-mini .nick { font-size: 13px; font-weight: bold; line-height: 1.1; }
+  .profile-mini .lvl  { font-size: 11px; color: var(--red); font-weight: bold; }
 
-  .tag {
-    display: inline-block; padding: 2px 8px;
-    border-radius: 6px; font-size: 11px; font-weight: bold;
-    margin-right: 6px; text-transform: uppercase;
+  .currencies {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    flex-wrap: wrap;
   }
 
-  .tag-ok { background: #1e5c2e; color: #7dff9e; }
-  .tag-dev { background: #5c4b1e; color: #ffe17d; }
-  .tag-idea { background: #3a1e5c; color: #c79dff; }
-
-  /* НАСТРОЙКИ */
-  .setting {
-    display: flex; flex-direction: column; gap: 10px;
-    padding: 16px 0; border-bottom: 1px solid var(--card-border);
+  .currency {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
   }
-  .setting:last-child { border-bottom: none; }
-  .setting-row {
-    display: flex; justify-content: space-between;
-    align-items: center; gap: 12px;
+
+  .currency .icon { font-size: 14px; }
+  .currency .val { color: #fff; }
+
+  .icon-btn {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--card-border);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
   }
-  .setting-label { font-weight: bold; color: var(--text); font-size: 15px; }
-  .setting-value { color: var(--red); font-weight: bold; font-size: 14px; min-width: 60px; text-align: right; }
-  .setting-desc { color: var(--text-dim); font-size: 13px; line-height: 1.5; }
 
-  input[type="range"] { width: 100%; accent-color: var(--red); cursor: pointer; }
+  .icon-btn:hover { background: var(--tab-hover); }
 
-  .toggle-btn {
-    background: var(--tab-bg); border: 1px solid var(--card-border);
-    color: var(--text); padding: 10px 18px; border-radius: 10px;
-    cursor: pointer; font-weight: bold; font-size: 14px;
+  .icon-btn .dot {
+    position: absolute;
+    top: -3px; right: -3px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--red);
+    color: #fff;
+    font-size: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold;
+    border: 2px solid var(--bg);
   }
-  .toggle-btn:hover { background: var(--tab-hover); }
-  .toggle-btn.on { background: var(--red); color: white; border-color: var(--red); }
 
-  .btn-reset {
-    width: 100%; background: var(--red); border: none; color: white;
-    padding: 16px; border-radius: 14px; font-size: 16px;
-    font-weight: bold; cursor: pointer; margin-top: 10px;
+  /* --- Основная сетка --- */
+
+  .main-grid {
+    display: grid;
+    grid-template-columns: 80px 130px 1fr 180px;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
   }
-  .btn-reset:hover { filter: brightness(1.1); }
 
-  /* КАРТА */
+  /* --- Левое вертикальное меню --- */
+
+  .side-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .side-item {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 10px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  }
+
+  .side-item:hover {
+    background: rgba(229,43,56,0.15);
+    border-color: var(--red);
+  }
+
+  .side-item:active { transform: scale(0.96); }
+
+  .side-item .ico { font-size: 20px; }
+  .side-item .lbl {
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .side-item.active {
+    background: rgba(229,43,56,0.2);
+    border-color: var(--red);
+  }
+
+  .side-item.active .lbl { color: #fff; }
+
+  /* --- Панель выбранного бойца --- */
+
+  .fighter-panel {
+    background: rgba(0,0,0,0.55);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .fighter-panel .fp-label {
+    font-size: 9px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+
+  .fighter-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #2a3550, #4a6fa5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    border: 3px solid var(--red);
+    box-shadow: 0 0 20px rgba(229,43,56,0.4);
+    position: relative;
+  }
+
+  .fighter-avatar .rarity {
+    position: absolute;
+    bottom: -4px;
+    background: var(--red);
+    color: #fff;
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .fighter-name {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.1;
+  }
+
+  .fighter-lvl {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .fighter-lvl strong { color: var(--red); }
+
+  .fighter-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .fighter-bar-fill {
+    height: 100%;
+    width: 60%;
+    background: var(--red);
+  }
+
+  .btn-change {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 6px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .btn-change:hover {
+    background: var(--red);
+    color: #fff;
+  }
+
+  /* --- Центр: режимы --- */
+
+  .center-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modes-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .mode-tab {
+    flex: 1;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 8px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .mode-tab:hover { background: rgba(229,43,56,0.15); }
+  .mode-tab.active {
+    background: rgba(229,43,56,0.25);
+    border-color: var(--red);
+  }
+  .mode-tab.active .mt-label { color: #fff; }
+
+  .mode-tab .mt-ico { font-size: 18px; }
+  .mode-tab .mt-label {
+    font-size: 9px;
+    font-weight: bold;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .mode-preview {
+    background: rgba(0,0,0,0.55);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mode-title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--red);
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .mode-title-bar .practice {
+    font-size: 10px;
+    background: rgba(255,255,255,0.2);
+    padding: 3px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .map-preview {
+    flex: 1;
+    min-height: 120px;
+    background: linear-gradient(160deg, #1e2a1e 0%, #2a3a2a 50%, #1a2a1a 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+
+  .map-preview::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08), transparent 40%),
+      radial-gradient(circle at 70% 60%, rgba(0,0,0,0.3), transparent 50%);
+  }
+
+  .map-preview .map-name {
+    position: absolute;
+    top: 8px; left: 10px;
+    background: rgba(0,0,0,0.7);
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .map-preview .map-info {
+    position: absolute;
+    bottom: 6px; left: 10px; right: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: rgba(255,255,255,0.85);
+    font-weight: bold;
+  }
+
+  .map-preview .flag {
+    font-size: 40px;
+    opacity: 0.5;
+  }
+
+  .play-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #b81224 0%, #e52b38 50%, #ff4a58 100%);
+    border: none;
+    color: #fff;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(229,43,56,0.5), inset 0 2px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .play-btn:hover { filter: brightness(1.15); }
+  .play-btn:active { transform: scale(0.98); }
+
+  /* --- Правая колонка --- */
+
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .right-card {
+    background: rgba(0,0,0,0.55);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .right-card h4 {
+    margin: 0 0 6px;
+    font-size: 10px;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .rank-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .rank-badge .crown {
+    font-size: 22px;
+    color: var(--gold);
+  }
+
+  .rank-badge .rank-info { line-height: 1.2; }
+  .rank-badge .rank-info .r-name { font-size: 13px; font-weight: bold; }
+  .rank-badge .rank-info .r-sub { font-size: 10px; color: var(--text-dim); }
+
+  .progress {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 4px 0;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--red);
+  }
+
+  .btn-room {
+    width: 100%;
+    background: var(--blue);
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+
+  .btn-room:hover { filter: brightness(1.15); }
+
+  /* --- Нижние карточки --- */
+
+  .bottom-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bottom-card {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 12px;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+
+  .bottom-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--red);
+  }
+
+  .bottom-card .bc-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .bottom-card .bc-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .bottom-card .bc-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .bottom-card .bc-text {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  .bc-gold  .bc-icon { background: rgba(229,165,43,0.2);  color: var(--gold); }
+  .bc-red   .bc-icon { background: rgba(229,43,56,0.2);   color: var(--red); }
+  .bc-blue  .bc-icon { background: rgba(59,130,196,0.2);  color: var(--blue); }
+
+  /* ========== КАРТА ГОРОДА ========== */
+
   .map-wrap {
     position: relative;
     width: 100%;
@@ -199,11 +647,6 @@
       radial-gradient(circle at 50% 50%, rgba(100,120,180,0.06), transparent 65%);
     pointer-events: none;
     animation: fog 18s ease-in-out infinite alternate;
-  }
-
-  @keyframes fog {
-    0%   { opacity: 0.7; transform: scale(1); }
-    100% { opacity: 1;   transform: scale(1.06); }
   }
 
   .district {
@@ -265,7 +708,91 @@
   #d-eastgate  { left: 78%; top: 63%; width: 20%; height: 16%; }
   #d-south     { left: 20%; top: 71%; width: 60%; height: 10%; }
 
-  /* ЭКРАНЫ */
+  /* ========== ЗАГОТОВКИ ========== */
+
+  .draft {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    margin-bottom: 10px; overflow: hidden;
+  }
+
+  .draft-button {
+    width: 100%; border: none; background: transparent;
+    color: var(--text); padding: 18px; text-align: left;
+    font-size: 16px; font-weight: bold; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .draft-button:hover { background: var(--tab-hover); }
+  .draft-content { display: none; padding: 0 18px 18px; color: var(--text-dim); line-height: 1.6; }
+  .draft-content.open { display: block; }
+  .arrow { color: var(--red); font-size: 20px; }
+
+  .sub-block {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--card-border);
+    border-radius: 12px; padding: 14px 16px; margin: 10px 0;
+  }
+
+  body.inverted .sub-block { background: rgba(0,0,0,0.05); }
+
+  .sub-block h4 {
+    margin: 0 0 8px; color: var(--red);
+    font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+  }
+
+  .sub-block p, .sub-block li {
+    color: var(--text-mid); font-size: 14px;
+    line-height: 1.6; margin: 4px 0;
+  }
+
+  .sub-block ul { margin: 6px 0 0; padding-left: 18px; }
+
+  .tag {
+    display: inline-block; padding: 2px 8px;
+    border-radius: 6px; font-size: 11px; font-weight: bold;
+    margin-right: 6px; text-transform: uppercase;
+  }
+
+  .tag-ok { background: #1e5c2e; color: #7dff9e; }
+  .tag-dev { background: #5c4b1e; color: #ffe17d; }
+  .tag-idea { background: #3a1e5c; color: #c79dff; }
+
+  /* ========== НАСТРОЙКИ ========== */
+
+  .setting {
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 16px 0; border-bottom: 1px solid var(--card-border);
+  }
+  .setting:last-child { border-bottom: none; }
+  .setting-row {
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 12px;
+  }
+  .setting-label { font-weight: bold; color: var(--text); font-size: 15px; }
+  .setting-value { color: var(--red); font-weight: bold; font-size: 14px; min-width: 60px; text-align: right; }
+  .setting-desc { color: var(--text-dim); font-size: 13px; line-height: 1.5; }
+
+  input[type="range"] { width: 100%; accent-color: var(--red); cursor: pointer; }
+
+  .toggle-btn {
+    background: var(--tab-bg); border: 1px solid var(--card-border);
+    color: var(--text); padding: 10px 18px; border-radius: 10px;
+    cursor: pointer; font-weight: bold; font-size: 14px;
+  }
+  .toggle-btn:hover { background: var(--tab-hover); }
+  .toggle-btn.on { background: var(--red); color: white; border-color: var(--red); }
+
+  .btn-reset {
+    width: 100%; background: var(--red); border: none; color: white;
+    padding: 16px; border-radius: 14px; font-size: 16px;
+    font-weight: bold; cursor: pointer; margin-top: 10px;
+  }
+  .btn-reset:hover { filter: brightness(1.1); }
+
+  /* ========== ЭКРАНЫ РАЙОНОВ ========== */
+
   .screen {
     position: fixed;
     inset: 0;
@@ -375,11 +902,60 @@
     color: var(--text); border: 1px solid var(--card-border);
   }
 
-  @media (max-width: 600px) {
-    .container { width: 94%; margin: 25px auto; }
-    .title h1 { font-size: 30px; }
-    .tab { padding: 11px 6px; font-size: 12px; min-width: 70px; }
-    .card { padding: 17px; }
+  /* ========== АДАПТИВ ========== */
+
+  @media (max-width: 900px) {
+    .main-grid {
+      grid-template-columns: 70px 110px 1fr;
+    }
+    .right-col { display: none; }
+  }
+
+  @media (max-width: 650px) {
+    .container { width: 96%; margin: 15px auto; }
+    .title h1 { font-size: 28px; }
+    .title p { font-size: 13px; }
+    .tab { padding: 10px 4px; font-size: 11px; min-width: 60px; }
+    .card { padding: 15px; }
+
+    .main-grid {
+      grid-template-columns: 55px 90px 1fr;
+      gap: 8px;
+    }
+
+    .side-item { padding: 6px 2px; }
+    .side-item .ico { font-size: 16px; }
+    .side-item .lbl { font-size: 7px; }
+
+    .fighter-avatar { width: 60px; height: 60px; font-size: 26px; }
+    .fighter-name { font-size: 12px; }
+    .fighter-lvl { font-size: 10px; }
+
+    .mode-tab { padding: 6px 2px; }
+    .mode-tab .mt-ico { font-size: 14px; }
+    .mode-tab .mt-label { font-size: 8px; }
+
+    .mode-title-bar { font-size: 12px; padding: 6px 10px; }
+    .mode-title-bar .practice { font-size: 9px; }
+
+    .play-btn { font-size: 16px; padding: 12px; letter-spacing: 1px; }
+
+    .bottom-cards {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .bottom-card { padding: 10px; }
+    .bottom-card .bc-title { font-size: 11px; }
+    .bottom-card .bc-text { font-size: 10px; }
+
+    .profile-mini .avatar { width: 34px; height: 34px; font-size: 16px; }
+    .profile-mini .nick { font-size: 11px; }
+    .profile-mini .lvl { font-size: 10px; }
+
+    .currency { padding: 4px 7px; font-size: 10px; }
+    .currency .icon { font-size: 12px; }
+
+    .icon-btn { width: 30px; height: 30px; font-size: 14px; }
   }
 </style>
 </head>
@@ -395,6 +971,7 @@
 
   <div class="tabs">
     <button class="tab active" onclick="openPage('plan', this)">📋 План</button>
+    <button class="tab" onclick="openPage('main', this)">🎮 Главное</button>
     <button class="tab" onclick="openPage('map', this)">🗺️ Карта</button>
     <button class="tab" onclick="openPage('drafts', this)">🗂️ Заготовки</button>
     <button class="tab" onclick="openPage('settings', this)">⚙️ Настройки</button>
@@ -557,7 +1134,176 @@
   </div>
 
   <!-- ========================= -->
-  <!-- КАРТА -->
+  <!-- ГЛАВНОЕ МЕНЮ ИГРЫ         -->
+  <!-- ========================= -->
+
+  <div id="main" class="page">
+
+    <div class="game-ui">
+
+      <!-- Верхняя панель -->
+      <div class="top-bar">
+        <div class="profile-mini">
+          <div class="avatar">⚡</div>
+          <div>
+            <div class="nick">REDPROEX</div>
+            <div class="lvl">Ур. 12</div>
+          </div>
+        </div>
+
+        <div class="currencies">
+          <div class="currency"><span class="icon">🏆</span><span class="val">1258</span></div>
+          <div class="currency"><span class="icon">🪙</span><span class="val">1981</span></div>
+          <div class="currency"><span class="icon">🔴</span><span class="val">56</span></div>
+          <div class="currency"><span class="icon">🎫</span><span class="val">12</span></div>
+          <button class="icon-btn">🔔<span class="dot">1</span></button>
+          <button class="icon-btn">⚙️</button>
+        </div>
+      </div>
+
+      <!-- Основная сетка -->
+      <div class="main-grid">
+
+        <!-- Левое меню -->
+        <div class="side-menu">
+          <div class="side-item" onclick="openScreen('s-redpark')">
+            <div class="ico">🎪</div>
+            <div class="lbl">RED Park</div>
+          </div>
+          <div class="side-item" onclick="openScreen('s-badguys')">
+            <div class="ico">🎯</div>
+            <div class="lbl">Клешеры</div>
+          </div>
+          <div class="side-item active">
+            <div class="ico">⚔️</div>
+            <div class="lbl">Бой</div>
+          </div>
+          <div class="side-item" onclick="openScreen('s-station')">
+            <div class="ico">🏰</div>
+            <div class="lbl">Клан</div>
+          </div>
+          <div class="side-item">
+            <div class="ico">👥</div>
+            <div class="lbl">Друзья</div>
+          </div>
+          <div class="side-item" onclick="openTabFromMenu('map')">
+            <div class="ico">🗺️</div>
+            <div class="lbl">Карта</div>
+          </div>
+        </div>
+
+        <!-- Выбранный боец -->
+        <div class="fighter-panel">
+          <div class="fp-label">Твой боец</div>
+          <div class="fighter-avatar">
+            ⚡
+            <div class="rarity">Редкий</div>
+          </div>
+          <div class="fighter-name">ВОЛТ</div>
+          <div class="fighter-lvl">Уровень <strong>11</strong></div>
+          <div class="fighter-bar"><div class="fighter-bar-fill"></div></div>
+          <button class="btn-change">Сменить</button>
+        </div>
+
+        <!-- Центр -->
+        <div class="center-area">
+
+          <div class="modes-row">
+            <div class="mode-tab active" onclick="selectMode(this, 'СОЛО ШД')">
+              <div class="mt-ico">💀</div>
+              <div class="mt-label">Соло</div>
+            </div>
+            <div class="mode-tab" onclick="selectMode(this, 'ФУТБОЛ')">
+              <div class="mt-ico">⚽</div>
+              <div class="mt-label">Футбол</div>
+            </div>
+            <div class="mode-tab" onclick="selectMode(this, 'БОСС')">
+              <div class="mt-ico">👹</div>
+              <div class="mt-label">Босс</div>
+            </div>
+            <div class="mode-tab" onclick="selectMode(this, 'ЗАХВАТ ЗОНЫ')">
+              <div class="mt-ico">🎯</div>
+              <div class="mt-label">Зона</div>
+            </div>
+          </div>
+
+          <div class="mode-preview">
+            <div class="mode-title-bar">
+              <span id="modeTitle">СОЛО ШД</span>
+              <span class="practice">ПРАКТИКА</span>
+            </div>
+            <div class="map-preview">
+              <div class="map-name">📍 ПОЛЯНА</div>
+              <div class="flag">🚩</div>
+              <div class="map-info">
+                <span>👥 Игроков: 5</span>
+                <span>⏱ Время: 3:00</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="play-btn">
+            ⚡ В БОЙ
+          </button>
+
+        </div>
+
+        <!-- Правая колонка -->
+        <div class="right-col">
+          <div class="right-card">
+            <h4>Ранг</h4>
+            <div class="rank-badge">
+              <div class="crown">👑</div>
+              <div class="rank-info">
+                <div class="r-name">Мастер I</div>
+                <div class="r-sub">1258 / 1500 кубков</div>
+              </div>
+            </div>
+            <div class="progress"><div class="progress-fill" style="width: 84%;"></div></div>
+          </div>
+
+          <div class="right-card">
+            <h4>Комната</h4>
+            <p style="margin: 0; font-size: 11px; color: var(--text-dim);">Играй с друзьями</p>
+            <button class="btn-room">+ Создать</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Нижние карточки -->
+      <div class="bottom-cards">
+        <div class="bottom-card bc-gold">
+          <div class="bc-head">
+            <div class="bc-icon">⭐</div>
+            <div class="bc-title">Миссия дня</div>
+          </div>
+          <div class="bc-text">Победи 5 врагов<br><strong style="color: var(--gold);">+100 Gold, +200 Energy</strong></div>
+        </div>
+
+        <div class="bottom-card bc-red">
+          <div class="bc-head">
+            <div class="bc-icon">🎫</div>
+            <div class="bc-title">Battle Pass</div>
+          </div>
+          <div class="bc-text">Уровень 21 / 100<br><strong style="color: var(--red);">91 / 400 XP</strong></div>
+        </div>
+
+        <div class="bottom-card bc-blue">
+          <div class="bc-head">
+            <div class="bc-icon">🌌</div>
+            <div class="bc-title">Событие недели</div>
+          </div>
+          <div class="bc-text">«Путь звезды» с Астрой<br><strong style="color: var(--blue);">Осталось: 3 дня</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ========================= -->
+  <!-- КАРТА                     -->
   <!-- ========================= -->
 
   <div id="map" class="page">
@@ -1087,6 +1833,15 @@
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     document.getElementById(pageId).classList.add("active");
     button.classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function openTabFromMenu(pageId) {
+    const tabIndex = { "plan": 0, "main": 1, "map": 2, "drafts": 3, "settings": 4 }[pageId];
+    const tabs = document.querySelectorAll(".tab");
+    if (tabs[tabIndex]) {
+      tabs[tabIndex].click();
+    }
   }
 
   function toggleDraft(id, button) {
@@ -1094,6 +1849,13 @@
     const arrow = button.querySelector(".arrow");
     content.classList.toggle("open");
     arrow.textContent = content.classList.contains("open") ? "⌄" : "›";
+  }
+
+  /* ---------- Выбор режима ---------- */
+  function selectMode(el, modeName) {
+    document.querySelectorAll(".mode-tab").forEach(t => t.classList.remove("active"));
+    el.classList.add("active");
+    document.getElementById("modeTitle").textContent = modeName;
   }
 
   /* ---------- Экраны районов ---------- */
@@ -1192,4 +1954,4 @@
 </script>
 
 </body>
-                                                                                             </html>
+ </html>
