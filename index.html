@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RED_CLASH OF RED_PARK — Проект</title>
+<title>RED_CLASH — Проект</title>
 
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -101,20 +101,16 @@
     font-weight: bold; margin-right: 10px;
   }
 
-  /* ========== ГЛАВНОЕ МЕНЮ ИГРЫ ========== */
-
+  /* ========== ГЛАВНОЕ МЕНЮ ========== */
   .game-ui {
     background: linear-gradient(160deg, #0d0f16 0%, #1a0e14 50%, #0a0b10 100%);
     border: 1px solid var(--card-border);
-    border-radius: 20px;
-    padding: 14px;
-    position: relative;
-    overflow: hidden;
+    border-radius: 20px; padding: 14px;
+    position: relative; overflow: hidden;
   }
 
   .game-ui::before {
-    content: "";
-    position: absolute; inset: 0;
+    content: ""; position: absolute; inset: 0;
     background:
       radial-gradient(circle at 20% 30%, rgba(229,43,56,0.12), transparent 50%),
       radial-gradient(circle at 80% 70%, rgba(139,47,201,0.1), transparent 50%),
@@ -132,9 +128,9 @@
     display: flex; align-items: center; gap: 10px;
     background: rgba(0,0,0,0.5);
     border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 10px 14px; margin-bottom: 12px;
-    position: relative; z-index: 1; flex-wrap: wrap;
+    border-radius: 14px; padding: 10px 14px;
+    margin-bottom: 12px; position: relative;
+    z-index: 1; flex-wrap: wrap;
   }
 
   .profile-mini { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
@@ -147,10 +143,7 @@
   .profile-mini .nick { font-size: 13px; font-weight: bold; line-height: 1.1; }
   .profile-mini .lvl  { font-size: 11px; color: var(--red); font-weight: bold; }
 
-  .currencies {
-    display: flex; align-items: center; gap: 6px;
-    margin-left: auto; flex-wrap: wrap;
-  }
+  .currencies { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-wrap: wrap; }
 
   .currency {
     display: flex; align-items: center; gap: 5px;
@@ -384,7 +377,6 @@
   .bc-blue  .bc-icon { background: rgba(59,130,196,0.2);  color: var(--blue); }
 
   /* ========== КАРТА ========== */
-
   .map-wrap {
     position: relative; width: 100%;
     aspect-ratio: 3 / 4;
@@ -449,7 +441,6 @@
   #d-south     { left: 20%; top: 71%; width: 60%; height: 10%; }
 
   /* ========== ЗАГОТОВКИ ========== */
-
   .draft {
     background: var(--card);
     border: 1px solid var(--card-border);
@@ -472,7 +463,6 @@
     border-radius: 12px; padding: 14px 16px; margin: 10px 0;
   }
   body.inverted .sub-block { background: rgba(0,0,0,0.05); }
-
   .sub-block h4 {
     margin: 0 0 8px; color: var(--red);
     font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
@@ -493,17 +483,13 @@
   .tag-idea { background: #3a1e5c; color: #c79dff; }
 
   /* ========== КАРТОЧКИ ПЕРСОНАЖЕЙ ========== */
-
   .char-profile {
     background: rgba(0,0,0,0.3);
     border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 16px;
-    margin: 12px 0;
+    border-radius: 14px; padding: 16px; margin: 12px 0;
     border-left: 4px solid var(--text-dim);
   }
   body.inverted .char-profile { background: rgba(0,0,0,0.04); }
-
   .char-profile.rarity-common   { border-left-color: #c0c0c0; }
   .char-profile.rarity-rare     { border-left-color: #2ecc71; }
   .char-profile.rarity-superrare{ border-left-color: #3b82c4; }
@@ -513,27 +499,19 @@
   .char-profile.rarity-godly    { border-left-color: #ffffff; }
   .char-profile.rarity-author   { border-left-color: #e52b38; }
   .char-profile.rarity-excl     { border-left-color: #c79dff; }
-
   .char-profile-header {
     display: flex; justify-content: space-between;
-    align-items: center; gap: 10px;
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--card-border);
+    align-items: center; gap: 10px; margin-bottom: 12px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--card-border);
     flex-wrap: wrap;
   }
-  .char-profile-name {
-    font-size: 18px; font-weight: bold; color: var(--text);
-  }
-  .char-profile-faction {
-    font-size: 11px; color: var(--text-dim); margin-top: 2px;
-  }
+  .char-profile-name { font-size: 18px; font-weight: bold; color: var(--text); }
+  .char-profile-faction { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
   .char-profile-rarity {
     font-size: 11px; font-weight: bold;
     padding: 3px 10px; border-radius: 8px;
     text-transform: uppercase;
-    background: rgba(255,255,255,0.1);
-    color: var(--text);
+    background: rgba(255,255,255,0.1); color: var(--text);
     white-space: nowrap;
   }
   .rarity-common    .char-profile-rarity { background: #c0c0c0; color: #000; }
@@ -566,35 +544,29 @@
   }
 
   .char-ability {
-    margin: 8px 0;
-    padding: 10px 12px;
+    margin: 8px 0; padding: 10px 12px;
     background: rgba(0,0,0,0.2);
     border-radius: 10px;
     border-left: 3px solid var(--red);
   }
   body.inverted .char-ability { background: rgba(0,0,0,0.03); }
-
   .char-ability.super   { border-left-color: #e5a52b; }
   .char-ability.gadget  { border-left-color: #8b2fc9; }
   .char-ability.passive { border-left-color: #3b82c4; }
-
   .char-ability-title {
     font-size: 10px; font-weight: bold;
     text-transform: uppercase; letter-spacing: 1px;
-    margin-bottom: 4px;
-    color: var(--red);
+    margin-bottom: 4px; color: var(--red);
   }
   .char-ability.super   .char-ability-title { color: #e5a52b; }
   .char-ability.gadget  .char-ability-title { color: #8b2fc9; }
   .char-ability.passive .char-ability-title { color: #3b82c4; }
-
   .char-ability-text {
     color: var(--text-mid);
     font-size: 13px; line-height: 1.5;
   }
 
   /* ========== НАСТРОЙКИ ========== */
-
   .setting {
     display: flex; flex-direction: column; gap: 10px;
     padding: 16px 0; border-bottom: 1px solid var(--card-border);
@@ -625,7 +597,6 @@
   .btn-reset:hover { filter: brightness(1.1); }
 
   /* ========== ЭКРАНЫ ========== */
-
   .screen {
     position: fixed; inset: 0;
     background: var(--bg); z-index: 100;
@@ -637,7 +608,6 @@
     from { transform: translateY(20px); opacity: 0; }
     to   { transform: translateY(0);    opacity: 1; }
   }
-
   .screen-header {
     display: flex; align-items: center; gap: 12px;
     margin-bottom: 20px; padding-bottom: 16px;
@@ -725,8 +695,56 @@
     color: var(--text); border: 1px solid var(--card-border);
   }
 
-  /* ========== АДАПТИВ ========== */
+  /* ========== ОКНО ПАРОЛЯ ========== */
+  #passModal {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  #passModal .pass-box {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 24px;
+    max-width: 340px; width: 100%;
+    text-align: center;
+  }
+  #passModal h2 {
+    margin: 0 0 8px; color: var(--text); font-size: 20px;
+  }
+  #passModal p {
+    color: var(--text-dim); font-size: 13px; margin: 0 0 16px;
+  }
+  #passInput {
+    width: 100%; padding: 12px;
+    border-radius: 10px; border: 1px solid var(--card-border);
+    background: var(--bg); color: var(--text);
+    font-size: 16px; text-align: center;
+    box-sizing: border-box;
+  }
+  #passError {
+    color: var(--red); font-size: 13px;
+    margin: 8px 0 0; display: none;
+  }
+  #passModal .btn-enter {
+    width: 100%; margin-top: 14px;
+    padding: 12px; border-radius: 10px;
+    border: none; background: var(--red);
+    color: #fff; font-weight: bold; font-size: 15px;
+    cursor: pointer;
+  }
+  #passModal .btn-cancel {
+    width: 100%; margin-top: 8px;
+    padding: 10px; border-radius: 10px;
+    border: 1px solid var(--card-border);
+    background: transparent; color: var(--text-dim);
+    font-size: 14px; cursor: pointer;
+  }
 
+  /* ========== АДАПТИВ ========== */
   @media (max-width: 900px) {
     .main-grid { grid-template-columns: 70px 110px 1fr; }
     .right-col { display: none; }
@@ -775,7 +793,7 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="openPage('plan', this)">📋 План</button>
+    <button class="tab active" onclick="openPlanWithPassword(this)">📋 План</button>
     <button class="tab" onclick="openPage('main', this)">🎮 Главное</button>
     <button class="tab" onclick="openPage('map', this)">🗺️ Карта</button>
     <button class="tab" onclick="openPage('drafts', this)">🗂️ Заготовки</button>
@@ -1141,446 +1159,381 @@
     </div>
 
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('characters', this)">👤 Персонажи (11 готово) <span class="arrow">›</span></button>
+      <button class="draft-button" onclick="toggleDraft('characters', this)">👤 Персонажи (20 готово) <span class="arrow">›</span></button>
       <div id="characters" class="draft-content">
 
         <div class="sub-block">
           <h4>⚪ Начальный (0 RC)</h4>
         </div>
-
         <div class="char-profile rarity-common">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">⚡ Волт</div>
-              <div class="char-profile-faction">City of Bad Guys</div>
-            </div>
+            <div><div class="char-profile-name">⚡ Волт</div><div class="char-profile-faction">City of Bad Guys</div></div>
             <div class="char-profile-rarity">Начальный</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">7200</div></div>
             <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Стрелок</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">8 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Двойной залп»</div>
-            <div class="char-ability-text">Два выстрела из двух пистолетов. Урон 800×2 = 1600. Заряды 3, перезарядка 1.5 сек.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Двойной выстрел»</div>
-            <div class="char-ability-text">Мощный залп из двух пистолетов. Урон 3200, пробивает врагов насквозь. Заряд: 10 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Ускоренная перезарядка»</div>
-            <div class="char-ability-text">Мгновенно восстанавливает 3 заряда. 3 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Дымовая завеса»</div>
-            <div class="char-ability-text">Дым вокруг себя. Враги теряют авто-наведение 3 сек. 2 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Скорость реакции»</div>
-            <div class="char-ability-text">+15% скорости на 5 сек после убийства.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Двойной залп»</div><div class="char-ability-text">2 выстрела, 800×2 = 1600. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Двойной выстрел»</div><div class="char-ability-text">3200, пробивает насквозь (10 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Ускоренная перезарядка»</div><div class="char-ability-text">+3 заряда (3 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Дымовая завеса»</div><div class="char-ability-text">Враги теряют авто-наведение (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Скорость реакции»</div><div class="char-ability-text">+15% скорости на 5 сек после убийства.</div></div>
         </div>
 
         <div class="sub-block">
           <h4>🟢 Редкий (49 RC)</h4>
         </div>
-
         <div class="char-profile rarity-rare">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">🎯 Рей</div>
-              <div class="char-profile-faction">City of Bad Guys</div>
-            </div>
+            <div><div class="char-profile-name">🎯 Рей</div><div class="char-profile-faction">City of Bad Guys</div></div>
             <div class="char-profile-rarity">Редкий</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6000</div></div>
             <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Снайпер</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Высокая</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">12 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Прицельный выстрел»</div>
-            <div class="char-ability-text">Один точный выстрел. Урон зависит от дистанции: 800 (в упор) → 2600 (максимум). Заряды 3, перезарядка 1.5 сек.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Рывок сквозь тень»</div>
-            <div class="char-ability-text">Рывок на 5 клеток, неуязвимость, урон 1800 в конце. Заряд: 6 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Дымовая завеса»</div>
-            <div class="char-ability-text">Облако дыма радиусом 3 клетки на 4 сек. 2 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Ускорение»</div>
-            <div class="char-ability-text">+30% скорости на 4 сек. 3 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Дальний глаз»</div>
-            <div class="char-ability-text">Если не получал урон 3 сек, следующая атака +20% урона.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Прицельный выстрел»</div><div class="char-ability-text">Урон зависит от дистанции: 800 → 2600. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Рывок сквозь тень»</div><div class="char-ability-text">Рывок 5 клеток, урон 1800 (6 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Дымовая завеса»</div><div class="char-ability-text">Облако дыма (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Ускорение»</div><div class="char-ability-text">+30% скорости (3 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Дальний глаз»</div><div class="char-ability-text">+20% урона, если 3 сек без урона.</div></div>
         </div>
 
         <div class="char-profile rarity-rare">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">📚 Лео</div>
-              <div class="char-profile-faction">Школьники / Дети</div>
-            </div>
+            <div><div class="char-profile-name">📚 Лео</div><div class="char-profile-faction">Школьники / Дети</div></div>
             <div class="char-profile-rarity">Редкий</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">5800</div></div>
             <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Поддержка</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">8 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Учебники»</div>
-            <div class="char-ability-text">Бросает учебник прямо. Урон 1460. Заряды 3. Третий заряд — особая книга: 1500 урона врагу ИЛИ 1500 лечения союзнику.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Живой рисунок»</div>
-            <div class="char-ability-text">Рисунок Маскота оживает и стреляет. Урон 800, HP 3000, 8 сек. Заряд: 8 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Домашка»</div>
-            <div class="char-ability-text">Восстанавливает 800 HP себе или союзнику. 2 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Рогатка»</div>
-            <div class="char-ability-text">Мощный выстрел, отбрасывает врага на 3 клетки. Урон 600. 3 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Любимый ученик»</div>
-            <div class="char-ability-text">+10% к скорости перезарядки, если союзник в радиусе 4 клеток.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Учебники»</div><div class="char-ability-text">1460. Третий заряд: 1500 урона врагу ИЛИ 1500 лечения союзнику.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Живой рисунок»</div><div class="char-ability-text">Клон Маскота, 800 урона, HP 3000, 8 сек (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Домашка»</div><div class="char-ability-text">+800 HP (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Рогатка»</div><div class="char-ability-text">Отбрасывание, 600 урона (3 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Любимый ученик»</div><div class="char-ability-text">+10% к перезарядке рядом с союзником.</div></div>
         </div>
 
         <div class="sub-block">
           <h4>🔵 Сверхредкий (99 RC)</h4>
         </div>
-
         <div class="char-profile rarity-superrare">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">🎫 Лира</div>
-              <div class="char-profile-faction">RED Park</div>
-            </div>
+            <div><div class="char-profile-name">🎫 Лира</div><div class="char-profile-faction">RED Park</div></div>
             <div class="char-profile-rarity">Сверхредкий</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">7200</div></div>
-            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль / Урон</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">7 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Прыгающий шар»</div>
-            <div class="char-ability-text">Метает шар, отскакивает от стен (до 3 отскоков). Урон 1800. Заряды 3.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Большой прыжок»</div>
-            <div class="char-ability-text">Прыжок на 1–10 клеток. Урон 500 при приземлении. Даёт +30% урона на весь бой. Заряд: 9 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Билетник»</div>
-            <div class="char-ability-text">Атака разделяется на 3 шара. Урон 1080 за шар. 3 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Приветствую!»</div>
-            <div class="char-ability-text">Бросает билет, враг замораживается на 1 сек. 2 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Быстрый билет»</div>
-            <div class="char-ability-text">При заряженном супере атаки летят +20% быстрее и +15% дальше.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Прыгающий шар»</div><div class="char-ability-text">1800, отскок до 3 раз. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Большой прыжок»</div><div class="char-ability-text">1–10 клеток, 500 урона, +30% урона (9 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Билетник»</div><div class="char-ability-text">3 шара по 1080 (3 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Приветствую!»</div><div class="char-ability-text">Заморозка 1 сек (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Быстрый билет»</div><div class="char-ability-text">+20% скорости и +15% дальности атак.</div></div>
         </div>
 
         <div class="char-profile rarity-superrare">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">🐕 Брук</div>
-              <div class="char-profile-faction">City of Bad Guys</div>
-            </div>
+            <div><div class="char-profile-name">🐕 Брук</div><div class="char-profile-faction">City of Bad Guys</div></div>
             <div class="char-profile-rarity">Сверхредкий</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">9400</div></div>
-            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Танк / Дамагер</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Танк</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">5 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Дробовик»</div>
-            <div class="char-ability-text">Веер дроби. Урон 1500 в упор, 500 на дистанции. Заряды 2, перезарядка 2 сек.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Рекс, взять!»</div>
-            <div class="char-ability-text">Призывает пса Рекса: урон 800 за укус, HP 4000, длительность 10 сек. Брук получает +20% к перезарядке. Заряд: 8 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Свисток»</div>
-            <div class="char-ability-text">Рекс телепортируется к Бруку. Или +50% к заряду супера, если Рекса нет. 2 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Дымовая шашка»</div>
-            <div class="char-ability-text">Дым вокруг себя на 4 сек. Враги теряют авто-наведение. 2 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Напарник»</div>
-            <div class="char-ability-text">+10% урона и +10% скорости, пока Рекс жив.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Дробовик»</div><div class="char-ability-text">1500 в упор, 500 на дистанции. Заряды 2.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Рекс, взять!»</div><div class="char-ability-text">Пёс: 800 урона, HP 4000, 10 сек (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Свисток»</div><div class="char-ability-text">Телепорт Рекса (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Дымовая шашка»</div><div class="char-ability-text">(2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Напарник»</div><div class="char-ability-text">+10% урона и скорости, пока Рекс жив.</div></div>
         </div>
 
         <div class="sub-block">
           <h4>🟣 Эпический (149 RC)</h4>
         </div>
-
         <div class="char-profile rarity-epic">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">🎪 Маскот</div>
-              <div class="char-profile-faction">RED Park</div>
-            </div>
+            <div><div class="char-profile-name">🎪 Маскот</div><div class="char-profile-faction">RED Park</div></div>
             <div class="char-profile-rarity">Эпический</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">8000</div></div>
             <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Универсал</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
-            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">3 / 8 клеток</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">3 / 8</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака (режим 1) — «Ближний бой»</div>
-            <div class="char-ability-text">8 ударов по площади. Урон 300×8 = 2400. Заряды 3.</div>
-          </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака (режим 2) — «Дальний бой»</div>
-            <div class="char-ability-text">Один большой шарик. Урон 3000, взрыв по области. Заряды 1.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Смена режима»</div>
-            <div class="char-ability-text">Переключает режим на 20 сек. Неуязвим 0.5 сек при активации. Заряд: 8 (ближний) / 3 (дальний) попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Конфетти»</div>
-            <div class="char-ability-text">Враги в радиусе 3 клеток замедляются на 30% на 3 сек. 2 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Праздничный прыжок»</div>
-            <div class="char-ability-text">Прыжок на 4 клетки, урон 500 при приземлении. 3 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Лицо парка»</div>
-            <div class="char-ability-text">+10% HP и регенерация 1% HP/сек, если союзник в радиусе 5 клеток.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака (ближний) — 8×300 = 2400</div><div class="char-ability-text">Заряды 3.</div></div>
+          <div class="char-ability"><div class="char-ability-title">Атака (дальний) — 3000</div><div class="char-ability-text">Заряды 1.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Смена режима»</div><div class="char-ability-text">20 сек, неуязвим 0.5 сек (8/3 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Конфетти»</div><div class="char-ability-text">Замедление 30% (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Праздничный прыжок»</div><div class="char-ability-text">4 клетки, 500 урона (3 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Лицо парка»</div><div class="char-ability-text">+10% HP и регенерация рядом с союзником.</div></div>
         </div>
 
         <div class="char-profile rarity-epic">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">👊 Кайден</div>
-              <div class="char-profile-faction">Street of Broken Lanterns</div>
-            </div>
+            <div><div class="char-profile-name">👊 Кайден</div><div class="char-profile-faction">Street of Broken Lanterns</div></div>
             <div class="char-profile-rarity">Эпический</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">10500</div></div>
             <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Танк</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">3 клетки</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Удар ногой»</div>
-            <div class="char-ability-text">Мощный размашистый удар. Урон 3800, отбрасывает врага на 1 клетку. Заряды 2.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Раскрутка»</div>
-            <div class="char-ability-text">Раскрутка 0.34 сек, полёт на 5 клеток. Урон 1000 + замедление 0.5 сек. Заряд: 8 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Стойка»</div>
-            <div class="char-ability-text">−50% входящего урона на 3 сек, но нельзя двигаться. 2 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Рывок»</div>
-            <div class="char-ability-text">Рывок на 3 клетки. Урон 800 + отбрасывание. 3 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Не сдаваться»</div>
-            <div class="char-ability-text">При HP ниже 30% получает +15% урона и +10% скорости.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Удар ногой»</div><div class="char-ability-text">3800, отбрасывание. Заряды 2.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Раскрутка»</div><div class="char-ability-text">5 клеток, 1000 (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Стойка»</div><div class="char-ability-text">−50% урона (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Рывок»</div><div class="char-ability-text">3 клетки, 800 урона (3 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Не сдаваться»</div><div class="char-ability-text">+15% урона при HP <30%.</div></div>
         </div>
 
         <div class="char-profile rarity-epic">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">🛹 Kiro</div>
-              <div class="char-profile-faction">Skate Park</div>
-            </div>
+            <div><div class="char-profile-name">🛹 Kiro</div><div class="char-profile-faction">Skate Park</div></div>
             <div class="char-profile-rarity">Эпический</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6400</div></div>
-            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Мобильный / Урон</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Высокая</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Мобильный</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Скейтборд»</div>
-            <div class="char-ability-text">Бросает доску, едет по земле, отскакивает от стен 2 раза. Урон 1400. Заряды 2.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Трюк на рампе»</div>
-            <div class="char-ability-text">Прыжок на 4 клетки. Урон 1500 + отбрасывание. Неуязвим в полёте. Заряд: 8 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Граффити»</div>
-            <div class="char-ability-text">Лужа радиусом 3 клетки на 4 сек. Враги замедляются на 40%. 2 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Скейт-трюк»</div>
-            <div class="char-ability-text">Неуязвимость на 1 сек + отбрасывание врагов. 2 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Адреналин»</div>
-            <div class="char-ability-text">+25% скорости на 4 сек после убийства.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Скейтборд»</div><div class="char-ability-text">1400, 2 отскока. Заряды 2.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Трюк на рампе»</div><div class="char-ability-text">4 клетки, 1500 (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Граффити»</div><div class="char-ability-text">Замедление 40% (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Скейт-трюк»</div><div class="char-ability-text">Неуязвимость 1 сек (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Адреналин»</div><div class="char-ability-text">+25% скорости после убийства.</div></div>
         </div>
 
         <div class="char-profile rarity-epic">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">🎨 Jake</div>
-              <div class="char-profile-faction">Skate Park</div>
-            </div>
+            <div><div class="char-profile-name">🎨 Jake</div><div class="char-profile-faction">Skate Park</div></div>
             <div class="char-profile-rarity">Эпический</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6200</div></div>
-            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Зональный контроль</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Высокая</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">7 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Аэрозоль»</div>
-            <div class="char-ability-text">Струя краски летит прямо, оставляет краску на земле. Урон 1100. Враги на краске замедляются на 20%. Заряды 3.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Роллербол»</div>
-            <div class="char-ability-text">Разгон на 6 клеток. Урон 1800 + отбрасывание. Неуязвим в разгоне. Заряд: 9 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Трафарет»</div>
-            <div class="char-ability-text">Союзники +15% урона, враги получают +10% урона от Jake. Радиус 3 клетки. 2 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Прыжок с рампы»</div>
-            <div class="char-ability-text">Отпрыгивает назад на 4 клетки. Урон 700 при приземлении. 3 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Роллер»</div>
-            <div class="char-ability-text">Если стоит на месте 2 сек: +10% урона, +5% к перезарядке.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Аэрозоль»</div><div class="char-ability-text">1100, краска на земле. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Роллербол»</div><div class="char-ability-text">6 клеток, 1800 (9 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Трафарет»</div><div class="char-ability-text">Союзники +15% урона (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Прыжок с рампы»</div><div class="char-ability-text">4 клетки назад, 700 урона (3 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Роллер»</div><div class="char-ability-text">Стоя 2 сек: +10% урона.</div></div>
         </div>
 
         <div class="char-profile rarity-epic">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">🏮 Ji</div>
-              <div class="char-profile-faction">Street of Broken Lanterns</div>
-            </div>
+            <div><div class="char-profile-name">⛓️ Джи</div><div class="char-profile-faction">Street of Broken Lanterns</div></div>
             <div class="char-profile-rarity">Эпический</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6400</div></div>
-            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль / Урон</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Средняя</div></div>
-            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">5 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Бумажный фонарь»</div>
-            <div class="char-ability-text">Летит прямо. Урон 1500 + взрыв по области (60%). Поджог: 200 HP/сек на 2 сек. Заряды 3.</div>
-          </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «Фонарный шторм»</div>
-            <div class="char-ability-text">6 фонарей падают по площади. Урон 600 за фонарь. Поджог 3 сек. Ослепление на 3 сек. Заряд: 9 попаданий.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Дымный фонарь»</div>
-            <div class="char-ability-text">Облако дыма радиусом 3 клетки на 4 сек. 2 использования.</div>
-          </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 2 — «Светлячок»</div>
-            <div class="char-ability-text">Подсвечивает врага на 5 сек. Он получает +15% урона от всех. 3 использования.</div>
-          </div>
-          <div class="char-ability passive">
-            <div class="char-ability-title">Пассивка — «Хранитель огня»</div>
-            <div class="char-ability-text">Рядом с горящим фонарём: +10% к перезарядке, регенерация 1% HP/сек.</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Золотые цепи»</div><div class="char-ability-text">1-2 удары 1500 (3 клетки), 3-й удар — цепь 6 клеток, притягивает. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Цепной шторм»</div><div class="char-ability-text">4 сек, 500 урона/сек, неуязвим к ближнему бою (9 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Захват»</div><div class="char-ability-text">Цепь 6 клеток, заморозка 1 сек (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Цепной щит»</div><div class="char-ability-text">2000 HP щит (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Мастер цепей»</div><div class="char-ability-text">+10% перезарядки при возврате цепи.</div></div>
         </div>
 
         <div class="sub-block">
-          <h4>🟥🫠 Автор (специальный)</h4>
+          <h4>🟡 Легендарный (199 RC)</h4>
+        </div>
+        <div class="char-profile rarity-legend">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">💨 Игрис</div><div class="char-profile-faction">Office District</div></div>
+            <div class="char-profile-rarity">Легендарный</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">10000</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Танк</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">4 клетки</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Грузчик»</div><div class="char-ability-text">2900, взрыв. Заряды 1.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Туман»</div><div class="char-ability-text">6 сек, сквозь стены, собирает банки (6 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Разгрузка»</div><div class="char-ability-text">+1500 HP, +20% скорости (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Дымовая завеса»</div><div class="char-ability-text">(2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Половинка»</div><div class="char-ability-text">При HP <50%: +15% скорости, −10% урона.</div></div>
         </div>
 
+        <div class="char-profile rarity-legend">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">🎬 Ricoel</div><div class="char-profile-faction">Skate Park</div></div>
+            <div class="char-profile-rarity">Легендарный</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">8000</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">8 клеток</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Кадр за кадром»</div><div class="char-ability-text">3 плёнки, 2000. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Главная сцена»</div><div class="char-ability-text">Враги −40% скорости, союзники +25% (9 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Стоп-кадр»</div><div class="char-ability-text">Рывок, след замедляет (3 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Дубль два»</div><div class="char-ability-text">Клон + невидимость (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Каждый бой — фильм»</div><div class="char-ability-text">+25% урона, если 4 сек без урона.</div></div>
+        </div>
+
+        <div class="char-profile rarity-legend">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">📡 Bait</div><div class="char-profile-faction">Office District</div></div>
+            <div class="char-profile-rarity">Легендарный</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">10400</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Танк</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Морзе»</div><div class="char-ability-text">6 импульсов, в среднем 1600. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Глушилка»</div><div class="char-ability-text">3 сек, враги без гаджетов и суперов (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Расшифровка»</div><div class="char-ability-text">Подсветка врагов 5 сек (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Помехи»</div><div class="char-ability-text">Враги −30% перезарядки (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Золотой ребёнок»</div><div class="char-ability-text">Каждые 3 удара +800 HP.</div></div>
+        </div>
+
+        <div class="sub-block">
+          <h4>🔴🟠 Мифический (299 RC)</h4>
+        </div>
+        <div class="char-profile rarity-mythic">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">🎴 Red Man</div><div class="char-profile-faction">RED Park</div></div>
+            <div class="char-profile-rarity">Мифический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">10200</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Раздача карт»</div><div class="char-ability-text">8 карт веером, 550 за карту (макс 4400). Заряды 2.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Шатёр RED Park»</div><div class="char-ability-text">Враги теряют обзор 5 сек (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Охрана»</div><div class="char-ability-text">2 охранника, HP 1500 (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Реклама»</div><div class="char-ability-text">Враги без гаджетов 4 сек (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Бизнес идёт»</div><div class="char-ability-text">+100 HP за урон от карт.</div></div>
+        </div>
+
+        <div class="char-profile rarity-mythic">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">🌌 Астра</div><div class="char-profile-faction">City of Bad Guys / Звёздный путь</div></div>
+            <div class="char-profile-rarity">Мифический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6600</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Урон</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">8 клеток</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Двойной выстрел»</div><div class="char-ability-text">2 снаряда, 1550 за снаряд, растут в полёте. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Робот-помощник»</div><div class="char-ability-text">Робот: 800 урона, HP 4000 (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Космический дрон»</div><div class="char-ability-text">Обзор сквозь стены (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Перезарядка»</div><div class="char-ability-text">+1 боеприпас (3 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Космический щит»</div><div class="char-ability-text">+1500 HP щит при роботе.</div></div>
+        </div>
+
+        <div class="char-profile rarity-mythic">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">💥 Lax</div><div class="char-profile-faction">Fan Zone</div></div>
+            <div class="char-profile-rarity">Мифический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">8200</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Убийца</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">4 клетки</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Рывок Нэн»</div><div class="char-ability-text">Рывок 1.5 клетки, 1300 по области. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Пробуждение Нэн»</div><div class="char-ability-text">10 сек, +50% урона, +30% HP (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Рывок в тень»</div><div class="char-ability-text">Рывок 3 клетки, невидимость (3 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Концентрация»</div><div class="char-ability-text">Двойной урон (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Охота»</div><div class="char-ability-text">Видит заряды и прицел врагов.</div></div>
+        </div>
+
+        <div class="sub-block">
+          <h4>⚫ Godly (1999 RC)</h4>
+        </div>
+        <div class="char-profile rarity-godly">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">🧪 Алхимик</div><div class="char-profile-faction">Anti-Star</div></div>
+            <div class="char-profile-rarity">Godly</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">12000</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Универсал</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">7 клеток</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Фигура 45 граней»</div><div class="char-ability-text">1000, умножается на 2 при окончании дальности, отскакивает. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Зона Алхимика»</div><div class="char-ability-text">20×20, стены 200/сек, 90 сек (10 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Редактор карты»</div><div class="char-ability-text">Строит стены/ямы, остаётся на 1 мин (3 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Алхимический взрыв»</div><div class="char-ability-text">2000 урона в зоне (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Великий алхимик»</div><div class="char-ability-text">Становится больше, умножение атаки ×10.</div></div>
+        </div>
+
+        <div class="sub-block">
+          <h4>🟥🫠 Автор</h4>
+        </div>
         <div class="char-profile rarity-author">
           <div class="char-profile-header">
-            <div>
-              <div class="char-profile-name">⚖️ Авторское право</div>
-              <div class="char-profile-faction">Office District</div>
-            </div>
+            <div><div class="char-profile-name">⚖️ Авторское право</div><div class="char-profile-faction">Office District</div></div>
             <div class="char-profile-rarity">Автор</div>
           </div>
           <div class="char-stats">
             <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">10000</div></div>
             <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Модератор</div></div>
-            <div class="char-stat"><div class="char-stat-label">Скорость</div><div class="char-stat-value">Медленная</div></div>
             <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Атака — «Печать»</div>
-            <div class="char-ability-text">Бросает ©. Урон 1000 (2000, если враг использовал гаджет/супер за 3 сек). Заряды 2.</div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Печать»</div><div class="char-ability-text">1000 (2000 если враг использовал гаджет). Заряды 2.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «БАН АККАУНТА»</div><div class="char-ability-text">Вылет из матча, бан 24 ч. 1 раз за матч.</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Конец боя»</div><div class="char-ability-text">100 000 себе, ничья (1 раз за бой).</div></div>
+          <div class="char-ability"><div class="char-ability-title">Гаджет 2</div><div class="char-ability-text">❌ Нет</div></div>
+          <div class="char-ability"><div class="char-ability-title">Пассивка</div><div class="char-ability-text">❌ Нет</div></div>
+        </div>
+
+        <div class="sub-block">
+          <h4>🟣🟡🔴 Эксклюзив (ивент 75 бойца)</h4>
+        </div>
+        <div class="char-profile rarity-excl">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">🤖 Инджениум</div><div class="char-profile-faction">Anti-Star</div></div>
+            <div class="char-profile-rarity">Эксклюзив</div>
           </div>
-          <div class="char-ability super">
-            <div class="char-ability-title">Супер — «БАН АККАУНТА»</div>
-            <div class="char-ability-text">Игрок вылетает из матча, аккаунт блокируется на 24 часа. Работает только при нарушении правил. 1 раз за матч.</div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">8400</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Убийца</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">4 клетки</div></div>
           </div>
-          <div class="char-ability gadget">
-            <div class="char-ability-title">Гаджет 1 — «Конец боя»</div>
-            <div class="char-ability-text">Наносит себе 100 000 урона, матч заканчивается ничьей. 1 раз за бой.</div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Хлопок»</div><div class="char-ability-text">2800, ударная волна, в упор 5600. Заряды 2.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Ускорение»</div><div class="char-ability-text">6 сек, +60% скорости, +50% скорости атаки (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Ремонт»</div><div class="char-ability-text">+1500 HP, +1 заряд (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Глушилка»</div><div class="char-ability-text">Оглушение 1 сек (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Киборг»</div><div class="char-ability-text">+400 HP каждые 7 сек.</div></div>
+        </div>
+
+        <div class="char-profile rarity-excl">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">👤 Тошинори Эго</div><div class="char-profile-faction">Anti-Star</div></div>
+            <div class="char-profile-rarity">Эксклюзив</div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Гаджет 2</div>
-            <div class="char-ability-text">❌ Нет</div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">11000</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Убийца</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">4 клетки</div></div>
           </div>
-          <div class="char-ability">
-            <div class="char-ability-title">Пассивка</div>
-            <div class="char-ability-text">❌ Нет</div>
-          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Теневой удар»</div><div class="char-ability-text">2 удара по 4000, отбрасывание, 2-й пробивает щиты. Заряды 2.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Альтер эго»</div><div class="char-ability-text">Клон 8 сек, 2000 урона, HP 3000 (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Теневой шаг»</div><div class="char-ability-text">Рывок 4 клетки, след замедляет (3 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Инверсия»</div><div class="char-ability-text">Меняется местами с врагом (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Тень брата»</div><div class="char-ability-text">+20% урона, если Кайден в радиусе 10 клеток.</div></div>
         </div>
 
         <div class="sub-block">
           <h4>📊 Прогресс</h4>
-          <p><strong>Готово:</strong> 11 из 20</p>
-          <p><strong>Осталось:</strong> Игрис, Ricoel, Bait, Red Man, Астра, Lax, Алхимик, Инджениум, Тошинори Эго</p>
-        </div>
-
-        <div class="sub-block">
-          <h4>Группировки (краткая справка)</h4>
-          <p><strong>City of Bad Guys:</strong> Волт, Рей, Астра, Брук</p>
-          <p><strong>Skate Park:</strong> Ricoel, Kiro, Jake</p>
-          <p><strong>RED Park:</strong> Red Man, Лира, Маскот, Лео</p>
-          <p><strong>Office District:</strong> Bait, Игрис, Стелла, Авторское право</p>
-          <p><strong>Street of Broken Lanterns:</strong> Ji, Kaiden</p>
-          <p><strong>Fan Zone:</strong> Lax, Марк (Абсолют)</p>
-          <p><strong>Школьники / Дети:</strong> Лео</p>
-          <p><strong>Anti-Star (тайная):</strong> Абсолют, Алхимик, Авторское право, Инджениум, Тошинори Эго</p>
-          <p><strong>Звёздный путь:</strong> Астра, Марк</p>
+          <p><strong>Готово:</strong> 20 из 20 ✅</p>
+          <p>Все персонажи полностью прописаны!</p>
         </div>
 
       </div>
@@ -1607,8 +1560,12 @@
           <p>Лучшие друзья. Лакс узнал правду, не вынес, память стёрта.</p>
         </div>
         <div class="sub-block">
-          <h4>Кайден и Тошинори</h4>
-          <p>Близнецы. Тошинори похищен, ненавидит Кайдена. Кайден думает, что брат мёртв.</p>
+          <h4>Кайден и Эго</h4>
+          <p>Близнецы. Эго похищен Anti-Star, вырос там. Ненавидит Кайдена за то, что тот вырос в семье. Кайден думает, что брат мёртв.</p>
+        </div>
+        <div class="sub-block">
+          <h4>Инджениум и Эго</h4>
+          <p>Соратники. Оба похищены Anti-Star. Единственные, кто понимает друг друга.</p>
         </div>
         <div class="sub-block">
           <h4>Байт</h4>
@@ -1624,7 +1581,7 @@
     <div class="draft">
       <button class="draft-button" onclick="toggleDraft('mechanics', this)">⚔️ Механики <span class="arrow">›</span></button>
       <div id="mechanics" class="draft-content">
-        <div class="sub-block"><h4>Соло ШД</h4><p>5 игроков. Через 30 сек карта обрушается. Кто упал — вылетает.</p></div>
+        <div class="sub-block"><h4>Соло ШД</h4><p>5 игроков. Через 30 сек карта обрушается.</p></div>
         <div class="sub-block"><h4>Футбол 1v1</h4><p>Физический мяч.</p></div>
         <div class="sub-block"><h4>Зона 1v1</h4><p>Два полукруга. Убийства мешают врагу.</p></div>
         <div class="sub-block"><h4>Босс v2</h4><p>2 игрока против босса.</p></div>
@@ -1918,7 +1875,7 @@
       <button class="back-btn" onclick="closeScreen('s-north')">←</button>
       <div><h2 class="screen-title">Северные пригороды</h2><p class="screen-sub">Спокойная окраина</p></div>
     </div>
-    <div class="card"><p>Тихий район на севере Super_city. Почти нет фракций. Живут семьи, рабочие, пенсионеры. Туман особенно густой утром.</p></div>
+    <div class="card"><p>Тихий район на севере Super_city. Почти нет фракций.</p></div>
   </div>
 </div>
 
@@ -1929,7 +1886,7 @@
       <div><h2 class="screen-title">Fan Zone</h2><p class="screen-sub">Район фанатов</p></div>
     </div>
     <div class="card">
-      <p>Мирный район, где живёт <strong>Лакс</strong>. Сюда же переехал <strong>Марк (Абсолют)</strong>, скрываясь под обычным именем. Лакс не знает, что его друг — бывший босс Anti-Star.</p>
+      <p>Мирный район, где живёт <strong>Лакс</strong>. Сюда же переехал <strong>Марк (Абсолют)</strong>.</p>
       <div class="info-chars"><span class="chip">Lax</span><span class="chip">Марк</span></div>
     </div>
   </div>
@@ -1942,7 +1899,7 @@
       <div><h2 class="screen-title">Улица Разбитых Фонарей</h2><p class="screen-sub">Street of Broken Lanterns</p></div>
     </div>
     <div class="card">
-      <p>Узкие улочки с бумажными фонарями. Здесь живёт <strong>Кайден</strong>, который думает, что его брат <strong>Тошинори</strong> погиб.</p>
+      <p>Узкие улочки с бумажными фонарями. Здесь живёт <strong>Кайден</strong>.</p>
       <div class="info-chars"><span class="chip">Ji</span><span class="chip">Kaiden</span></div>
     </div>
   </div>
@@ -1955,7 +1912,7 @@
       <div><h2 class="screen-title">Скейт Парк</h2><p class="screen-sub">Skate Park</p></div>
     </div>
     <div class="card">
-      <p>Молодёжный район с рампами и граффити. Здесь живёт <strong>Ricoel</strong> — легендарный брейкдансер и режиссёр.</p>
+      <p>Молодёжный район с рампами и граффити.</p>
       <div class="info-chars"><span class="chip">Ricoel</span><span class="chip">Kiro</span><span class="chip">Jake</span></div>
     </div>
   </div>
@@ -1969,7 +1926,7 @@
     </div>
     <div class="card">
       <h3>Тайна</h3>
-      <p>Здесь прячутся <strong>выжившие после 2028 года</strong>: Венди, Фрэнк, Мортис, Брюс, Пэм, некоторые роботы и ещё 20 бравлеров.</p>
+      <p>Здесь прячутся <strong>выжившие после 2028</strong>: Венди, Фрэнк, Мортис, Брюс, Пэм.</p>
       <div class="info-chars"><span class="chip">Венди</span><span class="chip">Фрэнк</span><span class="chip">Мортис</span><span class="chip">Брюс</span><span class="chip">Пэм</span></div>
     </div>
   </div>
@@ -1981,7 +1938,7 @@
       <button class="back-btn" onclick="closeScreen('s-resident')">←</button>
       <div><h2 class="screen-title">Жилой район</h2><p class="screen-sub">Спальный квартал</p></div>
     </div>
-    <div class="card"><p>Обычные дома, где живут мирные жители. Отсюда начинаются слухи о странностях в городе.</p></div>
+    <div class="card"><p>Обычные дома, где живут мирные жители.</p></div>
   </div>
 </div>
 
@@ -1991,9 +1948,7 @@
       <button class="back-btn" onclick="closeScreen('s-port')">←</button>
       <div><h2 class="screen-title">Порт</h2><p class="screen-sub">Морские ворота</p></div>
     </div>
-    <div class="card">
-      <p>Крупный порт с кораблями и складами. Через него поступают ингредиенты для Energy Drink. Возможно, здесь Red Man проворачивает тёмные дела.</p>
-    </div>
+    <div class="card"><p>Через порт поступают ингредиенты для Energy Drink.</p></div>
   </div>
 </div>
 
@@ -2003,7 +1958,7 @@
       <button class="back-btn" onclick="closeScreen('s-eastgate')">←</button>
       <div><h2 class="screen-title">Восточные ворота</h2><p class="screen-sub">Выход из города</p></div>
     </div>
-    <div class="card"><p>Массивные ворота на восток. Через них пытались сбежать выжившие после Starr Park. Сейчас закрыты.</p></div>
+    <div class="card"><p>Массивные ворота на восток. Сейчас закрыты.</p></div>
   </div>
 </div>
 
@@ -2013,12 +1968,63 @@
       <button class="back-btn" onclick="closeScreen('s-south')">←</button>
       <div><h2 class="screen-title">Южные пригороды</h2><p class="screen-sub">Лесная зона</p></div>
     </div>
-    <div class="card"><p>Южная окраина. Здесь начинаются леса и горы. Место, где можно спрятаться от тумана.</p></div>
+    <div class="card"><p>Южная окраина. Здесь начинаются леса и горы.</p></div>
+  </div>
+</div>
+
+<!-- ============================ -->
+<!-- ОКНО ПАРОЛЯ                  -->
+<!-- ============================ -->
+
+<div id="passModal">
+  <div class="pass-box">
+    <h2>🔒 План проекта</h2>
+    <p>Введите пароль для доступа</p>
+    <input type="password" id="passInput" placeholder="Пароль">
+    <p id="passError">Неверный пароль</p>
+    <button class="btn-enter" onclick="checkPlanPass()">Войти</button>
+    <button class="btn-cancel" onclick="closePlanPass()">Отмена</button>
   </div>
 </div>
 
 <script>
 
+  /* ---------- Пароль на вкладку «План» ---------- */
+  let planUnlocked = false;
+  const PLAN_PASSWORD = "redclash2026";
+
+  function openPlanWithPassword(button) {
+    if (planUnlocked) {
+      openPage('plan', button);
+      return;
+    }
+    document.getElementById("passModal").style.display = "flex";
+    document.getElementById("passInput").value = "";
+    document.getElementById("passError").style.display = "none";
+    setTimeout(() => document.getElementById("passInput").focus(), 100);
+  }
+
+  function checkPlanPass() {
+    const input = document.getElementById("passInput").value;
+    if (input === PLAN_PASSWORD) {
+      planUnlocked = true;
+      document.getElementById("passModal").style.display = "none";
+      const tabs = document.querySelectorAll(".tab");
+      openPage('plan', tabs[0]);
+    } else {
+      document.getElementById("passError").style.display = "block";
+    }
+  }
+
+  function closePlanPass() {
+    document.getElementById("passModal").style.display = "none";
+  }
+
+  document.getElementById("passInput").addEventListener("keydown", e => {
+    if (e.key === "Enter") checkPlanPass();
+  });
+
+  /* ---------- Вкладки ---------- */
   function openPage(pageId, button) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
@@ -2051,93 +2057,3 @@
     document.getElementById(id).classList.add("active");
     document.body.style.overflow = "hidden";
   }
-
-  function closeScreen(id) {
-    document.getElementById(id).classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-      document.querySelectorAll(".screen.active").forEach(s => s.classList.remove("active"));
-      document.body.style.overflow = "";
-    }
-  });
-
-  const body = document.body;
-
-  function setBrightness(val) {
-    document.documentElement.style.setProperty("--brightness", val / 100);
-    document.getElementById("brightnessValue").textContent = val + "%";
-    localStorage.setItem("rc_brightness", val);
-  }
-
-  function setFontSize(val) {
-    document.documentElement.style.fontSize = (val / 100 * 16) + "px";
-    document.getElementById("fontValue").textContent = val + "%";
-    localStorage.setItem("rc_font", val);
-  }
-
-  function toggleInvert() {
-    body.classList.toggle("inverted");
-    const on = body.classList.contains("inverted");
-    const btn = document.getElementById("invertBtn");
-    btn.textContent = on ? "Вкл" : "Выкл";
-    btn.classList.toggle("on", on);
-    localStorage.setItem("rc_invert", on);
-  }
-
-  function toggleContrast() {
-    body.classList.toggle("high-contrast");
-    const on = body.classList.contains("high-contrast");
-    const btn = document.getElementById("contrastBtn");
-    btn.textContent = on ? "Вкл" : "Выкл";
-    btn.classList.toggle("on", on);
-    localStorage.setItem("rc_contrast", on);
-  }
-
-  function toggleAnim() {
-    body.classList.toggle("no-anim");
-    const on = !body.classList.contains("no-anim");
-    const btn = document.getElementById("animBtn");
-    btn.textContent = on ? "Вкл" : "Выкл";
-    btn.classList.toggle("on", on);
-    localStorage.setItem("rc_anim", on);
-  }
-
-  function resetSettings() {
-    ["rc_brightness","rc_font","rc_invert","rc_contrast","rc_anim"].forEach(k => localStorage.removeItem(k));
-    document.getElementById("brightness").value = 100;
-    document.getElementById("fontSize").value = 100;
-    body.classList.remove("inverted","high-contrast","no-anim");
-    document.getElementById("invertBtn").textContent = "Выкл";
-    document.getElementById("invertBtn").classList.remove("on");
-    document.getElementById("contrastBtn").textContent = "Выкл";
-    document.getElementById("contrastBtn").classList.remove("on");
-    document.getElementById("animBtn").textContent = "Вкл";
-    document.getElementById("animBtn").classList.add("on");
-    setBrightness(100);
-    setFontSize(100);
-  }
-
-  window.addEventListener("load", () => {
-    const b = localStorage.getItem("rc_brightness");
-    const f = localStorage.getItem("rc_font");
-    const inv = localStorage.getItem("rc_invert") === "true";
-    const con = localStorage.getItem("rc_contrast") === "true";
-    const anim = localStorage.getItem("rc_anim") !== "false";
-
-    if (b) { document.getElementById("brightness").value = b; setBrightness(b); }
-    if (f) { document.getElementById("fontSize").value = f; setFontSize(f); }
-    if (inv) { body.classList.add("inverted"); const btn = document.getElementById("invertBtn"); btn.textContent = "Вкл"; btn.classList.add("on"); }
-    if (con) { body.classList.add("high-contrast"); const btn = document.getElementById("contrastBtn"); btn.textContent = "Вкл"; btn.classList.add("on"); }
-    if (!anim) { body.classList.add("no-anim"); const btn = document.getElementById("animBtn"); btn.textContent = "Выкл"; btn.classList.remove("on"); }
-
-    document.getElementById("brightness").addEventListener("input", e => setBrightness(e.target.value));
-    document.getElementById("fontSize").addEventListener("input", e => setFontSize(e.target.value));
-  });
-
-</script>
-
-</body>
- </html>
