@@ -2057,3 +2057,95 @@
     document.getElementById(id).classList.add("active");
     document.body.style.overflow = "hidden";
   }
+
+  function closeScreen(id) {
+    document.getElementById(id).classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".screen.active").forEach(s => s.classList.remove("active"));
+      document.body.style.overflow = "";
+      closePlanPass();
+    }
+  });
+
+  /* ---------- Настройки ---------- */
+  const body = document.body;
+
+  function setBrightness(val) {
+    document.documentElement.style.setProperty("--brightness", val / 100);
+    document.getElementById("brightnessValue").textContent = val + "%";
+    localStorage.setItem("rc_brightness", val);
+  }
+
+  function setFontSize(val) {
+    document.documentElement.style.fontSize = (val / 100 * 16) + "px";
+    document.getElementById("fontValue").textContent = val + "%";
+    localStorage.setItem("rc_font", val);
+  }
+
+  function toggleInvert() {
+    body.classList.toggle("inverted");
+    const on = body.classList.contains("inverted");
+    const btn = document.getElementById("invertBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_invert", on);
+  }
+
+  function toggleContrast() {
+    body.classList.toggle("high-contrast");
+    const on = body.classList.contains("high-contrast");
+    const btn = document.getElementById("contrastBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_contrast", on);
+  }
+
+  function toggleAnim() {
+    body.classList.toggle("no-anim");
+    const on = !body.classList.contains("no-anim");
+    const btn = document.getElementById("animBtn");
+    btn.textContent = on ? "Вкл" : "Выкл";
+    btn.classList.toggle("on", on);
+    localStorage.setItem("rc_anim", on);
+  }
+
+  function resetSettings() {
+    ["rc_brightness","rc_font","rc_invert","rc_contrast","rc_anim"].forEach(k => localStorage.removeItem(k));
+    document.getElementById("brightness").value = 100;
+    document.getElementById("fontSize").value = 100;
+    body.classList.remove("inverted","high-contrast","no-anim");
+    document.getElementById("invertBtn").textContent = "Выкл";
+    document.getElementById("invertBtn").classList.remove("on");
+    document.getElementById("contrastBtn").textContent = "Выкл";
+    document.getElementById("contrastBtn").classList.remove("on");
+    document.getElementById("animBtn").textContent = "Вкл";
+    document.getElementById("animBtn").classList.add("on");
+    setBrightness(100);
+    setFontSize(100);
+  }
+
+  window.addEventListener("load", () => {
+    const b = localStorage.getItem("rc_brightness");
+    const f = localStorage.getItem("rc_font");
+    const inv = localStorage.getItem("rc_invert") === "true";
+    const con = localStorage.getItem("rc_contrast") === "true";
+    const anim = localStorage.getItem("rc_anim") !== "false";
+
+    if (b) { document.getElementById("brightness").value = b; setBrightness(b); }
+    if (f) { document.getElementById("fontSize").value = f; setFontSize(f); }
+    if (inv) { body.classList.add("inverted"); const btn = document.getElementById("invertBtn"); btn.textContent = "Вкл"; btn.classList.add("on"); }
+    if (con) { body.classList.add("high-contrast"); const btn = document.getElementById("contrastBtn"); btn.textContent = "Вкл"; btn.classList.add("on"); }
+    if (!anim) { body.classList.add("no-anim"); const btn = document.getElementById("animBtn"); btn.textContent = "Выкл"; btn.classList.remove("on"); }
+
+    document.getElementById("brightness").addEventListener("input", e => setBrightness(e.target.value));
+    document.getElementById("fontSize").addEventListener("input", e => setFontSize(e.target.value));
+  });
+
+</script>
+
+</body>
+ </html>
