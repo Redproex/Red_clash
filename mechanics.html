@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RED_CLASH — Механики</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #08090d;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  .container { width: min(900px, 96%); margin: 20px auto; }
+  h1 { text-align: center; font-size: 32px; margin: 0 0 8px; }
+  .sub { text-align: center; color: #999; margin-bottom: 24px; font-size: 14px; }
+  .back {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #171922;
+    color: #fff;
+    border: 1px solid #292c36;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  .back:hover { background: #222530; }
+  .section {
+    background: #12141b;
+    border: 1px solid #292c36;
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    margin: 0 0 14px;
+    font-size: 18px;
+    color: #e52b38;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .block {
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-left: 3px solid #e52b38;
+  }
+  .block h3 {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: #fff;
+  }
+  .block p {
+    margin: 4px 0;
+    color: #bbb;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .block strong { color: #fff; }
+  .rarity-rare .block { border-left-color: #2ecc71; }
+  .rarity-superrare .block { border-left-color: #3b82c4; }
+  .rarity-epic .block { border-left-color: #8b2fc9; }
+  .rarity-legend .block { border-left-color: #e5a52b; }
+  .rarity-mythic .block { border-left-color: #ff4d4d; }
+  .rarity-godly .block { border-left-color: #ffffff; }
+  .toggle {
+    width: 100%;
+    padding: 16px;
+    background: #171922;
+    border: 1px solid #292c36;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toggle:hover { background: #222530; }
+  .toggle .arrow { color: #e52b38; font-size: 20px; }
+  .content { display: none; padding: 0 4px 12px; }
+  .content.open { display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="index.html">← Назад к сайту</a>
+  <h1>⚙️ Механики RED_CLASH</h1>
+  <p class="sub">Все системы, которые мы придумали</p>
+
+  <!-- РЕЖИМЫ -->
+  <button class="toggle" onclick="toggle('modes', this)">⚔️ Режимы (детали) <span class="arrow">›</span></button>
+  <div id="modes" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Соло ШД</h3>
+        <p><strong>Длительность:</strong> 4 минуты</p>
+        <p><strong>Игроков:</strong> 5</p>
+        <p><strong>Обрушение:</strong> через 30 сек, каждые 10 сек по 1 ряду со всех 4 сторон</p>
+        <p><strong>Боты:</strong> понимают, бегут к центру</p>
+        <p><strong>Смерть:</strong> мгновенная при обрушении</p>
+        <p><strong>Победа:</strong> последний выживший</p>
+      </div>
+      <div class="block">
+        <h3>Зона 1v1</h3>
+        <p><strong>Длительность:</strong> 5 минут</p>
+        <p><strong>Цель:</strong> заполнить свою полоску до 100%</p>
+        <p><strong>Скорость:</strong> 2% в секунду</p>
+        <p><strong>Прогресс:</strong> сохраняется при выходе из зоны</p>
+        <p><strong>Смерть:</strong> респавн 3 сек</p>
+        <p><strong>Победа:</strong> больше заполнено за 5 минут</p>
+      </div>
+      <div class="block">
+        <h3>Футбол 1v1</h3>
+        <p><strong>Длительность:</strong> 5 минут</p>
+        <p><strong>Ворота:</strong> у каждого свои</p>
+        <p><strong>Мяч:</strong> подбирается при касании, бросок атакой по прямой</p>
+        <p><strong>Ульта:</strong> усиленный бросок</p>
+        <p><strong>Гаджет:</strong> только без мяча</p>
+        <p><strong>Цель:</strong> 2 гола</p>
+        <p><strong>Респавн:</strong> 3 сек</p>
+      </div>
+      <div class="block">
+        <h3>Босс v2 (Тренировочный робот)</h3>
+        <p><strong>Длительность:</strong> 6 минут</p>
+        <p><strong>Игроков:</strong> 2</p>
+        <p><strong>HP босса:</strong> 50 000</p>
+        <p><strong>Фаза 1 (100–70%):</strong> ракеты</p>
+        <p><strong>Фаза 2 (70–30%):</strong> ракеты + таран</p>
+        <p><strong>Фаза 3 (30–0%):</strong> ракеты + таран + бесконечные мини-роботы (HP 500, урон 200, лимит 20)</p>
+        <p><strong>Награда:</strong> 10 кубков, без лимита</p>
+      </div>
+      <div class="block">
+        <h3>Ивентовые боссы (10 мин)</h3>
+        <p>Алхимик (Тёмный Всемогущий) — Тёмный Алхимик, лаборатория 500×500, 20 игроков.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- КУБКИ -->
+  <button class="toggle" onclick="toggle('cups', this)">🏆 Кубки и лиги <span class="arrow">›</span></button>
+  <div id="cups" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Кубки</h3>
+        <p>Победа: +8 | Поражение: −6 | Ничья: +2</p>
+      </div>
+      <div class="block">
+        <h3>Лиги (6 штук)</h3>
+        <p>🌳 Дерево — 0–250</p>
+        <p>🥉 Бронза — 251–500</p>
+        <p>🥈 Серебро — 501–750</p>
+        <p>🥇 Золото — 751–1000</p>
+        <p>💎 Алмаз — 1001–2000</p>
+        <p>🔮 Экстра — 2001+</p>
+        <p>Без подуровней.</p>
+      </div>
+      <div class="block">
+        <h3>Награды за лиги</h3>
+        <p>Дерево → Золото: спец-косметика на бойца</p>
+        <p>Алмаз: мифический ящик (за 1000 кубков)</p>
+        <p>Экстра: баннер «Прайм» (счётчик бойцов с 1000 кубков)</p>
+      </div>
+      <div class="block">
+        <h3>Путь славы</h3>
+        <p>20 → 200 Gold</p>
+        <p>50 → 20 Energy</p>
+        <p>100 → <strong>Рей</strong></p>
+        <p>200 → 300 Gold</p>
+        <p>300 → Обычный ящик</p>
+        <p>500 → <strong>Астра</strong></p>
+        <p>700 → 50 Energy</p>
+        <p>1000 → Редкий ящик</p>
+        <p>1500 → 500 Gold</p>
+        <p>2000 → Сверхредкий ящик</p>
+        <p>3000 → 80 Energy</p>
+        <p>5000 → Эпический ящик</p>
+        <p>7000 → 700 Gold</p>
+        <p>10 000 → Легендарный ящик (и каждые 10 000 дальше)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ОПЫТ -->
+  <button class="toggle" onclick="toggle('levels', this)">📈 Опыт и уровни <span class="arrow">›</span></button>
+  <div id="levels" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Источники опыта</h3>
+        <p>Победа — 50 XP</p>
+        <p>Поражение — 25 XP</p>
+        <p>Лёгкое достижение — 100 XP</p>
+        <p>Среднее достижение — 200 XP</p>
+        <p>Сложное достижение — 500 XP</p>
+        <p>Экстра-достижение — 1000 XP</p>
+      </div>
+      <div class="block">
+        <h3>Уровни</h3>
+        <p>1 уровень — 500 XP</p>
+        <p>2–200 уровень — по 1000 XP</p>
+        <p>Максимум: 200 уровень.</p>
+      </div>
+      <div class="block">
+        <h3>Ящик каждые 10 уровней</h3>
+        <p>Редкий — 57%</p>
+        <p>Сверхредкий — 25%</p>
+        <p>Эпический — 10%</p>
+        <p>Легендарный — 5%</p>
+        <p>Мифический — 3%</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЕЖЕДНЕВНЫЕ -->
+  <button class="toggle" onclick="toggle('daily', this)">🎁 Ежедневные награды <span class="arrow">›</span></button>
+  <div id="daily" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>День 1 — выбор</h3>
+        <p>1000 Gold / 100 Energy / Скин «Теневой стрелок» на Волта</p>
+        <p>Если скин уже есть и серия сброшена → 100 Gold</p>
+      </div>
+      <div class="block">
+        <h3>Дни 2–30 и дальше</h3>
+        <p>Хаотично, без цикла.</p>
+        <p>Пул: редкий/сверхредкий/эпический ящик, Gold (250–1000), Energy (30–100), RC (2–5).</p>
+        <p>Пропустил день → серия сбрасывается с Дня 1.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- КОСМЕТИКА -->
+  <button class="toggle" onclick="toggle('cosmetic', this)">🎨 Косметика <span class="arrow">›</span></button>
+  <div id="cosmetic" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Скины</h3>
+        <p>Цены как у бойцов по редкости: 49 / 99 / 149 / 199 / 299 / 1999 RC</p>
+      </div>
+      <div class="block">
+        <h3>Пины</h3>
+        <p>Обычный пин (на бойца) — 29 RC</p>
+        <p>Пин аккаунта — 49 RC</p>
+      </div>
+      <div class="block">
+        <h3>Иконки</h3>
+        <p>49 RC</p>
+      </div>
+      <div class="block">
+        <h3>Баннеры (10 штук)</h3>
+        <p>1. 🛤️ Железнодорожные пути — 1 000 000 метров в Sabyey Run</p>
+        <p>2. 👑 Кубковый охотник — 10 000 кубков</p>
+        <p>3. ⚔️ Ветеран — 1 000 побед</p>
+        <p>4. 🏅 Прайм — 1 000 кубков на одном бойце</p>
+        <p>5. 💀 Череп Лакса — 10 000 убийств</p>
+        <p>6. 🏰 Клановая крепость — 10 клановых войн</p>
+        <p>7. 💎 Коллекционер — 20 бойцов</p>
+        <p>8. 🎯 Снайпер — 5 000 попаданий без промаха</p>
+        <p>9. 🌫️ Туманный житель — 100 часов в игре</p>
+        <p>10. 🎪 Хозяин парка — все 4 режима на 100%</p>
+        <p>Только за достижения, не покупаются.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- МАГАЗИН -->
+  <button class="toggle" onclick="toggle('shop', this)">🛒 Магазин <span class="arrow">›</span></button>
+  <div id="shop" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>За реал</h3>
+        <p>Только ресурсы: Gold, Energy</p>
+      </div>
+      <div class="block">
+        <h3>За Red Coins</h3>
+        <p>Всё, что есть в игре: Gold, Energy, скины, пины, иконки, прокачка, клан, улучшение клана, ящики, Battle Pass, будущие механики</p>
+      </div>
+      <div class="block">
+        <h3>За Gold</h3>
+        <p>Скины, пины, прокачка, клан, улучшения клана, будущие механики. Дороже, но доступно сразу.</p>
+      </div>
+      <div class="block">
+        <h3>За Energy</h3>
+        <p>Прокачка, гаджеты, пассивки</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ДРУЗЬЯ -->
+  <button class="toggle" onclick="toggle('friends', this)">👥 Друзья <span class="arrow">›</span></button>
+  <div id="friends" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Система (бета)</h3>
+        <p>ID игрока — Билет #RS7WB2 (6 символов)</p>
+        <p>Кнопка «Копировать» есть</p>
+        <p>Добавление и удаление</p>
+        <p>Максимум друзей: 100 (в бете — 10)</p>
+        <p>Играть вместе, чат, приглашение в клан — пока нет (нет серверов)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ГОЛОДНЫЕ ИГРЫ -->
+  <button class="toggle" onclick="toggle('hunger', this)">🏰 Голодные игры <span class="arrow">›</span></button>
+  <div id="hunger" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Формат</h3>
+        <p>Проходят за 10 дней до окончания сезона</p>
+        <p>Участвуют 50 отобранных кланов (автор выбирает вручную)</p>
+        <p>Заявку подаёт глава клана по почте</p>
+        <p>Формат: «Приветствую, автор! Мы хотим участвовать в играх клана. Название клана: ..., мой ID: #...»</p>
+      </div>
+      <div class="block">
+        <h3>Механика</h3>
+        <p>Каждый участник клана занимает топ-1 в Соло ШД</p>
+        <p>Суммарное количество топ-1 побед определяет место клана</p>
+      </div>
+      <div class="block">
+        <h3>Награды</h3>
+        <p>🥇 Топ-1 (лучший): клан делит 10 000 RC</p>
+        <p>🥇 Обычный топ-1 (500+): 1000 Gold + 2 мифических ящика + 500 Energy</p>
+        <p>🥈 Топ-2 (250–500): 1 мифический ящик + чуть меньше ресурсов + клан делит 500 RC</p>
+        <p>🥉 Остальные (0–250): легендарный ящик</p>
+        <p>❌ Не участвовали: ничего</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(id, button) {
+    const content = document.getElementById(id);
+    const arrow = button.querySelector(".arrow");
+    content.classList.toggle("open");
+    arrow.textContent = content.classList.contains("open") ? "⌄" : "›";
+  }
+</script>
+</body>
+          </html>
