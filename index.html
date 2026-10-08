@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#e52b38">
- <title>RED_CLASH — Проект</title>
+<title>RED_CLASH — Проект</title>
 
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -67,7 +67,7 @@
   .title p { color: var(--text-dim); margin-top: 10px; }
 
   .tabs { display: flex; gap: 8px; margin-bottom: 25px; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
-.tabs::-webkit-scrollbar { display: none; }
+  .tabs::-webkit-scrollbar { display: none; }
 
   .tab {
     flex: 1; min-width: 90px;
@@ -799,9 +799,9 @@
   <div class="tabs">
     <button class="tab" onclick="openPlanWithPassword(this)">📋 План</button>
     <button class="tab active" onclick="openPage('main', this)">🎮 Главное</button>
-   <a href="mechanics.html" style="flex:1;min-width:90px;padding:14px 8px;border:none;border-radius:14px;background:var(--tab-bg);color:var(--text-dim);font-size:14px;font-weight:bold;cursor:pointer;text-decoration:none;text-align:center;">⚙️ Механики</a>
+    <a href="mechanics.html" style="flex:1;min-width:90px;padding:14px 8px;border:none;border-radius:14px;background:var(--tab-bg);color:var(--text-dim);font-size:14px;font-weight:bold;cursor:pointer;text-decoration:none;text-align:center;">⚙️ Механики</a>
     <a href="contact.html" style="flex:1;min-width:90px;padding:14px 8px;border:none;border-radius:14px;background:var(--tab-bg);color:var(--text-dim);font-size:14px;font-weight:bold;cursor:pointer;text-decoration:none;text-align:center;">📧 Связь</a>
-   <button class="tab" onclick="openPage('map', this)">🗺️ Карта</button>
+    <button class="tab" onclick="openPage('map', this)">🗺️ Карта</button>
     <button class="tab" onclick="openPage('drafts', this)">🗂️ Заготовки</button>
     <button class="tab" onclick="openPage('settings', this)">⚙️ Настройки</button>
   </div>
@@ -1021,12 +1021,12 @@
         <div class="fighter-panel">
           <div class="fp-label">Твой боец</div>
           <div class="fighter-avatar">
-            ⚡
-            <div class="rarity">Редкий</div>
+            👑
+            <div class="rarity">Начальный</div>
           </div>
-          <div class="fighter-name">ВОЛТ</div>
-          <div class="fighter-lvl">Уровень <strong>11</strong></div>
-          <div class="fighter-bar"><div class="fighter-bar-fill"></div></div>
+          <div class="fighter-name">ИГРОК</div>
+          <div class="fighter-lvl">Уровень <strong>1</strong></div>
+          <div class="fighter-bar"><div class="fighter-bar-fill" style="width: 20%;"></div></div>
           <button class="btn-change">Сменить</button>
         </div>
 
@@ -1061,7 +1061,7 @@
               <div class="flag">🚩</div>
               <div class="map-info">
                 <span>👥 Игроков: 5</span>
-                <span>⏱ Время: 3:00</span>
+                <span>⏱ Время: 4:00</span>
               </div>
             </div>
           </div>
@@ -1096,9 +1096,9 @@
         <div class="bottom-card bc-gold">
           <div class="bc-head">
             <div class="bc-icon">⭐</div>
-            <div class="bc-title">Миссия дня</div>
+            <div class="bc-title">Ежедневные победы</div>
           </div>
-          <div class="bc-text">Победи 5 врагов<br><strong style="color: var(--gold);">+100 Gold, +200 Energy</strong></div>
+          <div class="bc-text">Победи 6 раз<br><strong style="color: var(--gold);">5 обычных + 1 эпик</strong></div>
         </div>
 
         <div class="bottom-card bc-red">
@@ -1164,16 +1164,41 @@
       <p>Статусы: <span class="tag tag-ok">утверждено</span> <span class="tag tag-dev">в разработке</span> <span class="tag tag-idea">идея</span></p>
     </div>
 
+    <div class="card">
+      <h3>📧 Обратная связь</h3>
+      <p>По всем вопросам, багам, идеям и заявкам на «Голодные игры»:</p>
+      <p style="font-size: 16px; font-weight: bold; color: #e52b38;">redprofeedback@gmail.com</p>
+      <p style="font-size: 12px; color: #999;">Глава клана подаёт заявку лично. В письме укажи: название клана, свой ID (Билет #XXXXXX).</p>
+    </div>
+
     <div class="draft">
-      <button class="draft-button" onclick="toggleDraft('characters', this)">👤 Персонажи (20 готово) <span class="arrow">›</span></button>
+      <button class="draft-button" onclick="toggleDraft('characters', this)">👤 Персонажи (23 готово) <span class="arrow">›</span></button>
       <div id="characters" class="draft-content">
 
         <div class="sub-block">
           <h4>⚪ Начальный (0 RC)</h4>
         </div>
+
         <div class="char-profile rarity-common">
           <div class="char-profile-header">
-            <div><div class="char-profile-name">⚡ Волт</div><div class="char-profile-faction">City of Bad Guys</div></div>
+            <div><div class="char-profile-name">👑 Игрок</div><div class="char-profile-faction">Бунтарь / Протагонист</div></div>
+            <div class="char-profile-rarity">Начальный</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">4200</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Урон</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">8 клеток</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Бросок короны»</div><div class="char-ability-text">Корона летит прямо, пробивает врагов насквозь. Урон 800. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Коронация»</div><div class="char-ability-text">Волна энергии вокруг, урон 1500 по области, отбрасывание. +20% урона на 5 сек (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Бунт»</div><div class="char-ability-text">Удар по земле, 800 урона + оглушение 0.5 сек (3 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Уличный трюк»</div><div class="char-ability-text">Рывок назад на 3 клетки, неуязвим в полёте (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Никаких правил»</div><div class="char-ability-text">+3% урона за попадание (до +15%). Сброс при промахе.</div></div>
+        </div>
+
+        <div class="char-profile rarity-common">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">⚡ Волт</div><div class="char-profile-faction">City of Bad Guys • 10 кубков</div></div>
             <div class="char-profile-rarity">Начальный</div>
           </div>
           <div class="char-stats">
@@ -1351,6 +1376,23 @@
           <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Мастер цепей»</div><div class="char-ability-text">+10% перезарядки при возврате цепи.</div></div>
         </div>
 
+        <div class="char-profile rarity-epic">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">🍺 Тревор</div><div class="char-profile-faction">Заброшенный район</div></div>
+            <div class="char-profile-rarity">Эпический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">6800</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Метатель</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">7 клеток</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Бутылки»</div><div class="char-ability-text">Бросает по дуге, летит через препятствия. Урон 1700. Лужа воды: радиус 2, урон 400/сек, 3 сек. Заряды 3.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Баррикада»</div><div class="char-ability-text">Стена из мебели 4×2, HP 4000, блокирует врагов. Взрыв 1500 при разрушении (9 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Глоток»</div><div class="char-ability-text">Восстанавливает 1500 HP (2 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Выселение»</div><div class="char-ability-text">Ящик отбрасывает на 3 клетки, урон 800. +500 при ударе о стену (3 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Терпение»</div><div class="char-ability-text">+10% урона каждые 10 сек без урона (до +50%).</div></div>
+        </div>
+
         <div class="sub-block">
           <h4>🟡 Легендарный (199 RC)</h4>
         </div>
@@ -1459,6 +1501,23 @@
           <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Охота»</div><div class="char-ability-text">Видит заряды и прицел врагов.</div></div>
         </div>
 
+        <div class="char-profile rarity-mythic">
+          <div class="char-profile-header">
+            <div><div class="char-profile-name">🚔 Шефр</div><div class="char-profile-faction">Super City</div></div>
+            <div class="char-profile-rarity">Мифический</div>
+          </div>
+          <div class="char-stats">
+            <div class="char-stat"><div class="char-stat-label">HP</div><div class="char-stat-value">8200</div></div>
+            <div class="char-stat"><div class="char-stat-label">Роль</div><div class="char-stat-value">Контроль</div></div>
+            <div class="char-stat"><div class="char-stat-label">Дальность</div><div class="char-stat-value">6 клеток</div></div>
+          </div>
+          <div class="char-ability"><div class="char-ability-title">Атака — «Арест»</div><div class="char-ability-text">Бросает наручники. 1 часть — 1000 урона. 2 части — стан 3 сек + Шефр получает +30% перезарядки на 5 сек. Заряды 2.</div></div>
+          <div class="char-ability super"><div class="char-ability-title">Супер — «Патруль»</div><div class="char-ability-text">Справа выезжает полицейская машина. Таран по прямой, урон 2500, отбрасывание. Исчезает при столкновении со стеной (8 поп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 1 — «Дубинка»</div><div class="char-ability-text">Удар в ближнем бою, урон 800, отбрасывание 2 клетки (3 исп.).</div></div>
+          <div class="char-ability gadget"><div class="char-ability-title">Гаджет 2 — «Свисток»</div><div class="char-ability-text">Враги в радиусе 5 клеток принудительно смотрят на Шефра 2 сек (2 исп.).</div></div>
+          <div class="char-ability passive"><div class="char-ability-title">Пассивка — «Закон и порядок»</div><div class="char-ability-text">Враги, атакованные Шефром, получают +10% урона от всех источников 4 сек.</div></div>
+        </div>
+
         <div class="sub-block">
           <h4>⚫ Godly (1999 RC)</h4>
         </div>
@@ -1538,8 +1597,8 @@
 
         <div class="sub-block">
           <h4>📊 Прогресс</h4>
-          <p><strong>Готово:</strong> 20 из 20 ✅</p>
-          <p>Все персонажи полностью прописаны!</p>
+          <p><strong>Готово:</strong> 23 из 25 ✅</p>
+          <p>Осталось: 2 бойца (в разработке).</p>
         </div>
 
       </div>
@@ -1587,13 +1646,16 @@
     <div class="draft">
       <button class="draft-button" onclick="toggleDraft('mechanics', this)">⚔️ Механики <span class="arrow">›</span></button>
       <div id="mechanics" class="draft-content">
-        <div class="sub-block"><h4>Соло ШД</h4><p>5 игроков. Через 30 сек карта обрушается.</p></div>
-        <div class="sub-block"><h4>Футбол 1v1</h4><p>Физический мяч.</p></div>
-        <div class="sub-block"><h4>Зона 1v1</h4><p>Два полукруга. Убийства мешают врагу.</p></div>
-        <div class="sub-block"><h4>Босс v2</h4><p>2 игрока против босса.</p></div>
+        <div class="sub-block"><h4>Соло ШД</h4><p>5 игроков, 4 минуты. Обрушение через 30 сек, каждые 10 сек по 1 ряду со всех 4 сторон. Боты понимают. Смерть — выбывание. Победа — последний выживший.</p></div>
+        <div class="sub-block"><h4>Футбол 1v1</h4><p>5 минут, 2 гола. Ворота у каждого свои. Мяч подбирается при касании, бросок атакой. Ульта — усиленный бросок. Респавн 3 сек.</p></div>
+        <div class="sub-block"><h4>Зона 1v1</h4><p>5 минут, 2% в секунду. Прогресс сохраняется. Смерть — респавн 3 сек. Победа — больше заполнено.</p></div>
+        <div class="sub-block"><h4>Босс v2</h4><p>6 минут, 2 игрока, 50 000 HP. 3 фазы. Награда 10 кубков.</p></div>
         <div class="sub-block"><h4>Кланы</h4><p>30 человек. Создание: 2000 Gold + 10 RC.</p></div>
         <div class="sub-block"><h4>Sabyey Run</h4><p>Мини-игра на заброшенной железной дороге.</p></div>
         <div class="sub-block"><h4>RED Park Arcade</h4><p>5 игр в день, билеты за задания.</p></div>
+        <div class="sub-block"><h4>Ежедневные победы</h4><p>6 побед → 5 обычных + 1 эпический ящик. Сброс в 12:00 МСК.</p></div>
+        <div class="sub-block"><h4>Недельные квесты</h4><p>7 в неделю, опыт для Battle Pass.</p></div>
+        <div class="sub-block"><h4>Сезонные квесты</h4><p>10 за сезон, цепочкой, опыт для Battle Pass.</p></div>
       </div>
     </div>
 
@@ -1615,12 +1677,13 @@
         <div class="sub-block">
           <h4>Бойцы</h4>
           <ul>
-            <li>Волт — 0</li>
+            <li>Игрок — 0</li>
+            <li>Волт — 10 кубков</li>
             <li>Рей, Лео — 49</li>
             <li>Лира, Брук — 99</li>
-            <li>Маскот, Кайден, Kiro, Jake, Ji — 149</li>
+            <li>Маскот, Кайден, Kiro, Jake, Ji, Тревор — 149</li>
             <li>Ricoel, Bait, Игрис — 199</li>
-            <li>Red Man, Астра, Lax — 299</li>
+            <li>Red Man, Астра, Lax, Шефр — 299</li>
             <li>Алхимик — 1999</li>
           </ul>
         </div>
@@ -1654,7 +1717,7 @@
       <div id="ideas" class="draft-content">
         <div class="sub-block"><h4>Коллаборация с Brawl Stars</h4><p>«Сириус с тенями против Абсолюта».</p></div>
         <div class="sub-block"><h4>Коллаборация с MHA</h4><p>Долгосрочная идея.</p></div>
-        <div class="sub-block"><h4>Мотивация игрока</h4><p>Пока открыта.</p></div>
+        <div class="sub-block"><h4>Мотивация игрока</h4><p>Открыта — игрок сам решает, зачем приехал.</p></div>
       </div>
     </div>
 
@@ -1844,21 +1907,21 @@
     <div class="card">
       <h3>Коллекция</h3>
       <div class="chars-grid">
-        <div class="char-card"><div class="char-avatar">⚡</div><div class="char-name">Волт</div><div class="char-rarity" style="color:#7dff9e;">Открыт</div></div>
+        <div class="char-card"><div class="char-avatar">👑</div><div class="char-name">Игрок</div><div class="char-rarity" style="color:#7dff9e;">Открыт</div></div>
+        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Волт</div><div class="char-rarity">10 кубков</div></div>
         <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Рей</div><div class="char-rarity">49 RC</div></div>
         <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Лира</div><div class="char-rarity" style="color:#c79dff;">99 RC</div></div>
         <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Маскот</div><div class="char-rarity" style="color:#ffe17d;">149 RC</div></div>
         <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Кайден</div><div class="char-rarity" style="color:#ffe17d;">149 RC</div></div>
-        <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Ricoel</div><div class="char-rarity" style="color:#ff9e9e;">199 RC</div></div>
         <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Red Man</div><div class="char-rarity" style="color:#ff6b6b;">299 RC</div></div>
         <div class="char-card"><div class="char-avatar">🔒</div><div class="char-name">Алхимик</div><div class="char-rarity" style="color:#ff4d4d;">1999 RC</div></div>
       </div>
     </div>
     <div class="card">
-      <h3>Волт — прокачка</h3>
+      <h3>Игрок — прокачка</h3>
       <p><strong>Уровень 1 → 11</strong></p>
-      <p>HP: 3000 → 7200</p>
-      <p>Урон: 600 → 1600</p>
+      <p>HP: 2200 → 4200</p>
+      <p>Урон: 500 → 800</p>
       <div class="shop-item"><div class="shop-info"><div class="title">Гаджет</div><div class="desc">Открыть способность</div></div><button class="buy-btn gold">1000 Gold</button></div>
       <div class="shop-item"><div class="shop-info"><div class="title">Пассивка</div><div class="desc">Постоянный бонус</div></div><button class="buy-btn gold">2200 Gold</button></div>
       <div class="shop-item"><div class="shop-info"><div class="title">Апгрейд 1 → 2</div><div class="desc">Следующий уровень</div></div><button class="buy-btn">2 Energy</button></div>
@@ -1867,7 +1930,7 @@
       <h3>Путь славы</h3>
       <ul>
         <li>20 кубков → 200 Gold</li>
-        <li>50 кубков → 50 RC</li>
+        <li>50 кубков → 20 Energy</li>
         <li>100 кубков → <strong>Рей</strong></li>
         <li>200 кубков → 300 Gold</li>
       </ul>
@@ -1932,8 +1995,8 @@
     </div>
     <div class="card">
       <h3>Тайна</h3>
-      <p>Здесь прячутся <strong>выжившие после 2028</strong>: Венди, Фрэнк, Мортис, Брюс, Пэм.</p>
-      <div class="info-chars"><span class="chip">Венди</span><span class="chip">Фрэнк</span><span class="chip">Мортис</span><span class="chip">Брюс</span><span class="chip">Пэм</span></div>
+      <p>Здесь прячутся <strong>выжившие после 2028</strong>: <p>
+      <div class="info-chars"><span class="chip">учёный</span><span class="chip">гигант</span><span class="chip">мертвец</span><span class="chip">медведь</span><span class="chip">женщина</span><span class="chip">Тревор</span></div>
     </div>
   </div>
 </div>
@@ -2153,10 +2216,11 @@
 
 </script>
 
-</body>
- <script>
+<script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }
- </script>
+</script>
+
+</body>
  </html>
