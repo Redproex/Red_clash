@@ -1,4 +1,4 @@
-const CACHE_NAME = 'redclash-v1';
+const CACHE_NAME = 'redclash-v2';
 const FILES = [
   'index.html',
   'mechanics.html',
