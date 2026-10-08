@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RED_CLASH — Механики</title>
 <link rel="icon" type="image/png" href="icon.png">
- <title>RED_CLASH — Механики</title>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -15,7 +15,7 @@
     padding: 20px;
   }
   .container { width: min(900px, 96%); margin: 20px auto; }
-  h1 { text-align: center; font-size: 32px; margin: 0 0 8px; }
+  h1 { text-align: center; font-size: 32px; margin: 0 0 8px; letter-spacing: 2px; }
   .sub { text-align: center; color: #999; margin-bottom: 24px; font-size: 14px; }
   .back {
     display: inline-block;
@@ -30,45 +30,7 @@
     font-size: 14px;
   }
   .back:hover { background: #222530; }
-  .section {
-    background: #12141b;
-    border: 1px solid #292c36;
-    border-radius: 16px;
-    padding: 18px;
-    margin-bottom: 12px;
-  }
-  .section h2 {
-    margin: 0 0 14px;
-    font-size: 18px;
-    color: #e52b38;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .block {
-    background: rgba(0,0,0,0.3);
-    border-radius: 12px;
-    padding: 12px 16px;
-    margin: 10px 0;
-    border-left: 3px solid #e52b38;
-  }
-  .block h3 {
-    margin: 0 0 6px;
-    font-size: 14px;
-    color: #fff;
-  }
-  .block p {
-    margin: 4px 0;
-    color: #bbb;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-  .block strong { color: #fff; }
-  .rarity-rare .block { border-left-color: #2ecc71; }
-  .rarity-superrare .block { border-left-color: #3b82c4; }
-  .rarity-epic .block { border-left-color: #8b2fc9; }
-  .rarity-legend .block { border-left-color: #e5a52b; }
-  .rarity-mythic .block { border-left-color: #ff4d4d; }
-  .rarity-godly .block { border-left-color: #ffffff; }
+
   .toggle {
     width: 100%;
     padding: 16px;
@@ -87,8 +49,47 @@
   }
   .toggle:hover { background: #222530; }
   .toggle .arrow { color: #e52b38; font-size: 20px; }
+
   .content { display: none; padding: 0 4px 12px; }
   .content.open { display: block; }
+
+  .section {
+    background: #12141b;
+    border: 1px solid #292c36;
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 12px;
+  }
+
+  .block {
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-left: 3px solid #e52b38;
+  }
+
+  .block h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .block p {
+    margin: 4px 0;
+    color: #bbb;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .block strong { color: #fff; }
+  .block ul { margin: 6px 0 0; padding-left: 18px; }
+  .block li { color: #bbb; font-size: 13px; line-height: 1.6; margin: 4px 0; }
+
+  .blue { border-left-color: #3b82c4; }
+  .gold { border-left-color: #e5a52b; }
+  .purple { border-left-color: #8b2fc9; }
+  .green { border-left-color: #2ecc71; }
 </style>
 </head>
 <body>
@@ -220,7 +221,7 @@
     </div>
   </div>
 
-  <!-- ЕЖЕДНЕВНЫЕ -->
+  <!-- ЕЖЕДНЕВНЫЕ НАГРАДЫ -->
   <button class="toggle" onclick="toggle('daily', this)">🎁 Ежедневные награды <span class="arrow">›</span></button>
   <div id="daily" class="content">
     <div class="section">
@@ -234,6 +235,90 @@
         <p>Хаотично, без цикла.</p>
         <p>Пул: редкий/сверхредкий/эпический ящик, Gold (250–1000), Energy (30–100), RC (2–5).</p>
         <p>Пропустил день → серия сбрасывается с Дня 1.</p>
+      </div>
+      <div class="block">
+        <h3>Лимиты</h3>
+        <p>Gold ≤ 1000, Energy ≤ 100, RC ≤ 5.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЕЖЕДНЕВНЫЕ ПОБЕДЫ -->
+  <button class="toggle" onclick="toggle('dailywins', this)">🏅 Ежедневные победы <span class="arrow">›</span></button>
+  <div id="dailywins" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Задание</h3>
+        <p>Победить <strong>6 раз</strong> в любом режиме.</p>
+        <p>Сброс: каждый день в <strong>12:00 МСК</strong>.</p>
+        <p>Режимы: все (Соло ШД, Зона, Футбол, Босс).</p>
+      </div>
+      <div class="block">
+        <h3>Награды</h3>
+        <p>1-я победа — 1 обычный ящик</p>
+        <p>2-я победа — 1 обычный ящик</p>
+        <p>3-я победа — 1 обычный ящик</p>
+        <p>4-я победа — 1 обычный ящик</p>
+        <p>5-я победа — 1 обычный ящик</p>
+        <p><strong>6-я победа — 1 эпический ящик</strong></p>
+        <p>Итого за день: 5 обычных + 1 эпический.</p>
+      </div>
+      <div class="block">
+        <h3>Важно</h3>
+        <p>Не продвигают Battle Pass. Только ящики.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- НЕДЕЛЬНЫЕ КВЕСТЫ -->
+  <button class="toggle" onclick="toggle('weekly', this)">📅 Недельные квесты <span class="arrow">›</span></button>
+  <div id="weekly" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Формат</h3>
+        <p><strong>7 квестов в неделю.</strong></p>
+        <p>Обновление раз в неделю.</p>
+        <p>Награда: <strong>опыт для Battle Pass</strong>.</p>
+      </div>
+      <div class="block">
+        <h3>Примеры</h3>
+        <ul>
+          <li>Победить 10 раз.</li>
+          <li>Убить 30 врагов.</li>
+          <li>Сыграть 5 боёв за одного бойца.</li>
+          <li>Использовать супер 20 раз.</li>
+          <li>Попасть в топ-3 в Соло ШД 3 раза.</li>
+          <li>Забить 2 гола в Футболе.</li>
+          <li>Убить босса 1 раз.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- СЕЗОННЫЕ КВЕСТЫ -->
+  <button class="toggle" onclick="toggle('seasonal', this)">🌌 Сезонные квесты <span class="arrow">›</span></button>
+  <div id="seasonal" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Формат</h3>
+        <p><strong>10 квестов за сезон (30 дней).</strong></p>
+        <p>Идут <strong>цепочкой</strong>: выполнил один — открылся следующий.</p>
+        <p>Награда: <strong>опыт для Battle Pass</strong>.</p>
+      </div>
+      <div class="block">
+        <h3>Примеры</h3>
+        <ol>
+          <li>Победить 5 раз.</li>
+          <li>Победить 15 раз.</li>
+          <li>Победить 30 раз.</li>
+          <li>Убить 50 врагов.</li>
+          <li>Сыграть 20 боёв.</li>
+          <li>Использовать супер 50 раз.</li>
+          <li>Открыть 1 нового бойца.</li>
+          <li>Дойти до лиги Бронза.</li>
+          <li>Победить в Зоне 10 раз.</li>
+          <li>Пройти все 4 режима по 5 раз.</li>
+        </ol>
       </div>
     </div>
   </div>
@@ -318,7 +403,7 @@
         <h3>Формат</h3>
         <p>Проходят за 10 дней до окончания сезона</p>
         <p>Участвуют 50 отобранных кланов (автор выбирает вручную)</p>
-        <p>Заявку подаёт глава клана по почте</p>
+        <p>Заявку подаёт глава клана по почте: redprofeedback@gmail.com</p>
         <p>Формат: «Приветствую, автор! Мы хотим участвовать в играх клана. Название клана: ..., мой ID: #...»</p>
       </div>
       <div class="block">
@@ -337,6 +422,23 @@
     </div>
   </div>
 
+  <!-- ОБРАТНАЯ СВЯЗЬ -->
+  <button class="toggle" onclick="toggle('contact', this)">📧 Обратная связь <span class="arrow">›</span></button>
+  <div id="contact" class="content">
+    <div class="section">
+      <div class="block">
+        <h3>Почта для связи</h3>
+        <p style="font-size: 16px; font-weight: bold; color: #e52b38;">redprofeedback@gmail.com</p>
+        <p>По вопросам: баги, идеи, заявки на «Голодные игры».</p>
+      </div>
+      <div class="block">
+        <h3>Заявка на «Голодные игры»</h3>
+        <p>Подаёт только <strong>глава клана</strong>.</p>
+        <p>Формат письма: «Приветствую, автор! Мы хотим участвовать в играх клана. Название клана: ___. Мой ID: #___.»</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -348,4 +450,4 @@
   }
 </script>
 </body>
-          </html>
+                                       </html>
