@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - '*.zip'
-      - '.github/workflows/build-android.yml'
+      - "**.zip"
+      - ".github/workflows/build-android.yml"
 
 jobs:
   build:
@@ -20,24 +20,38 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.13'
+          gradle-version: "8.13"
 
-      - name: Unpack Android project
+      - name: Find and unpack Android project
         run: |
           mkdir -p android-src
-          ZIP="$(find . -maxdepth 1 -type f -name '*.zip' | head -n 1)"
-          test -n "$ZIP" || { echo "ZIP archive not found"; exit 1; }
-          unzip -q "$ZIP" -d android-src
-          PROJECT_DIR="$(find android-src -name settings.gradle.kts -type f -printf '%h\n' | head -n 1)"
-          test -n "$PROJECT_DIR" || { echo "settings.gradle.kts not found"; exit 1; }
+          ZIP_FILE="$(find . -maxdepth 1 -type f -iname '*.zip' | head -n 1)"
+
+          if [ -z "$ZIP_FILE" ]; then
+            echo "ERROR: ZIP archive not found in repository root."
+            exit 1
+          fi
+
+          echo "Found archive: $ZIP_FILE"
+          unzip -q "$ZIP_FILE" -d android-src
+
+          PROJECT_DIR="$(find android-src -type f -name settings.gradle.kts -printf '%h\n' | head -n 1)"
+
+          if [ -z "$PROJECT_DIR" ]; then
+            echo "ERROR: settings.gradle.kts not found in archive."
+            find android-src -maxdepth 4 -type f
+            exit 1
+          fi
+
+          echo "Android project: $PROJECT_DIR"
           echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
 
-      - name: Build APK
+      - name: Build debug APK
         run: gradle -p "$PROJECT_DIR" assembleDebug
 
       - name: Upload APK
