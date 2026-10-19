@@ -5,12 +5,13 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'android-app/**'
+      - '*.zip'
       - '.github/workflows/build-android.yml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,12 +24,25 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+
+      - name: Unpack Android project
+        run: |
+          mkdir -p android-src
+          ZIP="$(find . -maxdepth 1 -type f -name '*.zip' | head -n 1)"
+          test -n "$ZIP" || { echo "ZIP archive not found"; exit 1; }
+          unzip -q "$ZIP" -d android-src
+          PROJECT_DIR="$(find android-src -name settings.gradle.kts -type f -printf '%h\n' | head -n 1)"
+          test -n "$PROJECT_DIR" || { echo "settings.gradle.kts not found"; exit 1; }
+          echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
 
       - name: Build APK
-        run: gradle -p android-app assembleDebug
+        run: gradle -p "$PROJECT_DIR" assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: rustyworld-apk
-          path: android-app/app/build/outputs/apk/debug/*.apk
+          path: android-src/**/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
